@@ -1,0 +1,33 @@
+--- runConfigureICU	Thu Aug 27 11:17:40 2015
++++ runConfigureICU.good	Thu Aug 27 11:17:30 2015
+@@ -316,16 +316,27 @@
+         CXXFLAGS="--std=c++03"
+         export CXXFLAGS
+         ;;
+-    MSYS/MSVC)
++    MSYS/MSVC/Debug)
+         THE_OS="MSYS"
+         THE_COMP="Microsoft Visual C++"
+         CC=cl; export CC
+         CXX=cl; export CXX
+-        RELEASE_CFLAGS='-Gy -MD'
+-        RELEASE_CXXFLAGS='-Gy -MD'
++        RELEASE_CFLAGS='-Zi -MDd'
++        RELEASE_CXXFLAGS='-Zi -MDd'
++        RELEASE_LDFLAGS='-DEBUG'
+         DEBUG_CFLAGS='-Zi -MDd'
+         DEBUG_CXXFLAGS='-Zi -MDd'
+         DEBUG_LDFLAGS='-DEBUG'
++        ;;
++    MSYS/MSVC/Release)
++        THE_OS="MSYS"
++        THE_COMP="Microsoft Visual C++"
++        CC=cl; export CC
++        CXX=cl; export CXX
++        RELEASE_CFLAGS='-Gy -MD'
++        RELEASE_CXXFLAGS='-Gy -MD'
++        DEBUG_CFLAGS='-Gy -MD'
++        DEBUG_CXXFLAGS='-Gy -MD'
+         ;;
+     *BSD)
+         THE_OS="BSD"

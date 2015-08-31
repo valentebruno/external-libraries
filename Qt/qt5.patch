@@ -1,0 +1,79 @@
+--- qtbase/src/3rdparty/icu_dependency.pri.orig	Thu Aug 27 11:28:10 2015
++++ qtbase/src/3rdparty/icu_dependency.pri	Thu Aug 27 11:31:43 2015
+@@ -1,13 +1,13 @@
+ win32 {
+-    CONFIG(static, static|shared) {
++#   CONFIG(static, static|shared) {
+         CONFIG(debug, debug|release) {
+             LIBS_PRIVATE += -lsicuind -lsicuucd -lsicudtd
+         } else {
+             LIBS_PRIVATE += -lsicuin -lsicuuc -lsicudt
+         }
+-    } else {
+-        LIBS_PRIVATE += -licuin -licuuc -licudt
+-    }
++#   } else {
++#       LIBS_PRIVATE += -licuin -licuuc -licudt
++#   }
+ } else {
+     LIBS_PRIVATE += -licui18n -licuuc -licudata
+ }
+--- qtwebkit/Source/WTF/WTF.pri.orig	Thu Aug 27 11:29:42 2015
++++ qtwebkit/Source/WTF/WTF.pri	Thu Aug 27 11:30:11 2015
+@@ -15,15 +15,15 @@
+     LIBS += -licucore
+ } else:!use?(wchar_unicode): {
+     win32 {
+-        CONFIG(static, static|shared) {
++#       CONFIG(static, static|shared) {
+             CONFIG(debug, debug|release) {
+                 LIBS += -lsicuind -lsicuucd -lsicudtd
+             } else {
+                 LIBS += -lsicuin -lsicuuc -lsicudt
+             }
+-        } else {
+-            LIBS += -licuin -licuuc -licudt
+-        }
++#       } else {
++#           LIBS += -licuin -licuuc -licudt
++#       }
+     }
+     else:!contains(QT_CONFIG,no-pkg-config):packagesExist("icu-i18n"): PKGCONFIG *= icu-i18n
+     else:android: LIBS += -licui18n -licuuc
+--- qtwebkit/Tools/qmake/config.tests/icu/icu.pro.orig	Thu Aug 27 14:02:05 2015
++++ qtwebkit/Tools/qmake/config.tests/icu/icu.pro	Thu Aug 27 14:02:36 2015
+@@ -3,16 +3,16 @@
+ CONFIG -= qt dylib
+ 
+ win32 {
+-    CONFIG(static, static|shared) {
++#   CONFIG(static, static|shared) {
+         LIBS += $$QMAKE_LIBS_CORE
+         CONFIG(debug, debug|release) {
+             LIBS += -lsicuind -lsicuucd -lsicudtd
+         } else {
+             LIBS += -lsicuin -lsicuuc -lsicudt
+         }
+-    } else {
+-        LIBS += -licuin -licuuc -licudt
+-    }
++#   } else {
++#       LIBS += -licuin -licuuc -licudt
++#   }
+ } else:!contains(QT_CONFIG,no-pkg-config):packagesExist("icu-i18n") {
+     PKGCONFIG += icu-i18n
+ } else {
+--- qtwebengine/src/core/qtwebengine.gypi
++++ qtwebengine/src/core/qtwebengine.gypi
+@@ -78,6 +78,11 @@
+           },
+         },
+       }],
++      ['qt_os=="win32" and qt_gl=="opengl"', {
++        'include_dirs': [
++          '<(chromium_src_dir)/third_party/khronos',
++        ],
++      }],
+       ['OS=="win"', {
+         'resource_include_dirs': [
+           '<(SHARED_INTERMEDIATE_DIR)/webkit',
