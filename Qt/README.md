@@ -1,6 +1,6 @@
 Qt 5.5 for Windows
 ==================
-This document provides the instructions were used to build Qt 5.5 for Windows.
+This document provides the instructions that were used to build Qt 5.5 for Windows.
 
 Prerequisites
 =============
@@ -33,7 +33,7 @@ The instructions below provide the steps used for building both 64-bit and 32-bi
 * Create a `C:\qt` directory.
 * Download the open source version of the [source code](http://download.qt.io/official_releases/qt/5.5/5.5.0/single/qt-everywhere-opensource-src-5.5.0.zip) from the Qt website. Make sure that you get the ZIP version, as it contains a `configure.exe` file that is needed to properly configure the build settings on Windows. The tar balls do not have that executable.
 * Unzip the contents of the ZIP file into `C:\qt`, then rename the resulting top-level `qt-everywhere-opensource-src-5.5.0` subdirectory to `qt-5.5.0`.
-* Qt 5.5 doesn't properly support linking in static ICU libraries when building Qt dynamically. To workaround this, we will ignore the static/shared check, and always link in with the static versions, regardless of how Qt is being built. Additionally, since we  are building with [Desktop OpenGL support, and not ANGLE,](https://wiki.qt.io/Qt_5_on_Windows_ANGLE_and_OpenGL) we need to patch a QtWebEngine configuration file too (see [QTBUG-47058](https://bugreports.qt.io/browse/QTBUG-47058)). Create a file called `qt5.patch` with the following contents, and place it in the top-level `c:\qt` directory:
+* Qt 5.5 doesn't properly support linking in static ICU libraries when building Qt dynamically. To workaround this, we will ignore the static/shared check, and always link in with the static versions, regardless of how Qt is being built. Additionally, since we  are building with [Desktop OpenGL support, and not ANGLE,](https://wiki.qt.io/Qt_5_on_Windows_ANGLE_and_OpenGL) we need to patch a QtWebEngine configuration file too (see [QTBUG-47058](https://bugreports.qt.io/browse/QTBUG-47058)). Create a file called [`qt5.patch`](qt5.patch) with the following contents, and place it in the top-level `c:\qt` directory:
 
 ```
 --- qtbase/src/3rdparty/icu_dependency.pri.orig	Thu Aug 27 11:28:10 2015
@@ -123,9 +123,12 @@ It is recommended that you confirm that executing `perl`, `python` and `ruby` wo
 
 We will be using different build directories (`build64` and `build32`), so you will be able to build both 32-bit and 64-bit versions of Qt simultaneously if you desire.
 
+*WARNING*: If you have Avast! installed, make sure you uninstall it before attempting to build. Their Deep Screen feature will scan various executables that are created during the build process. This will result in corrupt files, access violations, and hangs. Disabling the feature and/or disabling all of Avast! is not enough, as it still runs for some reason.
+
+
 64-bit Build
 ------------
-* Create a `qt5vars-x64.cmd` file in the top-level `C:\qt` directory with the following contents (again, change the various paths as needed):
+* Create a [`qt5vars-x64.cmd`](qt5vars-x64.cmd) file in the top-level `C:\qt` directory with the following contents (again, change the various paths as needed):
 ```
 CALL "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" amd64
 SET _ROOT=C:\qt\qt-5.5.0
@@ -167,7 +170,7 @@ OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32 
 32-bit Build
 ------------
 The 32-bit build is similar to the 64-bit build, but you need to make some small changes.
-* Copy `qt5vars-x64.cmd` to `qt5vars-x86.cmd`, and replace the instance of `Libraries-x64_vc12` with `Libraries-x86_vc12` in `qt5vars-x86.cmd`. Also change the architecture at the end of the first time from `amd64` to `x86`. It should look like this:
+* Copy [`qt5vars-x64.cmd`](qt5vars-x64.cmd) to [`qt5vars-x86.cmd`](qt5vars-x86.cmd), and replace the instance of `Libraries-x64_vc12` with `Libraries-x86_vc12` in [`qt5vars-x86.cmd`](qt5vars-x86.cmd). Also change the architecture at the end of the first time from `amd64` to `x86`. It should look like this:
 ```
 CALL "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat" x86
 SET _ROOT=C:\qt\qt-5.5.0

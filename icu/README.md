@@ -5,7 +5,7 @@ The instructions here are provided to build static debug and release versions of
 * Download the [ICU source code](http://site.icu-project.org/download). This document assumes version 55.1, `icu4c-55_1-src.zip`. If you install a different version, adjust instances of `icu-55.1`, that appear in the various scripts, with the appropriate version number.
 * If you don't already have it, install `make` from [sourceforge.net](http://sourceforge.net/projects/mingw/files/MSYS/Base/make/make-3.81-3/) into `/usr/local/bin/` for use by msysGit (using Windows paths, it is likely `C:\Program Files (x86)\Git\local\bin`).
 
-* The compiler options aren't properly set in the `configure` script to allow us to build a pure Windows debug library that works with MSVC. Therefore, we will apply a patch, that may be overkill, but it will guarantee that we build with the proper settings. Create a file called `icu.patch` with the following contents, and place it in the `C:\qt` directory.
+* The compiler options aren't properly set in the `configure` script to allow us to build a pure Windows debug library that works with MSVC. Therefore, we will apply a patch, that may be overkill, but it will guarantee that we build with the proper settings. Create a file called [`icu.patch`](icu.patch) with the following contents, and place it in the `C:\qt` directory.
 
 ```
 --- runConfigureICU	Thu Aug 27 11:17:40 2015
