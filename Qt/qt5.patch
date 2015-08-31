@@ -1,4 +1,4 @@
---- qtbase/src/3rdparty/icu_dependency.pri.orig	Thu Aug 27 11:28:10 2015
+--- qtbase/src/3rdparty/icu_dependency.pri	Thu Aug 27 11:28:10 2015
 +++ qtbase/src/3rdparty/icu_dependency.pri	Thu Aug 27 11:31:43 2015
 @@ -1,13 +1,13 @@
  win32 {
@@ -18,7 +18,7 @@
  } else {
      LIBS_PRIVATE += -licui18n -licuuc -licudata
  }
---- qtwebkit/Source/WTF/WTF.pri.orig	Thu Aug 27 11:29:42 2015
+--- qtwebkit/Source/WTF/WTF.pri	Thu Aug 27 11:29:42 2015
 +++ qtwebkit/Source/WTF/WTF.pri	Thu Aug 27 11:30:11 2015
 @@ -15,15 +15,15 @@
      LIBS += -licucore
@@ -40,7 +40,7 @@
      }
      else:!contains(QT_CONFIG,no-pkg-config):packagesExist("icu-i18n"): PKGCONFIG *= icu-i18n
      else:android: LIBS += -licui18n -licuuc
---- qtwebkit/Tools/qmake/config.tests/icu/icu.pro.orig	Thu Aug 27 14:02:05 2015
+--- qtwebkit/Tools/qmake/config.tests/icu/icu.pro	Thu Aug 27 14:02:05 2015
 +++ qtwebkit/Tools/qmake/config.tests/icu/icu.pro	Thu Aug 27 14:02:36 2015
 @@ -3,16 +3,16 @@
  CONFIG -= qt dylib

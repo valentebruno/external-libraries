@@ -9,7 +9,7 @@ The instructions here are provided to build static debug and release versions of
 
 ```
 --- runConfigureICU	Thu Aug 27 11:17:40 2015
-+++ runConfigureICU.good	Thu Aug 27 11:17:30 2015
++++ runConfigureICU	Thu Aug 27 11:17:30 2015
 @@ -316,16 +316,27 @@
          CXXFLAGS="--std=c++03"
          export CXXFLAGS

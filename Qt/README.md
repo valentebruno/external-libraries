@@ -36,7 +36,7 @@ The instructions below provide the steps used for building both 64-bit and 32-bi
 * Qt 5.5 doesn't properly support linking in static ICU libraries when building Qt dynamically. To workaround this, we will ignore the static/shared check, and always link in with the static versions, regardless of how Qt is being built. Additionally, since we  are building with [Desktop OpenGL support, and not ANGLE,](https://wiki.qt.io/Qt_5_on_Windows_ANGLE_and_OpenGL) we need to patch a QtWebEngine configuration file too (see [QTBUG-47058](https://bugreports.qt.io/browse/QTBUG-47058)). Create a file called [`qt5.patch`](qt5.patch) with the following contents, and place it in the top-level `c:\qt` directory:
 
 ```
---- qtbase/src/3rdparty/icu_dependency.pri.orig	Thu Aug 27 11:28:10 2015
+--- qtbase/src/3rdparty/icu_dependency.pri	Thu Aug 27 11:28:10 2015
 +++ qtbase/src/3rdparty/icu_dependency.pri	Thu Aug 27 11:31:43 2015
 @@ -1,13 +1,13 @@
  win32 {
@@ -56,7 +56,7 @@ The instructions below provide the steps used for building both 64-bit and 32-bi
  } else {
      LIBS_PRIVATE += -licui18n -licuuc -licudata
  }
---- qtwebkit/Source/WTF/WTF.pri.orig	Thu Aug 27 11:29:42 2015
+--- qtwebkit/Source/WTF/WTF.pri	Thu Aug 27 11:29:42 2015
 +++ qtwebkit/Source/WTF/WTF.pri	Thu Aug 27 11:30:11 2015
 @@ -15,15 +15,15 @@
      LIBS += -licucore
@@ -78,7 +78,7 @@ The instructions below provide the steps used for building both 64-bit and 32-bi
      }
      else:!contains(QT_CONFIG,no-pkg-config):packagesExist("icu-i18n"): PKGCONFIG *= icu-i18n
      else:android: LIBS += -licui18n -licuuc
---- qtwebkit/Tools/qmake/config.tests/icu/icu.pro.orig	Thu Aug 27 14:02:05 2015
+--- qtwebkit/Tools/qmake/config.tests/icu/icu.pro	Thu Aug 27 14:02:05 2015
 +++ qtwebkit/Tools/qmake/config.tests/icu/icu.pro	Thu Aug 27 14:02:36 2015
 @@ -3,16 +3,16 @@
  CONFIG -= qt dylib
