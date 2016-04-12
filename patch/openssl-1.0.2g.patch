@@ -1,0 +1,99 @@
+diff -Naur openssl-1.0.2g.orig/util/mk1mf.pl openssl-1.0.2g.patch/util/mk1mf.pl
+--- openssl-1.0.2g.orig/util/mk1mf.pl	2016-03-01 15:35:53.000000000 +0200
++++ openssl-1.0.2g.patch/util/mk1mf.pl	2016-03-19 00:56:54.914405900 +0200
+@@ -521,7 +521,7 @@
+ # You should not need to touch anything below this point
+ ######################################################
+ 
+-E_EXE=openssl
++E_EXE=openssl$libsuffix
+ SSL=$ssl
+ CRYPTO=$crypto
+ 
+@@ -1229,6 +1229,8 @@
+ 		"shlib" => \$shlib,
+ 		"dll" => \$shlib,
+ 		"shared" => 0,
++		"debug_lib" => \$debug_lib,
++		"static_lib" => \$static_lib,
+ 		"no-sctp" => 0,
+ 		"no-srtp" => 0,
+ 		"no-gmp" => 0,
+diff -Naur openssl-1.0.2g.orig/util/mkdef.pl openssl-1.0.2g.patch/util/mkdef.pl
+--- openssl-1.0.2g.orig/util/mkdef.pl	2016-03-01 15:35:53.000000000 +0200
++++ openssl-1.0.2g.patch/util/mkdef.pl	2016-03-19 00:56:54.917406100 +0200
+@@ -55,6 +55,8 @@
+ #
+ 
+ my $debug=0;
++my $debug_lib=0;
++my $static_lib=0;
+ 
+ my $crypto_num= "util/libeay.num";
+ my $ssl_num=    "util/ssleay.num";
+@@ -155,6 +157,8 @@
+ foreach (@ARGV, split(/ /, $options))
+ 	{
+ 	$debug=1 if $_ eq "debug";
++	$debug_lib=1 if $_ eq "debug_lib";
++	$static_lib=1 if $_ eq "static_lib";
+ 	$W32=1 if $_ eq "32";
+ 	$W16=1 if $_ eq "16";
+ 	if($_ eq "NT") {
+@@ -1318,7 +1322,20 @@
+ 		  # Vendor field can't contain colon, drat; so we omit http://
+ 		  $description = "\@#$http_vendor:$version#\@$what; DLL for library $name.  Build for EMX -Zmtd";
+ 		}
+-
++		
++	$libsuffix="";
++	if ($static_lib) {
++		$libsuffix="MT";
++	} else {
++		$libsuffix="MD";
++	}
++	
++	if ($debug_lib) {
++		$libsuffix=$libsuffix."d";
++	}
++		
++	$libname=$libname.$libsuffix;
++	
+ 	print OUT <<"EOF";
+ ;
+ ; Definition file for the DLL version of the $name library from OpenSSL
+diff -Naur openssl-1.0.2g.orig/util/pl/VC-32.pl openssl-1.0.2g.patch/util/pl/VC-32.pl
+--- openssl-1.0.2g.orig/util/pl/VC-32.pl	2016-03-01 15:35:53.000000000 +0200
++++ openssl-1.0.2g.patch/util/pl/VC-32.pl	2016-03-19 00:56:54.918406100 +0200
+@@ -15,6 +15,20 @@
+ 	{
+ 	$crypto="libeay32";
+ 	}
++	
++$libsuffix="";
++if ($static_lib) {
++	$libsuffix="MT";
++} else {
++	$libsuffix="MD";
++}
++
++if ($debug_lib) {
++	$libsuffix=$libsuffix."d";
++}
++	
++$ssl=$ssl.$libsuffix;
++$crypto=$crypto.$libsuffix;
+ 
+ $o='\\';
+ $cp='$(PERL) util/copy.pl';
+@@ -155,8 +169,8 @@
+ 	}
+ 
+ # generate symbols.pdb unconditionally
+-$app_cflag.=" /Zi /Fd\$(TMP_D)/app";
+-$lib_cflag.=" /Zi /Fd\$(TMP_D)/lib";
++$app_cflag.=" /Zi /Fd\$(TMP_D)/app".$libsuffix;
++$lib_cflag.=" /Zi /Fd\$(TMP_D)/lib".$libsuffix;
+ $lflags.=" /debug";
+ 
+ $obj='.obj';
