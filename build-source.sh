@@ -12,8 +12,8 @@ if [[ ! -d /c/dev/Libraries-x64_vc15/zlib-1.2.8 ]]; then
 fi
 
 #Build OpenSSL
-if [[ ! -d /c/dev/Libraries-x64_vc15/openssl ]]; then
-  cmd  /c "script\\openssl.x64.cmd openssl C:\\dev\\Libraries-x64_vc15 openssl"
+if [[ ! -d /c/dev/Libraries-x64_vc15/openssl-1.0.2g ]]; then
+  cmd /c "script\\openssl.x64.cmd openssl C:\\dev\\Libraries-x64_vc15 openssl-1.0.2g"
 fi
 
 #Build Curl
