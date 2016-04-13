@@ -1,0 +1,91 @@
+From 6f4fb88a69726213a679ae86a8ee1abdba228be1 Mon Sep 17 00:00:00 2001
+From: Walter Gray <wgray@leapmotion.com>
+Date: Wed, 13 Apr 2016 12:49:59 -0700
+Subject: [PATCH] updated for leap
+
+---
+ Makefile.dist      |  2 +-
+ lib/Makefile.vc6   |  4 ++--
+ lib/config-win32.h |  2 ++
+ src/Makefile.vc6   | 10 +++++-----
+ 4 files changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/Makefile.dist b/Makefile.dist
+index 329e4f3..e263ace 100644
+--- Makefile.dist
++++ Makefile.dist
+@@ -20,7 +20,7 @@
+ #
+ ###########################################################################
+
+-VC=vc6
++VC=vc14
+
+ all:
+  ./configure
+diff --git a/lib/Makefile.vc6 b/lib/Makefile.vc6
+index ba903c9..08d99be 100644
+--- lib/Makefile.vc6
++++ lib/Makefile.vc6
+@@ -105,10 +105,10 @@ WINDOWS_SDK_PATH = "$(PROGRAMFILES)\Microsoft SDK"
+
+ CCNODBG      = cl.exe /O2 /DNDEBUG
+ CCDEBUG      = cl.exe /Od /Gm /Zi /D_DEBUG /GZ
+-CFLAGSSSL    = /DUSE_OPENSSL /I "$(OPENSSL_PATH)/inc32" /I "$(OPENSSL_PATH)/inc32/openssl"
++CFLAGSSSL    = /DUSE_OPENSSL /I "$(OPENSSL_PATH)/include" /I "$(OPENSSL_PATH)/include/openssl"
+ CFLAGSWINSSL = /DUSE_SCHANNEL
+ CFLAGSSSH2   = /DUSE_LIBSSH2 /DCURL_DISABLE_LDAP /DHAVE_LIBSSH2 /DHAVE_LIBSSH2_H /DLIBSSH2_WIN32 /DLIBSSH2_LIBRARY /I "$(LIBSSH2_PATH)/include"
+-CFLAGSZLIB   = /DHAVE_ZLIB_H /DHAVE_ZLIB /DHAVE_LIBZ /I "$(ZLIB_PATH)"
++CFLAGSZLIB   = /DHAVE_ZLIB_H /DHAVE_ZLIB /DHAVE_LIBZ /I "$(ZLIB_PATH)/include"
+ CFLAGS       = /I. /I../include /nologo /W3 /GX /DWIN32 /YX /FD /c /DBUILDING_LIBCURL /D_BIND_TO_CURRENT_VCLIBS_VERSION=1
+ CFLAGSLIB    = /DCURL_STATICLIB
+ LNKDLL       = link.exe /DLL
+diff --git a/lib/config-win32.h b/lib/config-win32.h
+index af7bb1f..2b30e2d 100644
+--- lib/config-win32.h
++++ lib/config-win32.h
+@@ -30,6 +30,8 @@
+ /*                          HEADER FILES                            */
+ /* ---------------------------------------------------------------- */
+
++#define HTTP_ONLY 1
++
+ /* Define if you have the <arpa/inet.h> header file. */
+ /* #define HAVE_ARPA_INET_H 1 */
+
+diff --git a/src/Makefile.vc6 b/src/Makefile.vc6
+index 08ea74e..54c199a 100644
+--- src/Makefile.vc6
++++ src/Makefile.vc6
+@@ -90,15 +90,15 @@ WINDOWS_SDK_PATH = "$(PROGRAMFILES)\Microsoft SDK"
+ ########################################################
+ ## Nothing more to do below this line!
+
+-ZLIB_CFLAGS    = /DHAVE_ZLIB_H /DHAVE_ZLIB /DHAVE_LIBZ /I "$(ZLIB_PATH)"
+-ZLIB_LFLAGS    = "/LIBPATH:$(ZLIB_PATH)"
++ZLIB_CFLAGS    = /DHAVE_ZLIB_H /DHAVE_ZLIB /DHAVE_LIBZ /I "$(ZLIB_PATH)/include"
++ZLIB_LFLAGS    = "/LIBPATH:$(ZLIB_PATH)/lib"
+ ZLIB_LIBS      = zlib.lib
+ ZLIB_IMP_LIBS  = zdll.lib
+
+ SSL_CFLAGS     = /DUSE_OPENSSL
+-SSL_LFLAGS     = /LIBPATH:"$(OPENSSL_PATH)/out32"
++SSL_LFLAGS     = /LIBPATH:"$(OPENSSL_PATH)/lib"
+ SSL_IMP_LFLAGS = /LIBPATH:"$(OPENSSL_PATH)/out32dll"
+-SSL_LIBS       = libeay32.lib ssleay32.lib gdi32.lib user32.lib
++SSL_LIBS       = libeay32MT.lib ssleay32MT.lib gdi32.lib user32.lib
+ WINLIBS        = ws2_32.lib wldap32.lib advapi32.lib
+
+ WINSSL_CFLAGS  = /DUSE_SCHANNEL
+@@ -284,7 +284,7 @@ LFLAGS         = $(LFLAGS) $(SSL_IMP_LFLAGS)
+ CFLAGS         = $(CFLAGS) $(SSL_CFLAGS) $(ZLIB_CFLAGS) /DCURL_STATICLIB
+ LINKLIBS       = $(LIBCURL_STA_LIB_REL) $(SSL_LIBS) $(ZLIB_LIBS)
+ LINKLIBS_DEBUG = $(LIBCURL_STA_LIB_DBG) $(SSL_LIBS) $(ZLIB_LIBS)
+-LFLAGS         = $(LFLAGS) $(SSL_LFLAGS) $(ZLIB_LFLAGS)
++LFLAGS         = $(LFLAGS) $(SSL_LFLAGS) $(ZLIB_LFLAGS) /nodefaultlib:libcmt
+ !ENDIF
+
+ #################################################
+--
+2.8.1.windows.1
+

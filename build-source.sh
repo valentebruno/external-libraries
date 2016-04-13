@@ -17,4 +17,8 @@ if [[ ! -d /c/dev/Libraries-x64_vc15/openssl-1.0.2g ]]; then
 fi
 
 #Build Curl
-
+if [[ ! -d /c/dev/Libraries-x64_vc15/curl-7.48.0 ]]; then
+  export ZLIB_PATH=C:\\dev\\Libraries-x64_vc15\\zlib-1.2.8
+  export OPENSSL_PATH=C:\\dev\\Libraries-x64_vc15\\openssl-1.0.2g
+  cmd /c "script\\curl.x64.cmd curl c:\\dev\\Libraries-x64_vc15 curl-7.48.0"
+fi
