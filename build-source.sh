@@ -22,3 +22,8 @@ if [[ ! -d /c/dev/Libraries-x64_vc15/curl-7.48.0 ]]; then
   export OPENSSL_PATH=C:\\dev\\Libraries-x64_vc15\\openssl-1.0.2g
   cmd /c "script\\curl.x64.cmd curl c:\\dev\\Libraries-x64_vc15 curl-7.48.0"
 fi
+
+#Build ICU
+if [[ ! -d /c/dev/Libraries-x64_vc15/icu-57.1 ]]; then
+  cmd /c "script\\icu.x64.cmd icu c:\\dev\\Libraries-x64_vc15 icu-57.1"
+fi
