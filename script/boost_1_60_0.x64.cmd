@@ -8,3 +8,4 @@
 @cd %2\%1\include
 @move boost-1_60\boost .
 @rmdir boost-1_60
+@endlocal
