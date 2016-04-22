@@ -1,0 +1,11 @@
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -104,6 +104,7 @@ include_directories(include)
+
+ if(FLATBUFFERS_BUILD_FLATLIB)
+ add_library(flatbuffers STATIC ${FlatBuffers_Library_SRCS})
++set_target_properties(flatbuffers PROPERTIES DEBUG_POSTFIX "d")
+ endif()
+
+ if(FLATBUFFERS_BUILD_FLATC)
+

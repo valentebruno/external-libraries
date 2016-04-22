@@ -1,5 +1,6 @@
 #!/bin/bash
 export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64'
+export CMAKE_COMMAND='"C:\Program Files (x86)\CMake\bin\cmake.exe"'
 
 #Build Boost
 if [[ ! -d /c/dev/Libraries-x64_vc15/boost_1_60_0 ]]; then
@@ -34,3 +35,9 @@ export ICU_PATH=C:\\dev\\Libraries-x64_vc15\\icu-57.1
 if [[ ! -d /c/dev/Libraries-x64_vc15/qt-5.6.0 ]]; then
   cmd /c "script\\qt5.x64.cmd qt5 c:\\dev\\Libraries-x64_vc15 qt-5.6.0"
 fi
+
+#Build Flatbuffers
+if [[ ! -d /c/dev/Libraries-x64_vc15/flatbuffers ]]; then
+  cmd /c "script\\flatbuffers.x64.cmd flatbuffers c:\\dev\\Libraries-x64_vc15 flatbuffers"
+fi
+

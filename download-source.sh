@@ -43,6 +43,7 @@ OPENSSH_URL=git@github.com:openssl/openssl.git
 CURL_URL=git@github.com:curl/curl.git
 ICU_URL=http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.zip
 ZLIB_URL=git@github.com:madler/zlib.git
+FLATBUFFERS_URL=git@github.com:google/flatbuffers.git
 
 download qt5 ${QT_URL} 5.6
 download jom.exe ${JOM_URL}
@@ -51,3 +52,4 @@ download curl ${CURL_URL} curl-7_48_0
 download openssl ${OPENSSH_URL} OpenSSL_1_0_2g
 download icu ${ICU_URL}
 download zlib ${ZLIB_URL} v1.2.8
+download flatbuffers ${FLATBUFFERS_URL} v1.3.0
