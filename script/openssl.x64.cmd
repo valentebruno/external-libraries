@@ -243,7 +243,7 @@ rem ============================================================================
 SET DST_DIST=!BUILD_PROJECT!-!PROJECT_VERSION!-vs!VS_VERSION!
 SET DST_DIST_DIR=!PROJECT_INSTALL_DIR!\!DST_DIST!
 
-for %%l in (static shared) do (
+for %%l in (static) do (
   for %%a in (x86 x64) do (
 
     if /i "%%a" == "x86" (
@@ -391,7 +391,7 @@ rem ============================================================================
 :buildall
 
 for %%a in (x64) do (
-  for %%l in (static) do (
+  for %%l in (shared) do (
     for %%b in (debug release) do (
       call :build %%a %%l %%b
     )
