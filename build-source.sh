@@ -41,3 +41,17 @@ if [[ ! -d /c/dev/Libraries-x64_vc15/flatbuffers ]]; then
   cmd /c "script\\flatbuffers.x64.cmd flatbuffers c:\\dev\\Libraries-x64_vc15 flatbuffers"
 fi
 
+#Build Protobuf
+if [[ ! -d /c/dev/Libraries-x64_vc15/protobuf-2.6.1 ]]; then
+  cmd /c "script\\protobuf.x64.cmd protobuf c:\\dev\\Libraries-x64_vc15 protobuf-2.6.1"
+fi
+
+#Build LeapSerial
+if [[ ! -d /c/dev/Libraries-x64_vc15/leapserial-0.3.2 ]]; then
+  cmd /c "script\\leapserial.x64.cmd leapserial c:\\dev\\Libraries-x64_vc15 leapserial-0.3.2"
+fi
+
+#Build Crossroads
+if [[ ! -d /c/dev/Libraries-x64_vc15/libxs-1.2.0 ]]; then
+  cmd /c "script\\libxs.x64.cmd libxs c:\\dev\\Libraries-x64_vc15 libxs-1.2.0"
+fi
