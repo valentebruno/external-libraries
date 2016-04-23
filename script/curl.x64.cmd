@@ -32,11 +32,11 @@ call buildconf.bat
   )
 
 echo err=%ERRORLEVEL%
-mkdir %2\%3
-mkdir %2\%3\include
-mkdir %2\%3\include\curl
-mkdir %2\%3\lib
-copy include\curl\*.h %2\%3\include\curl\
-copy lib\libcurl.lib %2\%3\lib\
+mkdir %2
+mkdir %2\include
+mkdir %2\include\curl
+mkdir %2\lib
+copy include\curl\*.h %2\include\curl\
+copy lib\libcurl.lib %2\lib\
 
 @endlocal

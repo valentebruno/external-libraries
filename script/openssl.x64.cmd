@@ -1,6 +1,5 @@
 @setlocal
 @set root_dir=%CD%
-echo %1 %2
 @cd src\%1
 @set Path=C:\Perl64\bin;%Path%
 @call %VSSETUP_COMMAND%
@@ -60,7 +59,7 @@ SET PROJECT_VERSION=1.0.2g
 :: SET PROJECT_SRC_DIR=D:\opensource\!BUILD_PROJECT!-!PROJECT_VERSION!
 SET PROJECT_SRC_DIR=%cd%
 
-SET PROJECT_INSTALL_DIR=%2\%3
+SET PROJECT_INSTALL_DIR=%2
 
 rem ========================================================================================================
 rem == PLEASE DO NOT EDIT BELOW THIS LINE
