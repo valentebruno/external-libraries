@@ -17,6 +17,10 @@ function download_curl {
 
   curl -OL ${url}
   7z x ${filename}
+  if [[ -e ${filename%.*} ]]; then
+    7z x ${filename%.*}
+    rm -f ${filename%.*}
+  fi
   rm -f ${filename}
 }
 
@@ -68,15 +72,16 @@ function build_lib {
 
   source_dir=$1
   install_path=$2
+  base_name=$3
 
   install_path_win=${install_path/\/c/c:}
   install_path_win=${install_path_win////\\}
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    cmd /c "script\\${name}.x64 ${name} ${install_path_win}"
+    cmd /c "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
   fi
 
-  export ${source_dir}_PATH=${install_path}
+  export ${base_name}_PATH=${install_path}
 }
 
 url=$1
@@ -85,12 +90,14 @@ install_root=$3
 source_dir=${url##*/}
 source_dir=${source_dir%.*}
 branch=v${version}
+base_name=${source_dir}
 output_dir=${source_dir}-${version}
+
 force=false
 
 OPTIND=4
 
-while getopts ":vfs:b:o:" arg; do
+while getopts ":vfs:b:o:n:" arg; do
   case $arg in
     s)
       source_dir=${OPTARG}
@@ -100,6 +107,9 @@ while getopts ":vfs:b:o:" arg; do
       ;;
     o)
       output_dir=${OPTARG}
+      ;;
+    n)
+      base_name=${OPTARG}
       ;;
     f)
       force=true
@@ -125,4 +135,4 @@ fi
 
 download_lib ${url} ${branch} ${source_dir}
 patch_lib ${source_dir}
-build_lib ${source_dir} "${install_root}/${output_dir}"
+build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
