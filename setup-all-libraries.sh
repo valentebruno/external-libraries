@@ -13,3 +13,9 @@ INSTALL_ROOT=/c/dev/Libraries-x64_vc15
 ./setup-library.sh git@github.com:crossroads-io/libxs.git 1.2.0 ${INSTALL_ROOT}
 ./setup-library.sh git@github.com:dcnieho/FreeGLUT.git 3.0.0 ${INSTALL_ROOT} -b FG_3_0_0
 ./setup-library.sh git@github.com:zaphoyd/websocketpp.git 0.7.0 ${INSTALL_ROOT} -b0.7.0
+#./setup-library.sh https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_23_RTM/src/nss-3.23-with-nspr-4.12.tar.gz 3.23 ${INSTALL_ROOT} -s "nss-3.23" -o "nss-3.23" -n "nss"
+./setup-library.sh https://www.libsdl.org/release/SDL2-devel-2.0.4-VC.zip 2.0.4 ${INSTALL_ROOT}
+./setup-library.sh git@github.com:nigels-com/glew.git 1.13.0 ${INSTALL_ROOT}
+./setup-library.sh http://downloads.sourceforge.net/freeimage/FreeImage3170.zip 3.17.0 ${INSTALL_ROOT}
+./setup-library.sh https://sourceforge.net/projects/anttweakbar/files/latest/download?source=dlp 1.16 ${INSTALL_ROOT}
+./setup-library.sh git@github.com:bulletphysics/bullet3.git 2.83.7 ${INSTALL_ROOT}
