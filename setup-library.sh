@@ -8,7 +8,14 @@ function download_git {
   url=$1
   branch=$2
 
-  git clone ${url} --depth 1 --recursive ${branch:+--branch ${branch}}
+  if [[ $branch == @* ]]; then
+    git clone ${url} --recursive --depth 100
+    pushd > /dev/null
+    git checkout ${branch:1}
+    popd > /dev/null
+  else
+    git clone ${url} --depth 1 --recursive ${branch:+--branch ${branch}}
+  fi
 }
 
 function download_curl {
@@ -17,7 +24,7 @@ function download_curl {
 
   curl -OL ${url}
   7z x ${filename}
-  if [[ -e ${filename%.*} ]]; then
+  if [[ -e ${filename%.*} ]] && [[ ! -d ${filename%.*} ]]; then
     7z x ${filename%.*}
     rm -f ${filename%.*}
   fi

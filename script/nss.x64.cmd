@@ -7,8 +7,10 @@
 SET MOZ_MSVCBITS=64
 SET MOZ_MSVCVERSION=14
 SET MOZ_MSVCYEAR=2015
-SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 
+PUSHD "C:/mozilla-build/"
+
+SETLOCAL ENABLEEXTENSIONS ENABLEDELAYEDEXPANSION
 REM Reset some env vars and set some others.
 SET CYGWIN=
 SET INCLUDE=
@@ -24,7 +26,7 @@ IF NOT DEFINED USE_MINTTY (
 )
 
 SET ERROR=
-SET MOZILLABUILD=c:\mozilla-build\
+SET MOZILLABUILD=C:\mozilla-build\
 SET TOOLCHAIN=
 
 REM Figure out if we're on a 32-bit or 64-bit host OS.
@@ -159,6 +161,37 @@ IF "%USE_MINTTY%" == "1" (
 ) ELSE (
   %MOZILLABUILD%msys\bin\bash --login "%~dp0nss.x64.sh" %~dp0 %1 %2
 )
+
+popd
+cd dist
+
+mkdir %3/bin
+
+xcopy /i WIN954.0_64_OPT.OBJ\bin\pk12util.exe %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\bin\certutil.exe %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nssutil3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\plc4.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\plds4.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\smime3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\softokn3.chk %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\softokn3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\sqlite3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\ssl3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\freebl3.chk %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\freebl3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nspr4.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nss3.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nssckbi.dll %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nssdbm3.chk %2\bin\
+xcopy /i WIN954.0_64_OPT.OBJ\lib\nssdbm3.dll %2\bin\
+
+xcopy /si WIN954.0_64_OPT.OBJ\include %2\include\nspr\
+del %2\include\md
+xcopy /si private\nss %2\include\nss\
+xcopy /si public\nss %2\include\nss\
+
+xcopy /si WIN954.0_64_OPT.OBJ\lib\*.lib %2\lib
+
 EXIT /B
 
 :_QUIT
