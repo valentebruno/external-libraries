@@ -74,7 +74,12 @@ function patch_lib {
 }
 
 function build_lib {
-  export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64'
+  if [[ $BUILD_ARCH == "x64" ]]; then
+    export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64'
+  else
+    export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86'
+  fi
+
   export CMAKE_COMMAND='"C:\Program Files (x86)\CMake\bin\cmake.exe"'
 
   source_dir=$1
@@ -102,7 +107,7 @@ output_dir=${source_dir}-${version}
 
 force=false
 
-OPTIND=4
+OPTIND=3
 
 while getopts ":vfs:b:o:n:" arg; do
   case $arg in
