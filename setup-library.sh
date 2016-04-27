@@ -92,8 +92,6 @@ function build_lib {
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     cmd /c "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
   fi
-
-  export ${base_name}_PATH=${install_path}
 }
 
 url=$1

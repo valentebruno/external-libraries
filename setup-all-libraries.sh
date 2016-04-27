@@ -27,4 +27,9 @@ fi
 ./setup-library.sh https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.zip 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
 ./setup-library.sh http://downloads.sourceforge.net/freeimage/FreeImage3170.zip 3.17.0 -s "FreeImage" -o "freeimage-3.17.0" -n "freeimage"
 ./setup-library.sh http://downloads.sourceforge.net/project/anttweakbar/AntTweakBar_116.zip 1.16 -s "AntTweakBar" -o "AntTweakBar-1.16.0" -n "anttweakbar"
-./setup-library.sh git@github.com:bulletphysics/bullet3.git 2.84.0 -b @d5d8e16
+./setup-library.sh git@github.com:bulletphysics/bullet3.git 2.84.0 -b @d5d8e16 -o "bullet-2.84.0"
+./setup-library.sh git@github.com:leapmotion/DShowBaseClasses.git 1.0.0 -o "baseclasses-1.0.0"
+./setup-library.sh git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
+./setup-library.sh git@github.com:rougier/freetype-gl.git 0.0.1 -b @a4cfb9a -n freetypegl
+./setup-library.sh git@github.com:assimp/assimp.git 3.2
+
