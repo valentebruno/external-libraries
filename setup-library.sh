@@ -93,7 +93,7 @@ function build_lib {
 
 url=$1
 version=$2
-install_root=$3
+install_root=${INSTALL_ROOT}
 source_dir=${url##*/}
 source_dir=${source_dir%.*}
 branch=v${version}
@@ -133,7 +133,7 @@ done
 if [[ ${verbose} ]]; then
   echo url=${url}
   echo version=${version}
-  echo install_root=${install_root}
+  echo install_root=${INSTALL_ROOT}
   echo source_dir=${source_dir}
   echo branch=${branch}
   echo output_dir=${output_dir}
