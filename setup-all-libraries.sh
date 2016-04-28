@@ -32,4 +32,6 @@ fi
 ./setup-library.sh git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
 ./setup-library.sh git@github.com:rougier/freetype-gl.git 0.0.1 -b @a4cfb9a -n freetypegl
 ./setup-library.sh git@github.com:assimp/assimp.git 3.2
+./setup-library.sh https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
+./setup-library.sh https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
 
