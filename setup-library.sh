@@ -23,11 +23,15 @@ function download_curl {
   filename=$(basename ${url})
 
   curl -OL ${url}
-  7z x ${filename}
-  if [[ -e ${filename%.*} ]] && [[ ! -d ${filename%.*} ]]; then
+
+  if [[ ${filename} == *.tar.gz ]]; then
+    7z x ${filename}
     7z x ${filename%.*}
     rm -f ${filename%.*}
+  else
+    7z x ${filename}
   fi
+
   rm -f ${filename}
 }
 
@@ -35,6 +39,7 @@ function download_lib {
   url=$1
   branch=$2
   foldername=$3
+  force_git=$4
 
   if [[ ${force} == true ]]; then
     rm -rf src/${foldername}
@@ -54,7 +59,7 @@ function download_lib {
 
   pushd src > /dev/null
 
-  if  [[ ${url} == git* ]]; then
+  if [[ ${force_git} ]] || [[ ${url} == git* ]]; then
     download_git ${url} ${branch}
   else
     download_curl ${url}
@@ -107,7 +112,7 @@ force=false
 
 OPTIND=3
 
-while getopts ":vfs:b:o:n:" arg; do
+while getopts ":vfgs:b:o:n:" arg; do
   case $arg in
     s)
       source_dir=${OPTARG}
@@ -121,8 +126,11 @@ while getopts ":vfs:b:o:n:" arg; do
     n)
       base_name=${OPTARG}
       ;;
+    g)
+      force_git="true"
+      ;;
     f)
-      force=true
+      force="true"
       ;;
     v)
       verbose=true
@@ -133,6 +141,10 @@ while getopts ":vfs:b:o:n:" arg; do
     esac
 done
 
+if [[ ${extract_dir} ]]; then
+  extract_dir=${source_dir}
+fi
+
 if [[ ${verbose} ]]; then
   echo url=${url}
   echo version=${version}
@@ -140,9 +152,10 @@ if [[ ${verbose} ]]; then
   echo source_dir=${source_dir}
   echo branch=${branch}
   echo output_dir=${output_dir}
+  echo force_git=${force_git}
   echo force=${force}
 fi
 
-download_lib ${url} ${branch} ${source_dir}
+download_lib ${url} ${branch} ${source_dir} ${force_git}
 patch_lib ${source_dir}
 build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
