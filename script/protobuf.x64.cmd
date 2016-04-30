@@ -10,11 +10,11 @@ if "%MSVC_VER%"=="2015" (
 if "%MSVC_VER%"=="2013" (
   set CMAKE_GEN=Visual Studio 12 2013
 )
-if "%ARCH%"=="64" {
+if "%BUILD_ARCH%"=="x64" (
   set CMAKE_GEN=%CMAKE_GEN% Win64
-}
+)
 
-call %CMAKE_COMMAND% -Dprotobuf_BUILD_TESTS:bool=false -Dprotobuf_MSVC_STATIC_RUNTIME:bool=false -DPROTOBUF_ROOT="%PROTOBUF_SRC%" -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2
+call %CMAKE_COMMAND% -Dprotobuf_BUILD_TESTS:BOOL=false -Dprotobuf_MSVC_STATIC_RUNTIME:BOOL=false -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2
 call %CMAKE_COMMAND% --build . --target install --config debug
 call %CMAKE_COMMAND% --build . --target install --config release
 
