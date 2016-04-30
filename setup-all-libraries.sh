@@ -34,4 +34,8 @@ fi
 ./setup-library.sh git@github.com:assimp/assimp.git 3.2
 ./setup-library.sh https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 ./setup-library.sh https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
+if [[ ! $MSVC_VER ]]; then
+  echo "MSVC_VER must be defined."
+  exit 1
+fi
 
