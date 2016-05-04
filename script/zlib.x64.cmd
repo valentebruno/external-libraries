@@ -3,11 +3,18 @@
 @call %VSSETUP_COMMAND%
 @cd src\%1
 
-@nmake -f win32/Makefile.msc AS=ml64 LOC="-DASMV -DASMINF -I." OBJA="inffasx64.obj gvmat64.obj inffas8664.obj"
-@mkdir %2
-@mkdir %2\include
-@mkdir %2\lib
-@copy zconf.h %2\include
-@copy zlib.h %2\include
-@copy zlib.lib %2\lib
+if "%MSVC_VER%"=="2015" (
+  set CMAKE_GEN=Visual Studio 14 2015
+)
+if "%MSVC_VER%"=="2013" (
+  set CMAKE_GEN=Visual Studio 12 2013
+)
+if "%BUILD_ARCH%"=="x64" (
+  set CMAKE_GEN=%CMAKE_GEN% Win64
+)
+
+call %CMAKE_COMMAND% . -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2
+call %CMAKE_COMMAND% --build . --target install --config debug
+call %CMAKE_COMMAND% --build . --target install --config release
+
 @endlocal
