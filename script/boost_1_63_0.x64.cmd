@@ -9,6 +9,7 @@ if "%MSVC_VER%"=="2015" (
 
 if "%MSVC_VER%"=="2013" (
   set TOOLSET=msvc-12.0
+  set VS140COMNTOOLS=
 )
 
 set BUILD_DIR=build
