@@ -95,7 +95,7 @@ function build_lib {
   install_path_win=${install_path_win////\\}
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    cmd /c "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
+    cmd //C "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
   fi
 }
 
