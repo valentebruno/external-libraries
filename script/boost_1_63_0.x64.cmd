@@ -9,7 +9,6 @@ if "%MSVC_VER%"=="2015" (
 
 if "%MSVC_VER%"=="2013" (
   set TOOLSET=msvc-12.0
-  set VS140COMNTOOLS=
 )
 
 set BUILD_DIR=build
@@ -22,6 +21,6 @@ if "%BUILD_ARCH%"=="x64" (
 @call bootstrap.bat
 @b2 toolset=%TOOLSET% --with-atomic --with-chrono --with-date_time --with-filesystem --with-locale --with-program_options --with-thread ^
  -j8 --build-dir=%root_dir%\%BUILD_DIR%\%1 --prefix=%2 ^
-  variant=debug variant=release link=static runtime-link=shared architecture=%BUILD_ARCH% %MEM_OPT% install
+ variant=debug variant=release link=static runtime-link=shared architecture=%BUILD_ARCH% %MEM_OPT% install
 
 @endlocal

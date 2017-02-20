@@ -79,12 +79,23 @@ function patch_lib {
 }
 
 function build_lib {
+
   if [[ $BUILD_ARCH == "x64" ]]; then
-    export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" amd64'
+    VS_ARCH_ARG=amd64
   else
-    export VSSETUP_COMMAND='"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86'
+    VS_ARCH_ARG=x86
   fi
 
+  if [[ $MSVC_VER == 2013 ]]; then
+    VS_VER_NUM=12.0
+  elif [[ $MSVC_VER == 2015 ]]; then
+    VS_VER_NUM=14.0
+  else
+    echo "Invalid MSVC_VER=$MSVC_VER"
+    return
+  fi
+
+  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\vcvarsall.bat\" $VS_ARCH_ARG"
   export CMAKE_COMMAND='"C:\Program Files (x86)\CMake\bin\cmake.exe"'
 
   source_dir=$1
