@@ -30,7 +30,7 @@ for /f "eol=; tokens=*" %%a in (project-config.jam) do (
   )
 move project-config-fixed.jam project-config.jam
 
-@b2 --ignore-config --with-atomic --with-chrono --with-date_time --with-filesystem --with-locale --with-program_options --with-thread ^
+@b2 --ignore-config --with-atomic --with-chrono --with-date_time --with-filesystem --with-locale --with-program_options --with-thread --with-regex^
   -j8 --build-dir=%root_dir%\%BUILD_DIR%\%1 --prefix=%2  ^
   variant=debug variant=release link=static runtime-link=shared architecture=%BUILD_ARCH% %MEM_OPT% toolset=%TOOLSET% install
 
