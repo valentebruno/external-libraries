@@ -10,7 +10,7 @@ if [[ ! $BUILD_ARCH ]]; then
   exit 1
 fi
 
-./setup-library.sh http://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.7z 1.60.0 -s "boost_1_60_0" -o "boost_1_60_0"
+./setup-library.sh http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z 1.63.0 -s "boost_1_63_0" -o "boost_1_63_0"
 ./setup-library.sh git@github.com:madler/zlib.git 1.2.8
 ./setup-library.sh git@github.com:openssl/openssl.git 1.0.2g
 ./setup-library.sh git@github.com:curl/curl.git 7.48.0
