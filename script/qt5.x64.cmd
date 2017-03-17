@@ -19,7 +19,7 @@ SET PATH=%CD%\qtrepotools\bin;%PATH%
 @cd build64
 
 @call ..\%1\configure -no-avx2 -no-avx -no-sse4.2 -no-sse4.1 -c++11 -prefix "%2" -opensource ^
--confirm-license -debug-and-release -opengl desktop -no-angle -no-incredibuild-xge ^
+-confirm-license -debug-and-release -opengl desktop -no-angle -skip qtwebengine -no-incredibuild-xge ^
 -nomake examples -nomake tests -platform win32-msvc2015 -mp -openssl-linked ^
 -I "%OPENSSL_PATH%\include" -L "%OPENSSL_PATH%\lib" ^
 OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MT -llibeay32MT" ^
