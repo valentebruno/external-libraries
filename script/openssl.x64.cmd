@@ -7,6 +7,9 @@ SET PERL_ROOT=C:\Perl64\bin
 @call %VSSETUP_COMMAND%
 
 SETLOCAL EnableExtensions EnableDelayedExpansion
+:: Helpful resources:
+:: http://developer.covenanteyes.com/building-openssl-for-visual-studio/
+:: https://www.npcglib.org/~stathis/blog/precompiled-openssl/ <- This file mostly copied from here
 ::
 :: ========================================================================================================
 :: ==== OpenSSL Library compilation with MSVC
@@ -138,7 +141,6 @@ GOTO :eof
 rem ========================================================================================================
 :printConfiguration
 SETLOCAL EnableExtensions EnableDelayedExpansion
-SET PATH=!CYGWIN_DIR!\bin;!CYGWIN_DIR!\usr\bin;!PATH!
 
 echo.
 echo                    PATH: !PATH!
@@ -174,7 +176,7 @@ rem ============================================================================
 :packagetype
 
 SET DST_DIST=!BUILD_PROJECT!-!PROJECT_VERSION!-vs!VS_VERSION!
-SET DST_DIST_DIR=!PROJECT_INSTALL_DIR!\!DST_DIST!
+SET DST_DIST_DIR=!PROJECT_INSTALL_DIR!
 
 for %%l in (static shared) do (
   for %%a in (x86 x64) do (
@@ -295,8 +297,6 @@ SET __ARCH=%~1
 SET __LINK=%~2
 SET __BUILD=%~3
 
-SET CYGWIN=nodosfilewarning
-
 if /i "!__ARCH!" == "x86" (
   SET BITS=32
   SET BIT_STR=
@@ -308,7 +308,6 @@ if /i "!__ARCH!" == "x86" (
 IF NOT EXIST "!PROJECT_BUILD_DIR!" (
   mkdir "!PROJECT_BUILD_DIR!"
 )
-
 
 SET RUNTIME_SUFFIX=MT
 
@@ -342,7 +341,7 @@ if /i "!__ARCH!" == "x86" (
   rem SET MS_CMD=call ms\do_win64a.bat
 )
 
-SET INSTALL_DIR=!PROJECT_INSTALL_DIR!\!BUILD_PROJECT!-!__ARCH!-!__LINK!-!__BUILD!-vs!VS_VERSION!
+SET INSTALL_DIR=!PROJECT_INSTALL_DIR!
 
 IF NOT EXIST "!INSTALL_DIR!" (
   mkdir "!INSTALL_DIR!"
@@ -360,8 +359,6 @@ SET B_CMD=!B_CMD! !MODE! !COMMON_OPTIONS! --prefix=!INSTALL_DIR!
 echo Commands: !B_CMD!
 rem echo Commands: !MS_CMD!
 rem echo Commands: !MK_CMD!
-
-timeout /T 10
 
 pushd !PROJECT_SRC_DIR!
 !B_CMD! > !CONFIG_LOG_FILE! 2>&1
