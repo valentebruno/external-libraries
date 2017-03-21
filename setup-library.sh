@@ -65,6 +65,8 @@ function download_lib {
     download_curl ${url}
   fi
   popd > /dev/null
+
+  patch_lib ${source_dir}
 }
 
 function patch_lib {
@@ -168,5 +170,5 @@ if [[ ${verbose} ]]; then
 fi
 
 download_lib ${url} ${branch} ${source_dir} ${force_git}
-patch_lib ${source_dir}
+
 build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
