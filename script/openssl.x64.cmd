@@ -309,7 +309,7 @@ IF NOT EXIST "!PROJECT_BUILD_DIR!" (
   mkdir "!PROJECT_BUILD_DIR!"
 )
 
-SET RUNTIME_SUFFIX=MT
+SET RUNTIME_SUFFIX=MD
 
 SET LIBSUFFIX=
 if /i "!__BUILD!" == "debug" (
@@ -317,11 +317,6 @@ if /i "!__BUILD!" == "debug" (
 )
 
 SET RUNTIME_FULL_SUFFIX=!RUNTIME_SUFFIX!!LIBSUFFIX!
-
-SET DLL_STR=
-if /i "!__LINK!" == "shared" (
-  SET DLL_STR=dll
-)
 
 SET B_CMD=perl Configure
 SET COMMON_OPTIONS=enable-static-engine
@@ -373,14 +368,12 @@ if /i "!__BUILD!" == "debug" (
   SET BUILD_STR=debug_lib
 )
 
-SET LINK_STR=static_lib
-
 perl util\mkfiles.pl >MINFO
 
 if /i "!__ARCH!" == "x86" (
 
-  echo perl util\mk1mf.pl !DLL_STR! !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! nasm VC-WIN32 >ms\nt!DLL_STR!-!__ARCH!.mak
-  perl util\mk1mf.pl !DLL_STR! !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! nasm VC-WIN32 >ms\nt!DLL_STR!-!__ARCH!.mak
+  echo "perl util\mk1mf.pl !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! nasm VC-WIN32 >ms\nt-!__ARCH!.mak"
+  perl util\mk1mf.pl !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! nasm VC-WIN32 >ms\nt-!__ARCH!.mak
 
 ) else (
 
@@ -390,19 +383,19 @@ if /i "!__ARCH!" == "x86" (
   rem perl ms\uplink-x86_64.pl nasm > ms\uptable.asm
   rem nasm -f win64 -o ms\uptable.obj ms\uptable.asm
 
-  echo perl util\mk1mf.pl !DLL_STR! !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! VC-WIN64A >ms\nt!DLL_STR!-!__ARCH!.mak
-  perl util\mk1mf.pl !DLL_STR! !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! VC-WIN64A >ms\nt!DLL_STR!-!__ARCH!.mak
+  echo "perl util\mk1mf.pl !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! VC-WIN64A >ms\nt-!__ARCH!.mak"
+  perl util\mk1mf.pl !BUILD_STR_PLAIN! !BUILD_STR! !LINK_STR! VC-WIN64A >ms\nt-!__ARCH!.mak
 
 )
 
-echo perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 libeay > ms\libeay32!RUNTIME_FULL_SUFFIX!.def
+echo "perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 libeay > ms\libeay32!RUNTIME_FULL_SUFFIX!.def"
 perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 libeay > ms\libeay32!RUNTIME_FULL_SUFFIX!.def
 
-echo perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 ssleay > ms\ssleay32!RUNTIME_FULL_SUFFIX!.def
+echo "perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 ssleay > ms\ssleay32!RUNTIME_FULL_SUFFIX!.def"
 perl util\mkdef.pl !BUILD_STR! !LINK_STR! 32 ssleay > ms\ssleay32!RUNTIME_FULL_SUFFIX!.def
 
 
-SET MK_CMD=nmake -f ms\nt!DLL_STR!-!__ARCH!.mak
+SET MK_CMD=nmake -f ms\nt-!__ARCH!.mak
 
 ECHO. > !BUILD_LOG_FILE!
 
@@ -420,21 +413,21 @@ if /i "!__BUILD!" == "debug" (
   SET TMPDIR_SUFFIX=
 )
 
-copy /Y out32!DLL_STR!!TMPDIR_SUFFIX!\openssl!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
+copy /Y out32!TMPDIR_SUFFIX!\openssl!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
 
 if /i "!__LINK!" == "shared" (
-  copy /Y out32!DLL_STR!!TMPDIR_SUFFIX!\libeay32!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
-  copy /Y out32!DLL_STR!!TMPDIR_SUFFIX!\ssleay32!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
+  copy /Y out32!TMPDIR_SUFFIX!\libeay32!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
+  copy /Y out32!TMPDIR_SUFFIX!\ssleay32!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\bin\
 
-  copy /Y out32!DLL_STR!!TMPDIR_SUFFIX!\libeay32!RUNTIME_FULL_SUFFIX!.exp !INSTALL_DIR!\lib\
-  copy /Y out32!DLL_STR!!TMPDIR_SUFFIX!\ssleay32!RUNTIME_FULL_SUFFIX!.exp !INSTALL_DIR!\lib\
+  copy /Y out32!TMPDIR_SUFFIX!\libeay32!RUNTIME_FULL_SUFFIX!.exp !INSTALL_DIR!\lib\
+  copy /Y out32!TMPDIR_SUFFIX!\ssleay32!RUNTIME_FULL_SUFFIX!.exp !INSTALL_DIR!\lib\
 )
 
 rem The following two are debug symbols that will be searched for when linking against the .lib files from client applications
 rem That's why they are placed in the lib/ folder.
 rem For some reason the appXX.pdb and libXX.pdb files are lower case (?)
-copy /Y tmp32!DLL_STR!!TMPDIR_SUFFIX!\app!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\lib\app!RUNTIME_FULL_SUFFIX!.pdb
-copy /Y tmp32!DLL_STR!!TMPDIR_SUFFIX!\lib!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\lib\lib!RUNTIME_FULL_SUFFIX!.pdb
+copy /Y tmp32!TMPDIR_SUFFIX!\app!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\lib\app!RUNTIME_FULL_SUFFIX!.pdb
+copy /Y tmp32!TMPDIR_SUFFIX!\lib!RUNTIME_FULL_SUFFIX!.pdb !INSTALL_DIR!\lib\lib!RUNTIME_FULL_SUFFIX!.pdb
 
 rem This is necessary for building on different architectures. (there are conf files being left behind)
 !MK_CMD! vclean
