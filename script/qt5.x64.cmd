@@ -11,8 +11,7 @@
 echo path=%PATH%
 rem Uncomment the below line when using a git checkout of the source repository
 SET PATH=%CD%\qtrepotools\bin;%PATH%
-@set QMAKESPEC=win32-msvc2015
-
+@set QMAKESPEC=win32-msvc%MSVC_VER%
 @cd ..\..
 @mkdir build
 @cd build
@@ -20,7 +19,7 @@ SET PATH=%CD%\qtrepotools\bin;%PATH%
 @cd qt
 @call ..\..\src\%1\configure -no-avx2 -no-avx -no-sse4.2 -no-sse4.1 -c++11 -prefix "%2" -opensource ^
 -confirm-license -debug-and-release -opengl desktop -no-angle -no-incredibuild-xge ^
--platform win32-msvc2015 -mp -openssl-linked -nomake examples -nomake tests -no-qmake -no-dbus ^
+-platform %QMAKESPEC% -mp -openssl-linked -nomake examples -nomake tests -no-icu -no-dbus ^
 -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d ^
 -skip qtconnectivity -skip qtdeclarative -skip qtdoc -skip qtdocgallery ^
 -skip qtenginio -skip qtfeedback -skip qtgraphicaleffects -skip qtimageformats ^
