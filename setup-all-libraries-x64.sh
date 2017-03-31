@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export INSTALL_ROOT=/c/dev/Libraries-x64_vc14
+export INSTALL_ROOT=/e/Libraries-x64_vc14
 export BUILD_ARCH=x64
 export MSVC_VER=2015
 
