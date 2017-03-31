@@ -97,7 +97,7 @@ function build_lib {
     return
   fi
 
-  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\vcvarsall.bat\" $VS_ARCH_ARG"
+  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\\vcvarsall.bat\" $VS_ARCH_ARG"
   export CMAKE_COMMAND='"C:\Program Files (x86)\CMake\bin\cmake.exe"'
 
   source_dir=$1
