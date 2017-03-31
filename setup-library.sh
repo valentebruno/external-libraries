@@ -101,8 +101,7 @@ function build_lib {
   install_path=$2
   base_name=$3
 
-  install_path_win=${install_path_win////\\}
-
+  install_path_win=$(cygpath -w $install_path)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     cmd //C "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
   fi
