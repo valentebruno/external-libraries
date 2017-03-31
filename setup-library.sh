@@ -1,7 +1,4 @@
 #!/bin/bash
-ARCH=x64 #86
-MSVC=2015 #2013
-
 BASEPATH=$(dirname $(readlink -f $0) )
 
 function download_git {
@@ -104,7 +101,6 @@ function build_lib {
   install_path=$2
   base_name=$3
 
-  install_path_win=${install_path/\/c/c:}
   install_path_win=${install_path_win////\\}
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
