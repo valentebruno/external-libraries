@@ -26,7 +26,7 @@
 -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebkit ^
 -skip qtwebkit-examples -skip qtx11extras -skip qtxmlpatterns ^
 -I "%OPENSSL_PATH%\include" -L "%OPENSSL_PATH%\lib" ^
-OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MT -llibeay32MT" ^
+OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD" ^
 -no-icu
 
 @call bash "../../script/get-jom.sh" %CD%
