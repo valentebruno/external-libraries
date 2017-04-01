@@ -12,12 +12,14 @@ fi
 
 ./setup-library.sh http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z 1.63.0 -s "boost_1_63_0" -o "boost_1_63_0"
 ./setup-library.sh git@github.com:madler/zlib.git 1.2.8
-./setup-library.sh git@github.com:openssl/openssl.git 1.0.2g
 ./setup-library.sh git@github.com:curl/curl.git 7.48.0
+./setup-library.sh git@github.com:openssl/openssl.git 1.0.2k
 ./setup-library.sh http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.zip 57.1 -s "icu" -o "icu-57.1" -n "icu"
-./setup-library.sh git://code.qt.io/qt/qt5.git 5.6.0 -o "qt-5.6.0"
+
 export OPENSSL_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/openssl-1.0.2k)
 export ICU_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/icu-57.1)
+./setup-library.sh git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
+
 ./setup-library.sh git@github.com:google/flatbuffers.git 1.3.0
 ./setup-library.sh git@github.com:google/protobuf.git 3.0.0-beta-2
 ./setup-library.sh git@github.com:leapmotion/leapserial.git 0.3.2
