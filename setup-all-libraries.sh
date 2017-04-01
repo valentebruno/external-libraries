@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ ! $INSTALL_ROOT ]]; then
-  echo "INSTALL_ROOT must be defined."
+if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
+  echo "EXT_LIB_INSTALL_ROOT must be defined."
   exit 1
 fi
 
@@ -14,10 +14,10 @@ fi
 ./setup-library.sh git@github.com:madler/zlib.git 1.2.8
 ./setup-library.sh git@github.com:openssl/openssl.git 1.0.2g
 ./setup-library.sh git@github.com:curl/curl.git 7.48.0
-export OPENSSL_PATH=${INSTALL_ROOT}/openssl-1.0.2g
 ./setup-library.sh http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.zip 57.1 -s "icu" -o "icu-57.1" -n "icu"
-export ICU_PATH=${INSTALL_ROOT}/icu-57.1
 ./setup-library.sh git://code.qt.io/qt/qt5.git 5.6.0 -o "qt-5.6.0"
+export OPENSSL_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/openssl-1.0.2k)
+export ICU_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/icu-57.1)
 ./setup-library.sh git@github.com:google/flatbuffers.git 1.3.0
 ./setup-library.sh git@github.com:google/protobuf.git 3.0.0-beta-2
 ./setup-library.sh git@github.com:leapmotion/leapserial.git 0.3.2

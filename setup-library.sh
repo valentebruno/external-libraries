@@ -101,7 +101,7 @@ function build_lib {
   install_path=$2
   base_name=$3
 
-  install_path_win=$(cygpath -w $install_path)
+  install_path_win=$(cygpath -m $install_path)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     cmd //C "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
   fi
@@ -109,7 +109,7 @@ function build_lib {
 
 url=$1
 version=$2
-install_root=${INSTALL_ROOT}
+install_root=${EXT_LIB_INSTALL_ROOT}
 source_dir=${url##*/}
 source_dir=${source_dir%.*}
 branch=v${version}
@@ -156,7 +156,7 @@ fi
 if [[ ${verbose} ]]; then
   echo url=${url}
   echo version=${version}
-  echo install_root=${INSTALL_ROOT}
+  echo install_root=${EXT_LIB_INSTALL_ROOT}
   echo source_dir=${source_dir}
   echo branch=${branch}
   echo output_dir=${output_dir}
