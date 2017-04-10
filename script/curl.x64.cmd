@@ -21,19 +21,35 @@
   exit 1
 )
 
+cd src\%1\winbuild
 
-cd src\%1
-if "%MSVC_VER%"=="2015" (
-  set CMAKE_GEN=Visual Studio 14 2015
+if MSVC_VER EQU 2013 (
+  set VC=12
 )
-if "%MSVC_VER%"=="2013" (
-  set CMAKE_GEN=Visual Studio 12 2013
+
+if MSVC_VER EQU 2015 (
+  set VC=14
 )
-if "%BUILD_ARCH%"=="x64" (
-  set CMAKE_GEN=%CMAKE_GEN% Win64
+
+rem @nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=yes
+@if NOT %ERRORLEVEL% == 0 (
+  echo NMake failed, aborting
+  exit 1
 )
-call %CMAKE_COMMAND% . -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2 -DCURL_STATICLIB:BOOL="ON"
-call %CMAKE_COMMAND% --build . --target install --config debug
-call %CMAKE_COMMAND% --build . --target install --config release
+
+rem @nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=no
+@if NOT %ERRORLEVEL% == 0 (
+  echo NMake failed, aborting
+  exit 1
+)
+
+cd ..
+mkdir %2
+mkdir %2\include
+mkdir %2\include\curl
+mkdir %2\lib
+copy include\curl\*.h %2\include\curl\
+copy builds\libcurl-vc-%BUILD_ARCH%-debug-static-ipv6-sspi-winssl\lib\libcurl*.lib %2\lib\
+copy builds\libcurl-vc-%BUILD_ARCH%-release-static-ipv6-sspi-winssl\lib\libcurl*.lib %2\lib\
 
 @endlocal
