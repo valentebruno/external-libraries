@@ -1,5 +1,6 @@
 @setlocal
-@echo path=%OPENSSL_PATH%
+@call %VSSETUP_COMMAND%
+
 @if NOT DEFINED ZLIB_PATH (
   echo ZLIB_PATH must be defined
   exit 1
@@ -20,23 +21,19 @@
   exit 1
 )
 
-@set root_dir=%CD%
-@call %VSSETUP_COMMAND%
-@cd src\%1
 
-call buildconf.bat
-@nmake /f Makefile.dist vc-x64-ssl-zlib
-@if NOT %ERRORLEVEL% == 0 (
-  echo NMake failed, aborting
-  exit 1
-  )
-
-echo err=%ERRORLEVEL%
-mkdir %2
-mkdir %2\include
-mkdir %2\include\curl
-mkdir %2\lib
-copy include\curl\*.h %2\include\curl\
-copy lib\libcurl.lib %2\lib\
+cd src\%1
+if "%MSVC_VER%"=="2015" (
+  set CMAKE_GEN=Visual Studio 14 2015
+)
+if "%MSVC_VER%"=="2013" (
+  set CMAKE_GEN=Visual Studio 12 2013
+)
+if "%BUILD_ARCH%"=="x64" (
+  set CMAKE_GEN=%CMAKE_GEN% Win64
+)
+call %CMAKE_COMMAND% . -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2 -DCURL_STATICLIB:BOOL="ON"
+call %CMAKE_COMMAND% --build . --target install --config debug
+call %CMAKE_COMMAND% --build . --target install --config release
 
 @endlocal
