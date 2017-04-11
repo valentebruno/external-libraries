@@ -1,6 +1,4 @@
 #!/bin/bash
-BASEPATH=$(dirname $(readlink -f $0) )
-
 function download_git {
   url=$1
   branch=$2
@@ -21,12 +19,16 @@ function download_curl {
 
   curl -OL ${url}
 
-  if [[ ${filename} == *.tar.gz ]]; then
-    7z x ${filename}
-    7z x ${filename%.*}
-    rm -f ${filename%.*}
+  if [[ $OSTYPE == msys* ]]; then
+    if [[ ${filename} == *.tar.gz ]]; then
+      7z x ${filename}
+      7z x ${filename%.*}
+      rm -f ${filename%.*}
+    else
+      7z x ${filename}
+    fi
   else
-    7z x ${filename}
+    tar xfj ${filename}
   fi
 
   rm -f ${filename}
@@ -70,14 +72,14 @@ function patch_lib {
   name=$1
 
   #Patch ICU
-  patchpath=$(readlink -f "./patch/${name}.patch")
+  patchpath="./patch/${name}.patch"
   if [[ -e  ${patchpath} ]]; then
     patch -i "${patchpath}" -p0 -fsN -d ./src/${name}
   fi
 
 }
 
-function build_lib {
+function build_lib_win {
 
   if [[ $BUILD_ARCH == "x64" ]]; then
     VS_ARCH_ARG=amd64
@@ -103,7 +105,24 @@ function build_lib {
 
   install_path_win=$(cygpath -w $install_path)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    cmd //C "script\\${base_name}.x64 ${source_dir} ${install_path_win}"
+    cmd //C "win\\${base_name}.x64 ${source_dir} ${install_path_win}"
+  fi
+}
+
+function build_lib_mac {
+  source_dir=$1
+  install_path=$2
+  base_name=$3
+
+  ./mac/Build_${base_name}.sh ${source_dir} ${install_path}
+}
+
+
+function build_lib {
+  if [[ $OSTYPE == msys* ]]; then
+    build_lib_win $1 $2 $3
+  elif [[ $OSTYPE == darwin* ]]; then
+    build_lib_mac $1 $2 $3
   fi
 }
 
