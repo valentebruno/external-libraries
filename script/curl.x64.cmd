@@ -31,13 +31,13 @@ if MSVC_VER EQU 2015 (
   set VC=14
 )
 
-rem @nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=yes
+@nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=yes
 @if NOT %ERRORLEVEL% == 0 (
   echo NMake failed, aborting
   exit 1
 )
 
-rem @nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=no
+@nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=no
 @if NOT %ERRORLEVEL% == 0 (
   echo NMake failed, aborting
   exit 1
@@ -49,7 +49,7 @@ mkdir %2\include
 mkdir %2\include\curl
 mkdir %2\lib
 copy include\curl\*.h %2\include\curl\
-copy builds\libcurl-vc-%BUILD_ARCH%-debug-static-ipv6-sspi-winssl\lib\libcurl*.lib %2\lib\
-copy builds\libcurl-vc-%BUILD_ARCH%-release-static-ipv6-sspi-winssl\lib\libcurl*.lib %2\lib\
+copy builds\libcurl-vc-%BUILD_ARCH%-debug-static-ipv6-sspi-winssl\lib\libcurl_a_debug.lib %2\lib\libcurld.lib
+copy builds\libcurl-vc-%BUILD_ARCH%-release-static-ipv6-sspi-winssl\lib\libcurl_a.lib %2\lib\libcurl.lib
 
 @endlocal
