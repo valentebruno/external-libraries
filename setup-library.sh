@@ -126,63 +126,72 @@ function build_lib {
   fi
 }
 
-url=$1
-version=$2
-install_root=${EXT_LIB_INSTALL_ROOT}
-source_dir=${url##*/}
-source_dir=${source_dir%.*}
-branch=v${version}
-base_name=${source_dir}
-output_dir=${source_dir}-${version}
 
-force=false
+function setup-library {
+  url=$1
+  version=$2
+  install_root=${EXT_LIB_INSTALL_ROOT}
+  source_dir=${url##*/}
+  source_dir=${source_dir%.*}
+  branch=v${version}
+  base_name=${source_dir}
+  output_dir=${source_dir}-${version}
 
-OPTIND=3
+  force=false
 
-while getopts ":vfgs:b:o:n:" arg; do
-  case $arg in
-    s)
-      source_dir=${OPTARG}
-      ;;
-    b)
-      branch=${OPTARG}
-      ;;
-    o)
-      output_dir=${OPTARG}
-      ;;
-    n)
-      base_name=${OPTARG}
-      ;;
-    g)
-      force_git="true"
-      ;;
-    f)
-      force="true"
-      ;;
-    v)
-      verbose=true
-      ;;
-    \?)
-      echo "Unknown Option"
-      ;;
-    esac
-done
+  OPTIND=3
 
-if [[ ${extract_dir} ]]; then
-  extract_dir=${source_dir}
-fi
+  while getopts ":vfgs:b:o:n:" arg; do
+    case $arg in
+      s)
+        source_dir=${OPTARG}
+        ;;
+      b)
+        branch=${OPTARG}
+        ;;
+      o)
+        output_dir=${OPTARG}
+        ;;
+      n)
+        base_name=${OPTARG}
+        ;;
+      g)
+        force_git="true"
+        ;;
+      f)
+        force="true"
+        ;;
+      v)
+        verbose=true
+        ;;
+      \?)
+        echo "Unknown Option"
+        ;;
+      esac
+  done
 
-if [[ ${verbose} ]]; then
-  echo url=${url}
-  echo version=${version}
-  echo install_root=${EXT_LIB_INSTALL_ROOT}
-  echo source_dir=${source_dir}
-  echo branch=${branch}
-  echo output_dir=${output_dir}
-  echo force_git=${force_git}
-  echo force=${force}
-fi
+  if [[ ${extract_dir} ]]; then
+    extract_dir=${source_dir}
+  fi
 
-download_lib ${url} ${branch} ${source_dir} ${force_git}
+  if [[ ${verbose} ]]; then
+    echo url=${url}
+    echo version=${version}
+    echo install_root=${EXT_LIB_INSTALL_ROOT}
+    echo source_dir=${source_dir}
+    echo branch=${branch}
+    echo output_dir=${output_dir}
+    echo force_git=${force_git}
+    echo force=${force}
+  fi
 
-build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
+  download_lib ${url} ${branch} ${source_dir} ${force_git}
+
+  build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
+
+  if [[ $OSTYPE == msys* ]]; then
+    export ${base_name^^}_PATH="$(cygpath -w ${install_root}/${output_dir})"
+  else
+    export ${base_name^^}_PATH="${install_root}/${output_dir}"
+  fi
+}
