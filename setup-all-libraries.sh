@@ -5,12 +5,7 @@ if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
   exit 1
 fi
 
-if [[ ! $BUILD_ARCH ]]; then
-  echo "BUILD_ARCH must be defined."
-  exit 1
-fi
-
-./setup-library.sh http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z 1.63.0 -s "boost_1_63_0" -o "boost_1_63_0"
+./setup-library.sh http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.tar.gz 1.63.0 -s "boost_1_63_0" -o "boost_1_63_0" -n "boost"
 export BOOST_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/boost_1_63_0)
 ./setup-library.sh git@github.com:madler/zlib.git 1.2.8
 export ZLIB_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/zlib-1.2.8)
@@ -52,8 +47,4 @@ export LEAPSERIAL_PATH=$(cygpath -w ${EXT_LIB_INSTALL_ROOT}/LeapSerial-0.4.0$suf
 ./setup-library.sh git@github.com:assimp/assimp.git 3.2
 ./setup-library.sh https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 ./setup-library.sh https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
-if [[ ! $MSVC_VER ]]; then
-  echo "MSVC_VER must be defined."
-  exit 1
-fi
 
