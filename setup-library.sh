@@ -65,7 +65,10 @@ function download_lib {
   fi
   popd > /dev/null
 
-  patch_lib ${source_dir}
+  #Patches are windows only.
+  if [[ $OSTYPE == mingw ]]; then
+    patch_lib ${source_dir}
+  fi
 }
 
 function patch_lib {
@@ -114,7 +117,9 @@ function build_lib_mac {
   install_path=$2
   base_name=$3
 
-  ./mac/Build_${base_name}.sh ${source_dir} ${install_path}
+  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
+    ./mac/Build_${base_name}.sh ${source_dir} ${install_path}
+  fi
 }
 
 
@@ -184,7 +189,7 @@ function setup-library {
     echo force_git=${force_git}
     echo force=${force}
   fi
-
+  echo "Building ${base_name}"
   download_lib ${url} ${branch} ${source_dir} ${force_git}
 
   build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
@@ -192,6 +197,7 @@ function setup-library {
   if [[ $OSTYPE == msys* ]]; then
     export ${base_name^^}_PATH="$(cygpath -w ${install_root}/${output_dir})"
   else
-    export ${base_name^^}_PATH="${install_root}/${output_dir}"
+    local varname=$(echo $base_name | tr '[:lower:]' '[:upper:]')_PATH
+    export $varname="${install_root}/${output_dir}"
   fi
 }

@@ -1,27 +1,14 @@
-#!/bin/sh
-# Build and install all of the Leap dependent libraries
-
-EXTERNAL_LIBRARY_DIR=/opt/local/Libraries
-
-cd src
-
-# libusb
-# ======
-
-LIBUSB_ORIGIN="git@sf-github.leap.corp:leapmotion/libusb.git" # https://github.com/leapmotion/libusb.git
-
 # libuvc
 # ======
 
-rm -fr libuvc
-git clone git@sf-github.leap.corp:leapmotion/libuvc.git
-cd libuvc
-mkdir -p Build
-cd Build
-CXXFLAGS="-stdlib=libc++" cmake .. -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH="${EXTERNAL_LIBRARY_DIR}/libuvc" -DCMAKE_OSX_ARCHITECTURES:STRING="x86_64;i386" -DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.7 -DCMAKE_OSX_SYSROOT:PATH=macosx10.9 -DLIBUSB_DIR="${EXTERNAL_LIBRARY_DIR}/libusb"
-make && make install
-cd ..
-rm -fr Build
-cd ..
+src_dir=$1
+ins_dir=$2
+cd src/${src_dir}
 
-cd ..
+mkdir -p build
+cd build
+CXXFLAGS="-stdlib=libc++" cmake .. -DCMAKE_BUILD_TYPE:STRING=Release \
+-DCMAKE_INSTALL_PREFIX:PATH="${ins_dir}" -DCMAKE_OSX_ARCHITECTURES:STRING="x86_64" \
+-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=10.10 -DCMAKE_OSX_SYSROOT:PATH=macosx10.12 \
+-DLIBUSB_DIR="${LIBUSB_PATH}"
+make && make install
