@@ -39,7 +39,7 @@ setup-library git@github.com:assimp/assimp.git 3.2
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
 
-setup-library http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz 3.3.3 -s "eigen" -o "eigen-3.3.3" -s "eigen-eigen-67e894c6cd8f" -n eigen
+setup-library http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz 3.3.3 -o "eigen-3.3.3" -s "eigen-eigen-67e894c6cd8f" -n eigen
 setup-library https://github.com/memononen/nanosvg.git 1.0.0 -b "master"
 setup-library git@github.com:opencv/opencv.git 3.2.0 -b "3.2.0"
 setup-library git@github.com:ivanfratric/polypartition.git 1.0.0 -b "master"

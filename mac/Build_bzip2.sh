@@ -13,7 +13,7 @@ patch -p0 <<"MAKEFILE_OPTIONS"
 
  BIGFILES=-D_FILE_OFFSET_BITS=64
 -CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
-+CFLAGS=-Wall -Winline $(BIGFILES) -mmacosx-version-min=10.10 -O3 -arch x86_64 -arch i386 -fvisibility=hidden -fvisibility-inlines-hidden
++CFLAGS=-Wall -Winline $(BIGFILES) -mmacosx-version-min=10.10 -O3 -arch x86_64 -fvisibility=hidden -fvisibility-inlines-hidden
 
  # Where you want it installed when you do 'make install'
  PREFIX=/usr/local
