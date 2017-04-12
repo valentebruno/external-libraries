@@ -58,7 +58,7 @@ function download_lib {
 
   pushd src > /dev/null
 
-  if [[ ${force_git} ]] || [[ ${url} == git* ]]; then
+  if [[ ${force_git} == true ]] || [[ ${url} =~ ^git* ]]; then
     download_git ${url} ${branch}
   else
     download_curl ${url}
@@ -133,16 +133,17 @@ function build_lib {
 
 
 function setup-library {
-  url=$1
-  version=$2
-  install_root=${EXT_LIB_INSTALL_ROOT}
-  source_dir=${url##*/}
-  source_dir=${source_dir%.*}
-  branch=v${version}
-  base_name=${source_dir}
-  output_dir=${source_dir}-${version}
+  local url=$1
+  local version=$2
+  local install_root=${EXT_LIB_INSTALL_ROOT}
+  local source_dir=${url##*/}
+  local source_dir=${source_dir%.*}
+  local branch=v${version}
+  local base_name=${source_dir}
+  local output_dir=${source_dir}-${version}
 
   force=false
+  force_git=false
 
   OPTIND=3
 
