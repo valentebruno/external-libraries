@@ -26,20 +26,25 @@ setup-library git@github.com:leapmotion/leaphttp.git 0.1.1 -o LeapHTTP-0.1.1$suf
 setup-library git@github.com:leapmotion/leapipc.git 0.1.4 -o LeapIPC-0.1.4$suffix
 setup-library git@github.com:leapmotion/leapresource.git 0.1.0 -o LeapResource-0.1.0$suffix
 setup-library git@github.com:leapmotion/libxs.git 1.2.0
-setup-library git@github.com:zaphoyd/websocketpp.git 0.7.0 -b0.7.0
-setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_23_RTM/src/nss-3.23-with-nspr-4.12.tar.gz 3.23 -s "nss-3.23" -o "nss-3.23" -n "nss"
+setup-library git@github.com:zaphoyd/websocketpp.git 0.8.0 -b "develop" #technically 0.8.0-dev
+
+setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_29_1_RTM/src/nss-3.29.1-with-nspr-4.13.1.tar.gz 3.29.1 -s "nss-3.29.1" -o "nss-3.29.1" -n "nss"
 setup-library git@github.com:leapmotion/SDL2 2.0.4 -b static-library
 setup-library https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.zip 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
 setup-library http://downloads.sourceforge.net/freeimage/FreeImage3170.zip 3.17.0 -s "FreeImage" -o "freeimage-3.17.0" -n "freeimage"
 setup-library git@github.com:leapmotion/anttweakbar.git 1.16 -b "develop"
-setup-library git@github.com:bulletphysics/bullet3.git 2.84.0 -b @d5d8e16 -o "bullet-2.84.0"
+setup-library git@github.com:bulletphysics/bullet3.git 2.84 -b @d5d8e16 -o "bullet-2.84"
 setup-library git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
 setup-library git@github.com:rougier/freetype-gl.git 0.0.1 -b @a4cfb9a -n freetypegl
 setup-library git@github.com:assimp/assimp.git 3.2
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
 
-setup-library http://bitbucket.org/eigen/eigen/get/3.3.3.tar.gz 3.3.3 -o "eigen-3.3.3" -s "eigen-eigen-67e894c6cd8f" -n eigen
+EIGEN_VERSION=3.3.1
+setup-library http://bitbucket.org/eigen/eigen/get/${EIGEN_VERSION}.tar.gz ${EIGEN_VERSION} -o "eigen-${EIGEN_VERSION}" -s "eigen-eigen-f562a193118d" -n eigen
 setup-library https://github.com/memononen/nanosvg.git 1.0.0 -b "master"
 setup-library git@github.com:opencv/opencv.git 3.2.0 -b "3.2.0"
 setup-library git@github.com:ivanfratric/polypartition.git 1.0.0 -b "master"
+
+SWIG_VERSION=3.0.3
+setup-library http://iweb.dl.sourceforge.net/project/swig/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz ${SWIG_VERSION} -s "swig-${SWIG_VERSION}" -o "swig-${SWIG_VERSION}" -n "swig"

@@ -22,8 +22,8 @@ for f in $(find client common google_breakpad processor testing -name \*.h); do
 done
 cd ..
 
-xcodebuild -sdk macosx10.9 -project src/tools/mac/dump_syms/dump_syms.xcodeproj -destination 'platform=OS X' GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=10.10 OTHER_CPLUSPLUSFLAGS="-stdlib=libc++" OTHER_LDFLAGS="-stdlib=libc++"
-xcodebuild -sdk macosx10.9 -project src/client/mac/Breakpad.xcodeproj -destination 'platform=OS X' -target Breakpad GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=10.10 OTHER_CPLUSPLUSFLAGS="-stdlib=libc++" OTHER_LDFLAGS="-stdlib=libc++"
+xcodebuild -project src/tools/mac/dump_syms/dump_syms.xcodeproj -destination 'platform=OS X' GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=10.10 OTHER_CPLUSPLUSFLAGS="-stdlib=libc++" OTHER_LDFLAGS="-stdlib=libc++"
+xcodebuild -project src/client/mac/Breakpad.xcodeproj -destination 'platform=OS X' -target Breakpad GCC_VERSION=com.apple.compilers.llvm.clang.1_0 MACOSX_DEPLOYMENT_TARGET=10.10 OTHER_CPLUSPLUSFLAGS="-stdlib=libc++" OTHER_LDFLAGS="-stdlib=libc++"
 
 cp src/tools/mac/dump_syms/build/Release/dump_syms "${BREAKPAD_DIR}/bin/"
 cp -R src/tools/mac/dump_syms/build/Release/dump_syms.dSYM "${BREAKPAD_DIR}/bin/"
