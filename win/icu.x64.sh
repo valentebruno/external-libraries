@@ -6,12 +6,17 @@ installdir_win=$2
 installdir=$(cygpath -u ${installdir_win})
 PATH=/c/git-sdk-64/mingw64/bin:${PATH} #you must have make installed - See git-sdk or Msys, and rename mingw32-make.
 
-./runConfigureICU MSYS/MSVC/Debug --enable-debug --enable-static --disable-shared --prefix=$installdir
+#Fix cases where the path to sh is in Program Files
+for file in $(find . -name "*.in")
+do
+  sed -i -e 's/ $(SHELL) / "$(SHELL)" /g' "$file"
+done
+
+./runConfigureICU MSYS/MSVC --enable-debug --enable-static --disable-shared --prefix="$installdir"
 make
 make install
-rm $installdir/lib/sicudtd.dll
+
 make clean
-./runConfigureICU MSYS/MSVC/Release --enable-static --disable-shared --prefix=$installdir
+./runConfigureICU MSYS/MSVC --enable-static --disable-shared --prefix="$installdir"
 make
 make install
-rm $installdir/lib/sicudt.dll

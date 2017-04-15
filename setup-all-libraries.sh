@@ -42,9 +42,6 @@ setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "mas
 
 EIGEN_VERSION=3.3.1
 setup-library http://bitbucket.org/eigen/eigen/get/${EIGEN_VERSION}.tar.gz ${EIGEN_VERSION} -o "eigen-${EIGEN_VERSION}" -s "eigen-eigen-f562a193118d" -n eigen
-setup-library https://github.com/memononen/nanosvg.git 1.0.0 -b "master"
+setup-library git@github.com:memononen/nanosvg.git 1.0.0 -b "master"
 setup-library git@github.com:opencv/opencv.git 3.2.0 -b "3.2.0"
 setup-library git@github.com:ivanfratric/polypartition.git 1.0.0 -b "master"
-
-SWIG_VERSION=3.0.3
-setup-library http://iweb.dl.sourceforge.net/project/swig/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz ${SWIG_VERSION} -s "swig-${SWIG_VERSION}" -o "swig-${SWIG_VERSION}" -n "swig"

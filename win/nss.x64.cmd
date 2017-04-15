@@ -4,9 +4,19 @@
 @cd src\%1
 
 ::@ECHO OFF
-SET MOZ_MSVCBITS=64
-SET MOZ_MSVCVERSION=14
-SET MOZ_MSVCYEAR=2015
+IF %MSVC_VER% == 2015 (
+  SET MOZ_MSVCVERSION=14
+  SET MOZ_MSVCYEAR=2015
+) ELSE IF %MSVC_VER% == 2013 (
+  SET MOZ_MSVCVERSION=12
+  SET MOZ_MSVCYEAR=2013
+)
+
+if %BUILD_ARCH% == x64 (
+  SET MOZ_MSVCBITS=64
+) ELSE IF %BUILD_ARCH% == x86 (
+  SET MOZ_MSVCBITS=32
+)
 
 PUSHD "C:/mozilla-build/"
 
@@ -167,30 +177,30 @@ cd dist
 
 mkdir %3/bin
 
-xcopy /i WIN954.0_64_OPT.OBJ\bin\pk12util.exe %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\bin\certutil.exe %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nssutil3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\plc4.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\plds4.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\smime3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\softokn3.chk %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\softokn3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\sqlite3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\ssl3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\freebl3.chk %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\freebl3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nspr4.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nss3.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nssckbi.dll %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nssdbm3.chk %2\bin\
-xcopy /i WIN954.0_64_OPT.OBJ\lib\nssdbm3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\bin\pk12util.exe %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\bin\certutil.exe %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssutil3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\plc4.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\plds4.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\smime3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\softokn3.chk %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\softokn3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\sqlite3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\ssl3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\freebl3.chk %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\freebl3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nspr4.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nss3.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssckbi.dll %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssdbm3.chk %2\bin\
+xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssdbm3.dll %2\bin\
 
-xcopy /si WIN954.0_64_OPT.OBJ\include %2\include\nspr\
+xcopy /si WIN954.0_x86_64_64_OPT.OBJ\include %2\include\nspr\
 del %2\include\md
 xcopy /si private\nss %2\include\nss\
 xcopy /si public\nss %2\include\nss\
 
-xcopy /si WIN954.0_64_OPT.OBJ\lib\*.lib %2\lib
+xcopy /si WIN954.0_x86_64_64_OPT.OBJ\lib\*.lib %2\lib
 
 EXIT /B
 
