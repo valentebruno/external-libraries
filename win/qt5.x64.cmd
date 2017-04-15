@@ -29,7 +29,7 @@
 OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD" ^
 -no-icu
 
-@call bash "../../script/get-jom.sh" %CD%
+@call bash "../../win/get-jom.sh" %CD%
 
 @jom
 @jom install

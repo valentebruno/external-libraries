@@ -1,11 +1,9 @@
 @setlocal
 @set root_dir=%CD%
 @call %VSSETUP_COMMAND%
-@cd src\%1
+@cd src
 
-mkdir build
-cd build
-
+xcopy /S %1\* %2\
 if "%MSVC_VER%"=="2015" (
   set CMAKE_GEN=Visual Studio 14 2015
 )
@@ -16,7 +14,10 @@ if "%BUILD_ARCH%"=="x64" (
   set CMAKE_GEN=%CMAKE_GEN% Win64
 )
 
-call %CMAKE_COMMAND% ..\ -G"%CMAKE_GEN%" -Wno-dev -DCMAKE_INSTALL_PREFIX:PATH="%2"
-call %CMAKE_COMMAND% --build . --target install --config Debug
-call %CMAKE_COMMAND% --build . --target install --config Release
+mkdir build
+cd build
+
+call %CMAKE_COMMAND% .. -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2
+call %CMAKE_COMMAND% --build . --target install --config debug
+call %CMAKE_COMMAND% --build . --target install --config release
 @endlocal
