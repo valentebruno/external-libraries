@@ -2,10 +2,12 @@
 function download_git {
   url=$1
   branch=$2
-
+  src_dir=$3
+  echo pwd
+  pwd
   if [[ $branch == @* ]]; then
-    git clone ${url} --recursive --depth 100
-    pushd > /dev/null
+    git clone ${url} --recursive
+    pushd ./${foldername} > /dev/null
     git checkout ${branch:1}
     popd > /dev/null
   else
@@ -28,7 +30,11 @@ function download_curl {
       7z x ${filename}
     fi
   else
-    tar xfj ${filename}
+    if [[ ${filename} =~ "zip$" ]]; then
+      unzip ${filename}
+    else
+      tar xfz ${filename}
+    fi
   fi
 
   rm -f ${filename}
@@ -59,7 +65,7 @@ function download_lib {
   pushd src > /dev/null
 
   if [[ ${force_git} == true ]] || [[ ${url} =~ ^git* ]]; then
-    download_git ${url} ${branch}
+    download_git ${url} ${branch} ${foldername}
   else
     download_curl ${url}
   fi
@@ -114,11 +120,21 @@ function build_lib_win {
 
 function build_lib_mac {
   source_dir=$1
-  install_path=$2
+  install_path=$2ch
   base_name=$3
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     ./mac/Build_${base_name}.sh ${source_dir} ${install_path}
+  fi
+}
+
+function build_lib_linux {
+  source_dir=$1
+  install_path=$2
+  base_name=$3
+
+  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
+    ./linux/Build_${base_name}.sh ${source_dir} ${install_path}
   fi
 }
 
@@ -128,6 +144,8 @@ function build_lib {
     build_lib_win $1 $2 $3
   elif [[ $OSTYPE == darwin* ]]; then
     build_lib_mac $1 $2 $3
+  elif [[ $OSTYPE == linux-gnu ]]; then
+    build_lib_linux $1 $2 $3
   fi
 }
 

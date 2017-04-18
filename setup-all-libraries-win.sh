@@ -3,6 +3,7 @@
 source ./setup-library.sh
 
 setup-library http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.zip 57.1 -s "icu" -o "icu-57.1" -n "icu"
+setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 
 source ./setup-all-libraries.sh
 
