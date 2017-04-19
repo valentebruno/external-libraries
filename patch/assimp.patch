@@ -1,3 +1,16 @@
+From 61f7548620227231cbd8a41bfa6bb2a0822e92ad Mon Sep 17 00:00:00 2001
+From: Walter Gray <wgray@leapmotion.com>
+Date: Wed, 19 Apr 2017 15:52:40 -0700
+Subject: [PATCH] Fix bad suffix
+
+---
+ CMakeLists.txt         | 3 ---
+ assimp-config.cmake.in | 2 +-
+ code/CMakeLists.txt    | 2 +-
+ 3 files changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bc4c9cd..4b9a14d 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
 @@ -174,9 +174,6 @@ endif(NOT ZLIB_FOUND)
@@ -10,3 +23,32 @@
 
  IF ( ASSIMP_NO_EXPORT )
    ADD_DEFINITIONS( -DASSIMP_BUILD_NO_EXPORT)
+diff --git a/assimp-config.cmake.in b/assimp-config.cmake.in
+index 098eba8..f31c503 100644
+--- assimp-config.cmake.in
++++ assimp-config.cmake.in
+@@ -32,7 +32,7 @@ if( MSVC )
+   else()
+     set(MSVC_PREFIX "vc130")
+   endif()
+-  set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@-${MSVC_PREFIX}-mt" CACHE STRING "the suffix for the assimp windows library" FORCE)
++  set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@-${MSVC_PREFIX}-md" CACHE STRING "the suffix for the assimp windows library" FORCE)
+ else()
+   set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@" CACHE STRING "the suffix for the openrave libraries" FORCE)
+ endif()
+diff --git a/code/CMakeLists.txt b/code/CMakeLists.txt
+index 3d19bf0..fc98d83 100644
+--- code/CMakeLists.txt
++++ code/CMakeLists.txt
+@@ -739,7 +739,7 @@ if( MSVC )
+   else()
+     set(MSVC_PREFIX "vc130")
+   endif()
+-  set(LIBRARY_SUFFIX "${ASSIMP_LIBRARY_SUFFIX}-${MSVC_PREFIX}-mt" CACHE STRING "the suffix for the assimp windows library")
++  set(LIBRARY_SUFFIX "${ASSIMP_LIBRARY_SUFFIX}-${MSVC_PREFIX}-md" CACHE STRING "the suffix for the assimp windows library")
+ endif()
+
+ SET_TARGET_PROPERTIES( assimp PROPERTIES
+--
+2.8.3.windows.1
+
