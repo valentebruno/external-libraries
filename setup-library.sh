@@ -3,8 +3,6 @@ function download_git {
   url=$1
   branch=$2
   src_dir=$3
-  echo pwd
-  pwd
   if [[ $branch == @* ]]; then
     git clone ${url} --recursive
     pushd ./${foldername} > /dev/null
@@ -73,7 +71,7 @@ function download_lib {
   popd > /dev/null
 
   #Patches are windows only.
-  if [[ $OSTYPE == mingw ]]; then
+  if [[ $OSTYPE == msys* ]]; then
     patch_lib ${source_dir}
   fi
 }
@@ -81,8 +79,7 @@ function download_lib {
 function patch_lib {
   name=$1
 
-  #Patch ICU
-  patchpath="./patch/${name}.patch"
+  patchpath="$(pwd)/patch/${name}.patch"
   if [[ -e  ${patchpath} ]]; then
     patch -i "${patchpath}" -p0 -fsN -d ./src/${name}
   fi
