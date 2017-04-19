@@ -81,7 +81,7 @@ function patch_lib {
 
   patchpath="$(pwd)/patch/${name}.patch"
   if [[ -e  ${patchpath} ]]; then
-    patch -i "${patchpath}" -p0 -fsN -d ./src/${name}
+    patch -i "${patchpath}" -p0 -fsN -d "$(pwd)/src/${name}"
   fi
 
 }

@@ -4,7 +4,6 @@
 @cd src\%1
 
 set ZLIB_HOME=%2\..\zlib-1.2.8
-echo ZLIB_HOME=%ZLIB_HOME%
 if "%MSVC_VER%"=="2015" (
   set CMAKE_GEN=Visual Studio 14 2015
 )
@@ -15,7 +14,12 @@ if "%BUILD_ARCH%"=="x64" (
   set CMAKE_GEN=%CMAKE_GEN% Win64
 )
 
-call %CMAKE_COMMAND% . -G"%CMAKE_GEN%" -Wno-dev -DCMAKE_INSTALL_PREFIX:PATH="%2" -DASSIMP_BUILD_TESTS:BOOL="false" -DASSIMP_BUILD_ASSIMP_TOOLS:BOOL="false" -DBUILD_SHARED_LIBS:BOOL="false" -DDirectX_D3DX9_LIBRARY:FILEPATH=""
+mkdir build
+cd build
+
+call %CMAKE_COMMAND% ../ -G"%CMAKE_GEN%" -Wno-dev -DCMAKE_INSTALL_PREFIX:PATH="%2" ^
+-DASSIMP_BUILD_TESTS:BOOL="false" -DASSIMP_BUILD_ASSIMP_TOOLS:BOOL="false" ^
+-DBUILD_SHARED_LIBS:BOOL="false"
 call %CMAKE_COMMAND% --build . --target install --config Debug
 call %CMAKE_COMMAND% --build . --target install --config Release
 
