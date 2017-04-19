@@ -120,7 +120,7 @@ function build_lib_win {
 
 function build_lib_mac {
   source_dir=$1
-  install_path=$2ch
+  install_path=$2
   base_name=$3
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
