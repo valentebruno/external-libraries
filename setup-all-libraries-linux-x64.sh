@@ -7,7 +7,7 @@ export ARCH_FLAGS=-m64
 source setup-library.sh
 
 #required for bullet
-setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-2.8.1.tar.gz 2.8.1 -s "freeglut-2.8.1" -o "freeglut-2.8.1" -n "freeglut"
+setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz 3.0.0 -s "freeglut-3.0.0" -o "freeglut-3.0.0" -n "freeglut"
 
 source setup-all-libraries.sh
 
