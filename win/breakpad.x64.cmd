@@ -33,9 +33,9 @@ xcopy /Y src\tools\windows\dump_syms\Release\dump_syms.exe %2\bin\
 
 mkdir %2\include
 
-xcopy src\client\*.h %2\include\client\
-xcopy src\client\windows %2\include\client\
-xcopy src\common\* %2\include\
-xcopy src\google_breakpad\* %2\include\
-
+xcopy /Y src\client\*.h %2\include\client\
+xcopy /Y /S src\client\windows\*.h %2\include\client\windows\
+xcopy /Y /S src\common\*.h %2\include\common\
+xcopy /Y /S src\google_breakpad\*.h %2\include\google_breakpad\
+xcopy /Y /S src\processor\*.h %2\include\processor\
 @endlocal
