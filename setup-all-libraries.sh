@@ -31,7 +31,7 @@ setup-library git@github.com:zaphoyd/websocketpp.git 0.8.0 -b "develop" #technic
 setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_29_1_RTM/src/nss-3.29.1-with-nspr-4.13.1.tar.gz 3.29.1 -s "nss-3.29.1" -o "nss-3.29.1" -n "nss"
 setup-library git@github.com:leapmotion/SDL2 2.0.4 -b static-library -n "sdl2"
 setup-library https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.tgz 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
-setup-library http://downloads.sourceforge.net/freeimage/FreeImage3170.zip 3.17.0 -s "FreeImage" -o "FreeImage-3.17.0" -n "freeimage"
+setup-library git@github.com:leapmotion/FreeImage.git 3.17.0 -n "freeimage"
 setup-library git@github.com:leapmotion/anttweakbar.git 1.16 -b "develop"
 setup-library git@github.com:bulletphysics/bullet3.git 2.84 -b 2.84 -o "bullet-2.84"
 setup-library git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
