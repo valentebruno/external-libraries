@@ -12,7 +12,13 @@ if "%BUILD_ARCH%"=="x64" (
   set CMAKE_GEN=%CMAKE_GEN% Win64
 )
 
-call %CMAKE_COMMAND% . -G"%CMAKE_GEN%" -Wno-dev -DCMAKE_INSTALL_PREFIX:PATH="%2" -DBUILD_BULLET2_DEMOS:BOOL="false" -DBUILD_CPU_DEMOS:BOOL="false" -DBUILD_EXTRAS:BOOL="false" -DBUILD_OPENGL3_DEMOS="false" -DBUILD_UNIT_TESTS:BOOL="false" -DINSTALL_LIBS="true"
+mkdir build
+cd build
+call %CMAKE_COMMAND% ../ -G"%CMAKE_GEN%" -Wno-dev -DCMAKE_INSTALL_PREFIX:PATH="%2" ^
+-DBUILD_BULLET2_DEMOS:BOOL="false" -DBUILD_CPU_DEMOS:BOOL="false" -DBUILD_EXTRAS:BOOL="false" ^
+-DBUILD_OPENGL3_DEMOS="false" -DBUILD_UNIT_TESTS:BOOL="false" -DINSTALL_LIBS="true" ^
+-DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON
+
 call %CMAKE_COMMAND% --build . --target install --config Debug
 call %CMAKE_COMMAND% --build . --target install --config Release
 @endlocal
