@@ -136,9 +136,20 @@ function build_lib_linux {
   fi
 }
 
+function build_lib_arm-linux {
+  source_dir=$1
+  install_path=$2
+  base_name=$3
+
+  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
+    ./arm-linux/Build_${base_name}.sh ${source_dir} ${install_path}
+  fi
+}
 
 function build_lib {
-  if [[ $OSTYPE == msys* ]]; then
+  if [[ ! -z $BUILD_TYPE ]]; then
+    build_lib_$BUILD_TYPE $1 $2 $3
+  elif [[ $OSTYPE == msys* ]]; then
     build_lib_win $1 $2 $3
   elif [[ $OSTYPE == darwin* ]]; then
     build_lib_mac $1 $2 $3

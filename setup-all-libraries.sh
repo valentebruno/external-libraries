@@ -16,7 +16,7 @@ setup-library git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
 setup-library git@github.com:google/flatbuffers.git 1.0.3 -b "@e97f38e" #Not actually 1.0.3
 setup-library git@github.com:google/protobuf.git 3.0.2
 
-if [[ $BUILD_ARCH == "x64" ]]; then
+if [[ $BUILD_ARCH == "x64" ]] && [[ $OSTYPE == msys ]]; then
   suffix=-win64
 fi
 
@@ -31,14 +31,14 @@ setup-library git@github.com:zaphoyd/websocketpp.git 0.8.0 -b "develop" #technic
 setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_29_1_RTM/src/nss-3.29.1-with-nspr-4.13.1.tar.gz 3.29.1 -s "nss-3.29.1" -o "nss-3.29.1" -n "nss"
 setup-library git@github.com:leapmotion/SDL2 2.0.4 -b static-library -n "sdl2"
 setup-library https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.tgz 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
-setup-library git@github.com:leapmotion/FreeImage.git 3.17.0 -n "freeimage"
+setup-library git@github.com:leapmotion/FreeImage.git 3.16.0 -n "freeimage" #3.17 is incompatible with gcc 4.8 due to a bug in arm_neon. see https://git.busybox.net/buildroot/commit/?id=326a681f1ee23b40db2637dc8dfe3e49cd58cd80
 setup-library git@github.com:leapmotion/anttweakbar.git 1.16 -b "develop"
 setup-library git@github.com:bulletphysics/bullet3.git 2.84 -b 2.84 -o "bullet-2.84"
 setup-library git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
 setup-library git@github.com:rougier/freetype-gl.git 0.0.1 -b @f2edab9 -n freetypegl
 setup-library git@github.com:assimp/assimp.git 3.2
 
-setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "master"
+setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "chrome_53"
 
 EIGEN_VERSION=3.3.1
 setup-library http://bitbucket.org/eigen/eigen/get/${EIGEN_VERSION}.tar.gz ${EIGEN_VERSION} -o "eigen-${EIGEN_VERSION}" -s "eigen-eigen-f562a193118d" -n eigen

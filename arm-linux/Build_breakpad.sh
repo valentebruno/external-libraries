@@ -1,28 +1,25 @@
-#!/bin/sh -xe
-# Build and install all of the Leap dependent libraries
 
-EXTERNAL_LIBRARY_DIR=/opt/local/Libraries-arm64
+# Breakpad [libc++]
+# =================
 
-if [ -z "${MACHINE}" ]; then
-  MACHINE=`uname -m`
+
+src_dir=$1
+ins_dir=$2
+cd src/${src_dir}
+
+cd src/third_party
+git clone https://chromium.googlesource.com/linux-syscall-support lss --depth 1 --recursive --branch master
+cd ../..
+
+if [ "${BUILD_ARCH}" = "x86" ]; then
+  BREAKPAD_fLAGS="--enable-m32"
 fi
-ARCH_FLAGS=""
 
-
-# Breakpad
-# ========
-
-BREAKPAD_VERSION=0.1
-rm -fr breakpad-${BREAKPAD_VERSION}
-svn checkout http://google-breakpad.googlecode.com/svn/trunk/ breakpad-${BREAKPAD_VERSION}
-cd breakpad-${BREAKPAD_VERSION}
-BREAKPAD_FLAGS=""
-./configure CC=aarch64-linux-gnu-gcc CXX=aarch64-linux-gnu-g++ --host=arm-linux --prefix="${EXTERNAL_LIBRARY_DIR}"/breakpad-${BREAKPAD_VERSION} ${BREAKPAD_FLAGS}
+./configure CXXFLAGS="-v -I /usr/include/arm-inux-gnueabihf" --host=arm-linux --prefix="${ins_dir}" ${BREAKPAD_FLAGS}
 make && make install
-BREAKPAD_INCLUDE="${EXTERNAL_LIBRARY_DIR}/breakpad-${BREAKPAD_VERSION}/include"
+BREAKPAD_INCLUDE="${ins_dir}/include"
 cd src
 for f in $(find client common google_breakpad processor testing third_party -name \*.h); do
   mkdir -p "${BREAKPAD_INCLUDE}/$(dirname $f)"
   cp "$f" "${BREAKPAD_INCLUDE}/$(dirname $f)/"
 done
-cd ../..
