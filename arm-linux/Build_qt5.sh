@@ -17,7 +17,7 @@ VERBOSE=1 QMAKE_CFLAGS_SHLIB="-fPIC" QMAKE_CFLAGS_STATIC_LIB="-fPIC" \
 QMAKE_CC=${CC} QMAKE_CXX=${CXX} OPENSSL_LIBS="-lssl -lcrypto -ldl" \
 ./configure -prefix "${ins_dir}" -opensource -confirm-license -release \
  -device ${QT_DEVICE} -device-option CROSS_COMPILE=${CROSS_COMPILER_PREFIX} \
- -device-option COMPILE_VERSION=4.8 \
+ -device-option COMPILE_VERSION=5 \
  -no-icu -nomake examples -nomake tests \
  -openssl-linked -I "${OPENSSL_PATH}/include" -L "${OPENSSL_PATH}/lib" \
  -qt-libjpeg -qt-libpng -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d \
@@ -36,3 +36,4 @@ make -j1 install
 rm -fr ${ins_dir}/doc
 rm -fr ${ins_dir}/examples
 cd ..
+

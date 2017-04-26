@@ -9,7 +9,7 @@ export ARCH_FLAGS=
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-arm64.cmake
 export CROSS_COMPILER_PREFIX=/usr/bin/aarch64-linux-gnu-
-export CROSS_COMPILER_VERSION=4.8
+export CROSS_COMPILER_VERSION=5
 export HOST="aarch64-linux-gnu"
 export CC=${CROSS_COMPILER_PREFIX}gcc-${CROSS_COMPILER_VERSION}
 export CXX=${CROSS_COMPILER_PREFIX}g++-${CROSS_COMPILER_VERSION}
