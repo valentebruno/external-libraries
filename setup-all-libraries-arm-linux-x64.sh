@@ -22,7 +22,6 @@ source setup-library.sh
 
 #required for bullet
 setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz 3.0.0 -s "freeglut-3.0.0" -o "freeglut-3.0.0" -n "freeglut"
-setup-library http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-src.tgz 57.1 -s "icu" -o "icu-57.1" -n "icu"
 
 source setup-all-libraries.sh
 

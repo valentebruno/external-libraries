@@ -1,7 +1,6 @@
 @setlocal
 @call %VSSETUP_COMMAND%
 @set PATH=%1\src;%PATH%
-@set PATH=ICU_BIN_PATH;%PATH%
 @set PATH=C:\Perl64\bin;%PATH%
 @set PATH=C:\Python27-x64;%PATH%
 @set PATH=C:\Ruby22-x64\bin;%PATH%
@@ -26,8 +25,7 @@
 -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebkit ^
 -skip qtwebkit-examples -skip qtx11extras -skip qtxmlpatterns ^
 -I "%OPENSSL_PATH%\include" -L "%OPENSSL_PATH%\lib" ^
-OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD" ^
--no-icu
+OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD"
 
 @call bash "../../win/get-jom.sh" %CD%
 
