@@ -7,7 +7,7 @@ ins_dir=$2
 cd src/${src_dir}
 
 ./bootstrap.sh
-./configure --host=arm-linux --disable-udev CC=aarch64-linux-gnu-gcc CFLAGS="-O3 ${ARCH_FLAGS}"
+./configure --host=arm-linux --disable-udev CFLAGS="-O3 ${ARCH_FLAGS}"
 make
 mkdir -p ${ins_dir}/include/libusb
 mkdir -p ${ins_dir}/lib

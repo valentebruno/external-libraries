@@ -25,7 +25,7 @@ setup-library https://github.com/leapmotion/leapserial.git 0.4.0 -g -o LeapSeria
 setup-library https://github.com/leapmotion/leaphttp.git 0.1.1 -g -o LeapHTTP-0.1.1$suffix
 setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -o LeapIPC-0.1.4$suffix
 setup-library https://github.com/leapmotion/leapresource.git 0.1.0 -g -o LeapResource-0.1.0$suffix
-setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g 
+setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g
 setup-library https://github.com/zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 
 setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_29_1_RTM/src/nss-3.29.1-with-nspr-4.13.1.tar.gz 3.29.1 -s "nss-3.29.1" -o "nss-3.29.1" -n "nss"

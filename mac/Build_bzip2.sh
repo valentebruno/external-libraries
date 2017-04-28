@@ -19,4 +19,3 @@ patch -p0 <<"MAKEFILE_OPTIONS"
  PREFIX=/usr/local
 MAKEFILE_OPTIONS
 make -j 4 && make install PREFIX="${ins_dir}"
-cd ..
