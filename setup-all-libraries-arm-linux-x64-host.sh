@@ -1,5 +1,5 @@
 #!/bin/bash
-export EXT_LIB_INSTALL_ROOT="$(cd ~; pwd)/Libraries-x64"
+export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-x64"
 
 export BUILD_ARCH=x64
 export ARCH_FLAGS=-m64

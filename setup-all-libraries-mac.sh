@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EXT_LIB_INSTALL_ROOT='/Users/wgray/Libraries'
+export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries"
 export MACOSX_DEPLOYMENT_TARGET=10.10
 
 source setup-all-libraries.sh
