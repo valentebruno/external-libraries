@@ -6,9 +6,15 @@ cd src/${src_dir}
 
 host_inst_dir=${HOST_LIB_ROOT}/$(basename ${ins_dir})
 
+#required for gcc5?
+PATH=${PATH}:.
+
 ./autogen.sh
+
+# --with-protoc=${host_inst_dir}/bin/protoc \ Not needed when using docker
+
 ./configure --host=arm-linux --prefix="${ins_dir}" --enable-static --disable-shared \
---with-zlib --with-protoc=${host_inst_dir}/bin/protoc \
+--with-zlib \
 CXXFLAGS="-fPIC -O2 -D_THREAD_SAFE -fvisibility=hidden -I${ZLIB_PATH}/include" \
 LDFLAGS="-L${ZLIB_PATH}/lib"
-make && make install
+make -j8 && make install
