@@ -10,5 +10,5 @@ export INCDIR=${ins_dir}/include
 export INSTALLDIR=${ins_dir}/lib
 export INSTALLGROUP=$(id -g)
 
-make
+make -j8
 make install
