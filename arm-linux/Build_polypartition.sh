@@ -5,7 +5,7 @@ src_dir=$1
 ins_dir=$2
 cd src/${src_dir}
 
-patch -w -p0 <<"POLYPARTITION_FIX_FAILURE"
+patch --ignore-whitespace -p0 <<"POLYPARTITION_FIX_FAILURE"
 --- src/polypartition.cpp
 +++ src/polypartition.cpp
 @@ -373,7 +373,7 @@
@@ -44,7 +44,7 @@ cp src/*.h ${ins_dir}/include/
 cp src/*.cpp ${ins_dir}/src/
 cd src
 for source in *.cpp; do
-  ${CXX} -O3 -std=c++11 -fvisibility=hidden ${ARCH_FLAGS} -c ${source}
+  ${CXX} -O3 -std=c++11 -fvisibility=hidden -fPIC ${ARCH_FLAGS} -c ${source}
 done
 ar cq libpolypartition.a *.o
 ranlib libpolypartition.a
