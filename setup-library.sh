@@ -146,6 +146,16 @@ function build_lib_arm-linux {
   fi
 }
 
+function build_lib_android {
+  source_dir=$1
+  install_path=$2
+  base_name=$3
+
+  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
+    ./android/Build_${base_name}.sh ${source_dir} ${install_path}
+  fi
+}
+
 function build_lib {
   if [[ ! -z $BUILD_TYPE ]]; then
     build_lib_$BUILD_TYPE $1 $2 $3

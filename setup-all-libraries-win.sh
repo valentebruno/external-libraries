@@ -5,6 +5,7 @@ source ./setup-library.sh
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 
 source ./setup-all-libraries.sh
+setup-library git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
 
 setup-library https://github.com/dcnieho/FreeGLUT.git 3.0.0 -g -b FG_3_0_0
 setup-library https://github.com/leapmotion/DShowBaseClasses.git 1.0.0 -g -o "baseclasses-1.0.0"

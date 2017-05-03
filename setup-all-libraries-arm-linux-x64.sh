@@ -24,6 +24,7 @@ source setup-library.sh
 setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz 3.0.0 -s "freeglut-3.0.0" -o "freeglut-3.0.0" -n "freeglut"
 
 source setup-all-libraries.sh
+setup-library git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
 
 SWIG_VERSION=3.0.3
 setup-library http://iweb.dl.sourceforge.net/project/swig/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz ${SWIG_VERSION} -s "swig-${SWIG_VERSION}" -o "swig-${SWIG_VERSION}" -n "swig"

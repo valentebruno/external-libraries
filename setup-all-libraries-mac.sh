@@ -4,6 +4,7 @@ export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries"
 export MACOSX_DEPLOYMENT_TARGET=10.10
 
 source setup-all-libraries.sh
+setup-library git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
 
 SWIG_VERSION=3.0.3
 setup-library http://iweb.dl.sourceforge.net/project/swig/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz ${SWIG_VERSION} -s "swig-${SWIG_VERSION}" -o "swig-${SWIG_VERSION}" -n "swig"
