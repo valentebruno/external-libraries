@@ -2,13 +2,14 @@
 set(CMAKE_SYSTEM_NAME Android)
 set(CMAKE_ANDROID_STANDALONE_TOOLCHAIN $ENV{NDK_TOOLCHAIN})
 
-#These should be autodetected in future versions of cmake
+string(APPEND CMAKE_CXX_STANDARD_LIBRARIES " -static-libstdc++ -latomic")
+
+#These should be autodetected in future versions of cmake (or may not be required at all)
 set(CMAKE_ANDROID_API 21)
 set(CMAKE_ANDROID_ARCH_ABI arm64-v8a)
-set(CMAKE_ANDROID_STL_TYPE c++_static)
+
 add_definitions(-DANDROID) #expected to be set by the toolchain in many cases
-
-#set(CMAKE_ANDROID_NDK $ENV{NDK_ROOT})
-#set(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION clang)
-
-#set(CMAKE_SYSROOT ${CMAKE_ANDROID_STANDALONE_TOOLCHAIN}/sysroot)
+set(CMAKE_FIND_ROOT_PATH "$ENV{EXT_LIB_INSTALL_ROOT}")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
