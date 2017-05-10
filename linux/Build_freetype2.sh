@@ -12,11 +12,5 @@ sed -e "/AUX.*.gxvalid/s@^# @@" \
 sed -r -e 's:.*(#.*SUBPIXEL.*) .*:\1:' \
     -i include/freetype/config/ftoption.h
 
-./autogen.sh
-
-./configure --prefix="${ins_dir}" --without-zlib --without-bzip2 --without-png \
-CFLAGS="-O3 -fPIC -fvisibility=hidden"
-
-make -j 9 && make install
-cp docs/FTL.TXT "${ins_dir}"/
-cd ..
+cd ../..
+source posix/$(basename $0)

@@ -1,7 +1,5 @@
-
-# Breakpad [libc++]
+# Breakpad
 # =================
-
 
 src_dir=$1
 ins_dir=$2

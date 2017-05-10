@@ -2,12 +2,7 @@
 # Freetype-gl
 # ===========
 
-src_dir=$1
-ins_dir=$2
-cd src/${src_dir}
-
-
-cat <<EOF > opengl.h
+cat <<EOF > src/$1/opengl.h
 /* Freetype GL - A C OpenGL Freetype engine
  *
  * Distributed under the OSI-approved BSD 2-Clause License.  See accompanying
@@ -44,20 +39,7 @@ cat <<EOF > opengl.h
 #endif /* OPEN_GL_H */
 EOF
 
-mkdir -p build
-cd build
-
-cmake .. -DCMAKE_BUILD_TYPE:STRING=Release \
--DFREETYPE_INCLUDE_DIRS="${FREETYPE2_PATH}/include/freetype2" \
--DFREETYPE_LIBRARY="${FREETYPE2_PATH}/lib/libfreetype.a" \
--Dfreetype-gl_BUILD_DEMOS=OFF -Dfreetype-gl_BUILD_APIDOC=OFF \
--Dfreetype-gl_BUILD_MAKEFONT=OFF -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
--Dfreetype-gl_BUILD_TESTS=OFF \
--DOPENGL_gl_LIBRARY=GLESv2 -DOPENGL_INCLUDE_DIR:PATH=${NDK_TOOLCHAIN}/sysroot/usr/include
-
-make -j 9
-mkdir -p "${ins_dir}/include"
-mkdir -p "${ins_dir}/lib"
-cp libfreetype-gl.a "${ins_dir}/lib/"
-cd ..
-cp freetype-gl.h opengl.h texture-atlas.h texture-font.h vec234.h vector.h "${ins_dir}/include/"
+export CMAKE_ADDITIONAL_ARGS="${CMAKE_ADDITIONAL_ARGS} \
+-Dfreetype-gl_BUILD_TESTS=OFF -DOPENGL_gl_LIBRARY=GLESv2 \
+-DOPENGL_INCLUDE_DIR:PATH=${NDK_TOOLCHAIN}/sysroot/usr/include"
+source posix/$(basename $0)

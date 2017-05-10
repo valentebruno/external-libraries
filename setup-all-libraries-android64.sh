@@ -17,16 +17,12 @@ export CFLAGS="-isystem $NDK_TOOLCHAIN/sysroot/usr/include/$HOST -O3 -fvisibilit
 export LDFLAGS="-static-libstdc++"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android64.cmake
+export SKIP_QT_BUILD=true
+export SKIP_SWIG_BUILD=true
 
-source setup-library.sh
+export CMAKE_ADDITIONAL_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
 
-#required for bullet
-setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz 3.0.0 -s "freeglut-3.0.0" -o "freeglut-3.0.0" -n "freeglut"
-
-source setup-all-libraries.sh
-
-BZIP2_VERSION="1.0.6"
-setup-library http://www.bzip.org/${BZIP2_VERSION}/bzip2-${BZIP2_VERSION}.tar.gz ${BZIP2_VERSION} -n "bzip2" -s "bzip2-${BZIP2_VERSION}" -o "bzip2-${BZIP2_VERSION}"
-
+#override the libusb branch
 setup-library https://github.com/leapmotion/libusb.git 1.0.0 -g -b leap-2.3.x-arm
-setup-library http://sf-github.leap.corp/leapmotion/libuvc.git 1.0.0 -g -b "master"
+
+source setup-all-libraries-posix.sh

@@ -126,16 +126,6 @@ function build_lib_mac {
   fi
 }
 
-function build_lib_linux {
-  source_dir=$1
-  install_path=$2
-  base_name=$3
-
-  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    ./linux/Build_${base_name}.sh ${source_dir} ${install_path}
-  fi
-}
-
 function build_lib_arm-linux {
   source_dir=$1
   install_path=$2
@@ -156,6 +146,24 @@ function build_lib_android {
   fi
 }
 
+function build_lib_linux {
+  build_lib_posix $@
+}
+
+function build_lib_posix {
+  source_dir=$1
+  install_path=$2
+  base_name=$3
+
+  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
+    if [[ ! -f "./${BUILD_TYPE}/Build_${base_name}.sh" ]]; then
+      ./posix/Build_${base_name}.sh ${source_dir} ${install_path}
+    else
+      ./${BUILD_TYPE}/Build_${base_name}.sh ${source_dir} ${install_path}
+    fi
+  fi
+}
+
 function build_lib {
   if [[ ! -z $BUILD_TYPE ]]; then
     build_lib_$BUILD_TYPE $1 $2 $3
@@ -163,11 +171,10 @@ function build_lib {
     build_lib_win $1 $2 $3
   elif [[ $OSTYPE == darwin* ]]; then
     build_lib_mac $1 $2 $3
-  elif [[ $OSTYPE == linux-gnu ]]; then
-    build_lib_linux $1 $2 $3
+  else
+    build_lib_posix $1 $2 $3
   fi
 }
-
 
 function setup-library {
   local url=$1

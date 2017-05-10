@@ -19,11 +19,14 @@ setup-library https://github.com/google/protobuf.git 3.0.2 -g
 if [[ $BUILD_ARCH == "x64" ]] && [[ $OSTYPE == msys ]]; then
   suffix=-win64
 fi
+if [[ ${SKIP_QT_BUILD} != true ]]; then
+  setup-library git://code.qt.io/qt/qt5.git 5.8.0 -o "qt-5.8.0"
+fi
 
 setup-library https://github.com/leapmotion/autowiring.git 1.0.3 -g -o autowiring-1.0.3$suffix
 setup-library https://github.com/leapmotion/leapserial.git 0.4.0 -g -o LeapSerial-0.4.0$suffix
 setup-library https://github.com/leapmotion/leaphttp.git 0.1.1 -g -o LeapHTTP-0.1.1$suffix
-setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -b "rm-gcc-ext" -o LeapIPC-0.1.4$suffix
+setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -b "master" -o LeapIPC-0.1.4$suffix
 setup-library https://github.com/leapmotion/leapresource.git 0.1.1 -g -o LeapResource-0.1.1$suffix
 setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g
 setup-library https://github.com/zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
