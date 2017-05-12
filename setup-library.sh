@@ -32,7 +32,7 @@ function download_curl {
     if [[ ${filename} =~ "zip$" ]]; then
       unzip ${filename}
     else
-      tar xfz ${filename}
+      tar xfz ${filename} --verbose
     fi
   fi
 
@@ -116,40 +116,6 @@ function build_lib_win {
   fi
 }
 
-function build_lib_mac {
-  source_dir=$1
-  install_path=$2
-  base_name=$3
-
-  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    ./mac/Build_${base_name}.sh ${source_dir} ${install_path}
-  fi
-}
-
-function build_lib_arm-linux {
-  source_dir=$1
-  install_path=$2
-  base_name=$3
-
-  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    ./arm-linux/Build_${base_name}.sh ${source_dir} ${install_path}
-  fi
-}
-
-function build_lib_android {
-  source_dir=$1
-  install_path=$2
-  base_name=$3
-
-  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    ./android/Build_${base_name}.sh ${source_dir} ${install_path}
-  fi
-}
-
-function build_lib_linux {
-  build_lib_posix $@
-}
-
 function build_lib_posix {
   source_dir=$1
   install_path=$2
@@ -165,12 +131,8 @@ function build_lib_posix {
 }
 
 function build_lib {
-  if [[ ! -z $BUILD_TYPE ]]; then
-    build_lib_$BUILD_TYPE $1 $2 $3
-  elif [[ $OSTYPE == msys* ]]; then
+  if [[ $OSTYPE == msys* ]]; then
     build_lib_win $1 $2 $3
-  elif [[ $OSTYPE == darwin* ]]; then
-    build_lib_mac $1 $2 $3
   else
     build_lib_posix $1 $2 $3
   fi
