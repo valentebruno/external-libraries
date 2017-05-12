@@ -1,3 +1,4 @@
+#!/bin/bash -e
 #!/bin/sh
 
 export cfg_args="--with-zlib"

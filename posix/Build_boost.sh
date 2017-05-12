@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # Boost 1.63
 # ===================
 src_dir=$1

@@ -1,4 +1,5 @@
-# Crossroads (libxs) 
+#!/bin/bash -e
+# Crossroads (libxs)
 # ===========================
 
 export cfg_args="--host=arm-linux"

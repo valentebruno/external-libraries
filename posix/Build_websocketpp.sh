@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # Build and install all of the Leap dependent libraries
 # websocketpp
 # ====================

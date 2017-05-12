@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -e
 
 host_inst_dir=${HOST_LIB_ROOT}/$(basename ${ins_dir})
 

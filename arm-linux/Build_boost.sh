@@ -1,5 +1,5 @@
-#!/bin/sh
-# Boost 1.63 
+#!/bin/bash -e
+# Boost 1.63
 # ===================
 
 boost_compiler_patch=": arm : $(basename ${CXX}) ;"

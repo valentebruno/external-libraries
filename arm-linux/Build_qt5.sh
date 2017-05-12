@@ -1,4 +1,5 @@
-# Qt5 [libc++]
+#!/bin/bash -e
+# Qt5
 # ============
 
 export QT_SRC_DIR=$(pwd)/src/$1

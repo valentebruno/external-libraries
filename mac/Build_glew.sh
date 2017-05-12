@@ -1,3 +1,4 @@
+#!/bin/bash -e
 # glew
 # ====
 export AR=libtool
