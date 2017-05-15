@@ -1,0 +1,43 @@
+From 1cda518e4fedd214d6a99c1f0875b555dbed640b Mon Sep 17 00:00:00 2001
+From: Walter Gray <wgray@leapmotion.com>
+Date: Mon, 15 May 2017 16:05:15 -0700
+Subject: [PATCH] fix vs2015 build errors
+
+---
+ src/build/common.gypi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/build/common.gypi b/src/build/common.gypi
+index b9466a3..a64f65c 100644
+--- a/src/build/common.gypi
++++ b/src/build/common.gypi
+@@ -325,7 +325,7 @@
+           # This is required for ATL to use XP-safe versions of its functions.
+           '_USING_V110_SDK71_',
+         ],
+-        'msvs_disabled_warnings': [4800],
++        'msvs_disabled_warnings': [4800, 4091],
+         'msvs_settings': {
+           'VCCLCompilerTool': {
+             'WarnAsError': 'true',
+@@ -452,7 +452,7 @@
+             #  VC\include\typeinfo(139) : warning C4275: non dll-interface
+             #  class 'stdext::exception' used as base for dll-interface
+             #  class 'std::bad_cast'
+-            'msvs_disabled_warnings': [4275],
++            'msvs_disabled_warnings': [4275, 4091],
+           }],
+           ['OS=="linux"', {
+             'cflags': [
+@@ -894,7 +894,7 @@
+         ],
+         'msvs_cygwin_dirs': ['<(DEPTH)/third_party/cygwin'],
+         'msvs_disabled_warnings': [
+-          4100, 4127, 4396, 4503, 4512, 4819, 4995, 4702
++          4100, 4127, 4396, 4503, 4512, 4819, 4995, 4702, 4091
+         ],
+         'msvs_settings': {
+           'VCCLCompilerTool': {
+-- 
+2.12.2.windows.2
+
