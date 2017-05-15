@@ -9,11 +9,11 @@
 @set PATH=%1\qtrepotools\bin;%PATH%
 @set QMAKESPEC=win32-msvc%MSVC_VER%
 
+@cd src\%1
+
 @mkdir build
 @cd build
-@mkdir qt
-@cd qt
-@call ..\..\src\%1\configure -prefix "%2" -opensource ^
+@call ..\configure -prefix "%2" -opensource ^
 -confirm-license -debug-and-release -opengl desktop -no-angle -no-incredibuild-xge ^
 -platform %QMAKESPEC% -mp -openssl-linked -nomake examples -nomake tests -no-icu -no-dbus ^
 -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d ^
@@ -27,7 +27,7 @@
 -I "%OPENSSL_PATH%\include" -L "%OPENSSL_PATH%\lib" ^
 OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD"
 
-@call bash "../../win/get-jom.sh" %CD%
+@call bash "../../../win/get-jom.sh" %CD%
 
 @jom
 @jom install
