@@ -5,8 +5,8 @@
 
 pushd builds\msvc
 devenv /Upgrade msvc10.sln
-msbuild libxs/libxs.vcxproj /p:Configuration=Debug;Platform=x64
-msbuild libxs/libxs.vcxproj /p:Configuration=Release;Platform=x64
+msbuild libxs/libxs.vcxproj /p:Configuration=Debug;Platform=%BUILD_ARCH%
+msbuild libxs/libxs.vcxproj /p:Configuration=Release;Platform=%BUILD_ARCH%
 popd
 
 xcopy doc %2\doc /E /I

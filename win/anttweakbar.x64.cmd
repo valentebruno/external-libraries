@@ -5,8 +5,8 @@
 
 pushd src
 devenv /Upgrade AntTweakBar_VS2012.sln
-msbuild AntTweakBar.vcxproj /p:Configuration=Debug;Platform=x64
-msbuild AntTweakBar.vcxproj /p:Configuration=Release;Platform=x64
+msbuild AntTweakBar.vcxproj /p:Configuration=Debug;Platform=%BUILD_ARCH%
+msbuild AntTweakBar.vcxproj /p:Configuration=Release;Platform=%BUILD_ARCH%
 popd
 
 xcopy /si include %2\include\

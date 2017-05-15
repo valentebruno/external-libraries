@@ -177,30 +177,34 @@ cd dist
 
 mkdir %3/bin
 
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\bin\pk12util.exe %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\bin\certutil.exe %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssutil3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\plc4.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\plds4.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\smime3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\softokn3.chk %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\softokn3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\sqlite3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\ssl3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\freebl3.chk %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\freebl3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nspr4.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nss3.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssckbi.dll %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssdbm3.chk %2\bin\
-xcopy /i WIN954.0_x86_64_64_OPT.OBJ\lib\nssdbm3.dll %2\bin\
+cd WIN954.0*
+xcopy /i bin\pk12util.exe %2\bin\
+xcopy /i bin\certutil.exe %2\bin\
+xcopy /i lib\nssutil3.dll %2\bin\
+xcopy /i lib\plc4.dll %2\bin\
+xcopy /i lib\plds4.dll %2\bin\
+xcopy /i lib\smime3.dll %2\bin\
+xcopy /i lib\softokn3.chk %2\bin\
+xcopy /i lib\softokn3.dll %2\bin\
+xcopy /i lib\sqlite3.dll %2\bin\
+xcopy /i lib\ssl3.dll %2\bin\
+xcopy /i lib\freebl3.chk %2\bin\
+xcopy /i lib\freebl3.dll %2\bin\
+xcopy /i lib\nspr4.dll %2\bin\
+xcopy /i lib\nss3.dll %2\bin\
+xcopy /i lib\nssckbi.dll %2\bin\
+xcopy /i lib\nssdbm3.chk %2\bin\
+xcopy /i lib\nssdbm3.dll %2\bin\
 
-xcopy /si WIN954.0_x86_64_64_OPT.OBJ\include %2\include\nspr\
+xcopy /si include %2\include\nspr\
+xcopy /si lib\*.lib %2\lib
+cd ..
+
 del %2\include\md
 xcopy /si private\nss %2\include\nss\
 xcopy /si public\nss %2\include\nss\
 
-xcopy /si WIN954.0_x86_64_64_OPT.OBJ\lib\*.lib %2\lib
+
 
 EXIT /B
 

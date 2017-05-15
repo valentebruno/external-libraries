@@ -7,7 +7,11 @@ export HOME=$(pwd)
 cd nss
 
 export OS_TARGET=WIN95
-export USE_64=1
+
+if [[ "${BUILD_ARCH}" == "x64" ]]; then
+  export USE_64=1
+fi
+
 export BUILD_OPT="1"
 export MSYSTEM=MINGW32
 
