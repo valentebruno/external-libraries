@@ -4,12 +4,12 @@ function download_git {
   branch=$2
   src_dir=$3
   if [[ $branch == @* ]]; then
-    git clone ${url} --recursive
+    git clone ${url}
     pushd ./${foldername} > /dev/null
     git checkout ${branch:1}
     popd > /dev/null
   else
-    git clone ${url} --depth 1 --recursive ${branch:+--branch ${branch}}
+    git clone ${url} --depth 1 ${branch:+--branch ${branch}}
   fi
 }
 
@@ -29,10 +29,10 @@ function download_curl {
       7z x ${filename}
     fi
   else
-    if [[ ${filename} =~ "zip$" ]]; then
-      unzip ${filename}
+    if [[ ${filename} =~ .*\.zip ]]; then
+      unzip -q ${filename}
     else
-      tar xfz ${filename} --verbose
+      tar xfz ${filename} --checkpoint=100
     fi
   fi
 
