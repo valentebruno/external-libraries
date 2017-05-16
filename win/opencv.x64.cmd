@@ -16,13 +16,14 @@ if "%BUILD_ARCH%"=="x64" (
 mkdir build
 cd build
 
-call %CMAKE_COMMAND% .. -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX=%2 ^
+call %CMAKE_COMMAND% .. -G"%CMAKE_GEN%" -DCMAKE_INSTALL_PREFIX:PATH="%2" ^
 -DBUILD_DOCS:BOOL=OFF -DBUILD_PERF_TESTS:BOOL=OFF ^
 -DBUILD_TESTS:BOOL=OFF -DCMAKE_BUILD_TYPE:STRING=Release ^
 -DEIGEN_INCLUDE_PATH:PATH="%EIGEN_PATH%" ^
 -DWITH_CUDA:BOOL=OFF -DWITH_QT:BOOL=OFF -DWITH_WEBP:BOOL=OFF -DWITH_OPENCL:BOOL=OFF ^
 -DWITH_MATLAB:BOOL=OFF -DENABLE_SSE41:BOOL=ON -DBUILD_SHARED_LIBS:BOOL=OFF ^
 -DBUILD_WITH_STATIC_CRT:BOOL=OFF
-call %CMAKE_COMMAND% --build . --target install --config debug
-call %CMAKE_COMMAND% --build . --target install --config release
+
+call %CMAKE_COMMAND% --build . --target install --config Debug
+call %CMAKE_COMMAND% --build . --target install --config Release
 @endlocal
