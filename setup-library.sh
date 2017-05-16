@@ -98,12 +98,16 @@ function build_lib_win {
     VS_VER_NUM=12.0
   elif [[ $MSVC_VER == 2015 ]]; then
     VS_VER_NUM=14.0
+  elif [[ $MSVC_VER == 2017 ]]; then
+    VS_VER_NUM=14.1
   else
     echo "Invalid MSVC_VER=$MSVC_VER"
     return
   fi
 
-  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\\vcvarsall.bat\" $VS_ARCH_ARG"
+#  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\\vcvarsall.bat\" $VS_ARCH_ARG"
+  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build\\vcvars64.bat\" $VS_ARCH_ARG"
+
   export CMAKE_COMMAND='"C:\Program Files\CMake\bin\cmake.exe"'
 
   source_dir=$1

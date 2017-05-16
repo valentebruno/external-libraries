@@ -3,6 +3,11 @@
 @cd src\%1
 @call %VSSETUP_COMMAND%
 
+if "%MSVC_VER%"=="2017" (
+  set TOOLSET=msvc-14.1
+  set TOOLSET_VER=14.1
+)
+
 if "%MSVC_VER%"=="2015" (
   set TOOLSET=msvc-14.0
   set TOOLSET_VER=14.0
