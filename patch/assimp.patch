@@ -1,13 +1,13 @@
-From 61f7548620227231cbd8a41bfa6bb2a0822e92ad Mon Sep 17 00:00:00 2001
+From d008c9ca77955d28fd63ae433783fa11a3bd7f33 Mon Sep 17 00:00:00 2001
 From: Walter Gray <wgray@leapmotion.com>
-Date: Wed, 19 Apr 2017 15:52:40 -0700
-Subject: [PATCH] Fix bad suffix
+Date: Mon, 15 May 2017 20:44:41 -0700
+Subject: [PATCH] fixup for 2015-17
 
 ---
  CMakeLists.txt         | 3 ---
- assimp-config.cmake.in | 2 +-
- code/CMakeLists.txt    | 2 +-
- 3 files changed, 2 insertions(+), 5 deletions(-)
+ assimp-config.cmake.in | 8 ++++++--
+ code/CMakeLists.txt    | 8 ++++++--
+ 3 files changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
 index bc4c9cd..4b9a14d 100644
@@ -24,12 +24,20 @@ index bc4c9cd..4b9a14d 100644
  IF ( ASSIMP_NO_EXPORT )
    ADD_DEFINITIONS( -DASSIMP_BUILD_NO_EXPORT)
 diff --git a/assimp-config.cmake.in b/assimp-config.cmake.in
-index 098eba8..f31c503 100644
+index 098eba8..3da6eb6 100644
 --- assimp-config.cmake.in
 +++ assimp-config.cmake.in
-@@ -32,7 +32,7 @@ if( MSVC )
+@@ -29,10 +29,14 @@ if( MSVC )
+     set(MSVC_PREFIX "vc110")
+   elseif( MSVC12 )
+     set(MSVC_PREFIX "vc120")
++  elseif( MSVC_VERSION EQUAL 1900 )
++    set(MSVC_PREFIX "vc140")
++  elseif( MSVC_VERSION EQUAL 1910 )
++    set(MSVC_PREFIX "vc141")
    else()
-     set(MSVC_PREFIX "vc130")
+-    set(MSVC_PREFIX "vc130")
++    message(WARNING "Unknown MSVC Version: ${MSVC_VERSION}")
    endif()
 -  set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@-${MSVC_PREFIX}-mt" CACHE STRING "the suffix for the assimp windows library" FORCE)
 +  set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@-${MSVC_PREFIX}-md" CACHE STRING "the suffix for the assimp windows library" FORCE)
@@ -37,12 +45,20 @@ index 098eba8..f31c503 100644
    set(ASSIMP_LIBRARY_SUFFIX "@ASSIMP_LIBRARY_SUFFIX@" CACHE STRING "the suffix for the openrave libraries" FORCE)
  endif()
 diff --git a/code/CMakeLists.txt b/code/CMakeLists.txt
-index 3d19bf0..fc98d83 100644
+index 3d19bf0..e2ff250 100644
 --- code/CMakeLists.txt
 +++ code/CMakeLists.txt
-@@ -739,7 +739,7 @@ if( MSVC )
+@@ -736,10 +736,14 @@ if( MSVC )
+     set(MSVC_PREFIX "vc110")
+   elseif( MSVC12 )
+     set(MSVC_PREFIX "vc120")
++  elseif( MSVC_VERSION EQUAL 1900 )
++    set(MSVC_PREFIX "vc140")
++  elseif( MSVC_VERSION EQUAL 1910 )
++    set(MSVC_PREFIX "vc141")
    else()
-     set(MSVC_PREFIX "vc130")
+-    set(MSVC_PREFIX "vc130")
++    message(WARNING "Unknown MSVC Version: ${MSVC_VERSION}")
    endif()
 -  set(LIBRARY_SUFFIX "${ASSIMP_LIBRARY_SUFFIX}-${MSVC_PREFIX}-mt" CACHE STRING "the suffix for the assimp windows library")
 +  set(LIBRARY_SUFFIX "${ASSIMP_LIBRARY_SUFFIX}-${MSVC_PREFIX}-md" CACHE STRING "the suffix for the assimp windows library")
@@ -50,5 +66,5 @@ index 3d19bf0..fc98d83 100644
 
  SET_TARGET_PROPERTIES( assimp PROPERTIES
 --
-2.8.3.windows.1
+2.12.2.windows.2
 
