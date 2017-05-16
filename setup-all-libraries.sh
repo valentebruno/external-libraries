@@ -20,7 +20,7 @@ if [[ ${SKIP_QT_BUILD} != true ]]; then
   setup-library http://download.qt.io/official_releases/qt/5.8/5.8.0/single/qt-everywhere-opensource-src-5.8.0.tar.gz 5.8.0 -s "qt-everywhere-opensource-src-5.8.0" -n "qt5" -o "qt-5.8.0"
 fi
 
-setup-library https://github.com/leapmotion/autowiring.git 1.0.3 -g -o autowiring-1.0.3
+setup-library https://github.com/leapmotion/autowiring.git 1.0.4 -g -b "master" -o autowiring-1.0.4
 setup-library https://github.com/leapmotion/leapserial.git 0.4.0 -g -o LeapSerial-0.4.0
 setup-library https://github.com/leapmotion/leaphttp.git 0.1.1 -g -o LeapHTTP-0.1.1
 setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -b "master" -o LeapIPC-0.1.4
