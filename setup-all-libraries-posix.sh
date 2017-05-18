@@ -6,7 +6,7 @@ if [[ -z BUILD_TYPE ]]; then
 fi
 
 export CFLAGS="${CFLAGS} -O3 -fPIC"
-export CXXFLAGS="${CXXFLAGS} -fvisibility=hidden -fvisibility-inlines-hidden"
+export CXXFLAGS="${CXXFLAGS} -O3 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden"
 source setup-library.sh
 
 #required for bullet
