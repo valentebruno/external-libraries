@@ -11,5 +11,5 @@ popd
 
 xcopy doc %2\doc /E /I
 xcopy include %2\include /E /I
-xcopy lib %2\lib /E /I
+xcopy bin\*.lib %2\lib\ /E /I
 @endlocal
