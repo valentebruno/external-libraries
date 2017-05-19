@@ -19,6 +19,7 @@ function download_curl {
 
   curl -OL ${url}
 
+
   if [[ $OSTYPE == msys* ]]; then
     if [[ ${filename} == *.tar.gz ]] || [[ ${filename} == *.tgz ]]; then
       filebase=${filename%.t[ar\.gz]*}
@@ -32,7 +33,10 @@ function download_curl {
     if [[ ${filename} =~ .*\.zip ]]; then
       unzip -q ${filename}
     else
-      tar xfz ${filename} --checkpoint=100
+      if [[ $OSTYPE != darwin* ]]; then
+        tar_arg="--checkout=100"
+      fi
+      tar xfz ${filename} ${tar_arg}
     fi
   fi
 
