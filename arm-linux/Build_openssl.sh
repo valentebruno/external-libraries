@@ -8,6 +8,6 @@ else
   export OPENSSL_OS="linux-generic32"
 fi
 
+export CC=${CC##${CROSS_COMPILER_PREFIX}}
 export cfg_args="no-asm enable-static-engine"
-
 source posix/$(basename $0)
