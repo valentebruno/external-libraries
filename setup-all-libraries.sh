@@ -44,4 +44,4 @@ EIGEN_VERSION=3.3.1
 setup-library http://bitbucket.org/eigen/eigen/get/${EIGEN_VERSION}.tar.gz ${EIGEN_VERSION} -o "eigen-${EIGEN_VERSION}" -s "eigen-eigen-f562a193118d" -n eigen
 setup-library https://github.com/memononen/nanosvg.git 1.0.0 -g -b "master"
 setup-library https://github.com/opencv/opencv.git 3.2 -g -b "3.2.0"
-setup-library https://github.com/ivanfratric/polypartition.git 1.0.0 -g -b "master"
+setup-library https://github.com/ivanfratric/polypartition.git 1.0.0 -g -b "@cb9a41b"
