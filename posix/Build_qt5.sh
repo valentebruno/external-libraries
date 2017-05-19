@@ -7,7 +7,7 @@ ins_dir=$2
 cd src/${src_dir}
 
 ./configure -prefix "${ins_dir}" -opensource -confirm-license -release \
- -no-pch -platform ${QT_PLATFORM} -no-icu -nomake examples -nomake tests \
+ -no-pch -no-icu -nomake examples -nomake tests \
  -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d \
  -skip qtconnectivity -skip qtdeclarative -skip qtdoc -skip qtdocgallery \
  -skip qtenginio -skip qtfeedback -skip qtgamepad -skip qtgraphicaleffects \
