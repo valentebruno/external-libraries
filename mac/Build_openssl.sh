@@ -2,12 +2,7 @@
 # OpenSSL
 # =======
 
-src_dir=$1
-ins_dir=$2
-cd src/${src_dir}
-
 export OPENSSL_OS=darwin64-x86_64-cc
+export CFLAGS=${CFLAGS//-arch x86_64/} #set by openssl_os
 export cfg_args="-mmacosx-version-min=10.10"
-./Configure --prefix="${ins_dir}"
-make -j 8
-make install
+source posix/$(basename $0)
