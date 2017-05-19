@@ -1,5 +1,6 @@
 #!/bin/bash
 export BUILD_TYPE=mac
+export BUILD_ARCH=x64
 
 export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries"
 export MACOSX_DEPLOYMENT_TARGET=10.10
