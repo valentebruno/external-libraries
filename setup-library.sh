@@ -34,7 +34,7 @@ function download_curl {
       unzip -q ${filename}
     else
       if [[ $OSTYPE != darwin* ]]; then
-        tar_arg="--checkout=100"
+        tar_arg="--checkpoint=100"
       fi
       tar xfz ${filename} ${tar_arg}
     fi
