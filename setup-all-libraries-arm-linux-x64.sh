@@ -1,7 +1,6 @@
 #!/bin/bash
 export BUILD_TYPE=arm-linux
 export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm64"
-export HOST_LIB_ROOT="$(cd ..; pwd)/Libraries-x64"
 
 export BUILD_ARCH=x64
 
