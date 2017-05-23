@@ -6,9 +6,11 @@ src_dir=$1
 ins_dir=$2
 cd src/${src_dir}
 
-cd src/third_party
-git clone https://chromium.googlesource.com/linux-syscall-support lss --depth 1 --recursive --branch master
-cd ../..
+if [[ ! -d "src/third_party/lss" ]]; then 
+  cd src/third_party
+  git clone https://chromium.googlesource.com/linux-syscall-support lss --depth 1 --recursive --branch master
+  cd ../..
+fi
 
 if [ "${BUILD_ARCH}" = "x86" ]; then
   BREAKPAD_fLAGS="${BREAKPAD_FLAGS} --enable-m32"
