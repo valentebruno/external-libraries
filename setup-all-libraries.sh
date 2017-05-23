@@ -20,11 +20,11 @@ if [[ ${SKIP_QT_BUILD} != true ]]; then
   setup-library http://download.qt.io/official_releases/qt/5.8/5.8.0/single/qt-everywhere-opensource-src-5.8.0.tar.gz 5.8.0 -s "qt-everywhere-opensource-src-5.8.0" -n "qt5" -o "qt-5.8.0"
 fi
 
-setup-library https://github.com/leapmotion/autowiring.git 1.0.4 -g -b "fix-arm" -o autowiring-1.0.4
-setup-library https://github.com/leapmotion/leapserial.git 0.4.0 -g -b "fix-arm" -o leapserial-0.4.0
-setup-library https://github.com/leapmotion/leaphttp.git 0.1.1 -g -o leaphttp-0.1.1
-setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -b "master" -o leapipc-0.1.4
-setup-library https://github.com/leapmotion/leapresource.git 0.1.2 -g -b "master" -o leapresource-0.1.2
+setup-library https://github.com/leapmotion/autowiring.git 1.0.4 -g -b "fix-arm"
+setup-library https://github.com/leapmotion/leapserial.git 0.5.0 -g -b "fix-arm"
+setup-library https://github.com/leapmotion/leaphttp.git 0.1.1 -g -b "upd-standard"
+setup-library https://github.com/leapmotion/leapipc.git 0.1.4 -g -b "upd-standard"
+setup-library https://github.com/leapmotion/leapresource.git 0.1.2 -g -b "fix-arm"
 setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g -b "leap"
 setup-library https://github.com/zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 
