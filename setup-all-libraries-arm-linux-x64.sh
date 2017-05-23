@@ -21,3 +21,10 @@ source setup-library.sh
 setup-library https://github.com/leapmotion/libusb.git 1.0.0 -g -b leap-2.3.x-arm
 
 source setup-all-libraries-posix.sh
+
+#For now, we depend on the jdk being located exactly here
+if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/jdk ]]; then
+  echo "Copying JDK..."
+  cp -r /usr/lib/jvm/java-8-openjdk-arm64 ${EXT_LIB_INSTALL_ROOT}/jdk
+fi
+
