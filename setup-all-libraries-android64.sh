@@ -23,6 +23,7 @@ export SKIP_SWIG_BUILD=true
 export CMAKE_ADDITIONAL_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
 
 #override the libusb branch
+source setup-library.sh
 setup-library https://github.com/leapmotion/libusb.git 1.0.0 -g -b leap-2.3.x-arm
 
 source setup-all-libraries-posix.sh
