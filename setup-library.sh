@@ -115,6 +115,18 @@ function build_lib_posix {
   fi
 }
 
+function build_cmake_lib {
+  mkdir -p build
+  cd build
+  cmake .. ${CMAKE_GENERATOR:+-G"${CMAKE_GENERATOR}"} -DCMAKE_INSTALL_PREFIX:PATH="$1" -DCMAKE_BUILD_TYPE:STRING=Release ${@:2} ${CMAKE_ADDITIONAL_ARGS}
+
+  if [[ $MSVC_VER ]]; then
+    cmake --build . --target install --config Debug -- ${CMAKE_BUILD_ARGS}
+  fi
+  cmake --build . --target install --config Release -- ${CMAKE_BUILD_ARGS}
+}
+export -f build_cmake_lib
+
 function build_lib {
   if [[ $OSTYPE == msys* ]]; then
     build_lib_win $1 $2 $3
