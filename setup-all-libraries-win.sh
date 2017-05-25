@@ -1,5 +1,30 @@
 #!/bin/bash
 
+if [[! -x 7z ]]; then
+  export PATH=${PATH}:/c/Program\ Files/7-Zip
+fi
+
+if [[ $BUILD_ARCH == "x64" ]]; then
+  VS_ARCH_ARG=amd64
+else
+  VS_ARCH_ARG=x86
+fi
+
+if [[ $MSVC_VER == 2013 ]]; then
+  VS_VER_NUM=12.0
+elif [[ $MSVC_VER == 2015 ]]; then
+  VS_VER_NUM=14.0
+elif [[ $MSVC_VER == 2017 ]]; then
+  VS_VER_NUM=15.0
+else
+  echo "Invalid MSVC_VER=$MSVC_VER"
+  return
+fi
+
+export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\\vcvarsall.bat\" $VS_ARCH_ARG"
+export CMAKE_COMMAND='"C:\Program Files\CMake\bin\cmake.exe"'
+export CMAKE_GENERATOR="Visual Studio ${VS_VER_NUM%\.0} $MSVC_VER"
+
 source ./setup-library.sh
 
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
