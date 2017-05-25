@@ -30,6 +30,10 @@ if MSVC_VER EQU 2013 (
 if MSVC_VER EQU 2015 (
   set VC=14
 )
+if MSVC_VER EQU 2015 (
+  set VC=15
+)
+
 
 @nmake /f Makefile.vc mode=static VC=%VC% MACHINE=%BUILD_ARCH% DEBUG=yes
 @if NOT %ERRORLEVEL% == 0 (

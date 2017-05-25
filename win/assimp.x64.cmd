@@ -4,6 +4,9 @@
 @cd src\%1
 
 set ZLIB_HOME=%2\..\zlib-1.2.8
+if "%MSVC_VER%"=="2017" (
+  set CMAKE_GEN=Visual Studio 15 2017
+)
 if "%MSVC_VER%"=="2015" (
   set CMAKE_GEN=Visual Studio 14 2015
 )

@@ -102,6 +102,8 @@ function build_lib_win {
     VS_VER_NUM=12.0
   elif [[ $MSVC_VER == 2015 ]]; then
     VS_VER_NUM=14.0
+  elif [[ $MSVC_VER == 2017 ]]; then
+    VS_VER_NUM=15.0
   else
     echo "Invalid MSVC_VER=$MSVC_VER"
     return

@@ -2,6 +2,9 @@
 @set root_dir=%CD%
 @call %VSSETUP_COMMAND%
 @cd src\%1
+if "%MSVC_VER%"=="2017" (
+  set CMAKE_GEN=Visual Studio 15 2017
+)
 if "%MSVC_VER%"=="2015" (
   set CMAKE_GEN=Visual Studio 14 2015
 )
