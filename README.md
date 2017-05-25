@@ -12,6 +12,8 @@ This repository provides some instructions on building various external librarie
 
   If you have problems installing the DirectX SDK, check online. It frequently has issues if you have the visual studio 2010 redistributable installed.
 
+  Git For Windows SDK should be installed to C:/git-sdk-64 or vc-bash*.bat files will have to be modified
+
 #### Setup Instructions:
   1.Clone this repository
   2.Install the above requirements
