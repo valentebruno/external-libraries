@@ -20,7 +20,7 @@ NSS_OBJDIR=$(basename $(find . -name "*OPT\.OBJ"))
 NSS_INSTALL=${ins_dir}
 
 mkdir -p ${NSS_INSTALL}/lib
-install -v -m 644 ${NSS_OBJDIR}/lib/*.a ${NSS_INSTALL}/lib
+install -v -m 644 ${NSS_OBJDIR}/lib/*.{a,lib} ${NSS_INSTALL}/lib || true
 
 mkdir -p ${NSS_INSTALL}/include/nss
 cp -v -RL {public,private}/nss/* ${NSS_INSTALL}/include/nss
@@ -28,7 +28,7 @@ cp ${NSS_OBJDIR}/include/prcpucfg.h ${NSS_INSTALL}/include/nss
 chmod -v 644 ${NSS_INSTALL}/include/nss/*
 mkdir -p ${NSS_INSTALL}/bin
 install -v -m 755 ${NSS_OBJDIR}/bin/{certutil,pk12util} ${NSS_INSTALL}/bin
-install -v -m 755 ${NSS_OBJDIR}/lib/*.so ${NSS_INSTALL}/bin
+install -v -m 755 ${NSS_OBJDIR}/lib/*.{so,dll,chk} ${NSS_INSTALL}/bin || true
 
 cd ../nspr
 mkdir -p ${NSS_INSTALL}/include/nspr/obsolete

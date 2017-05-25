@@ -95,9 +95,13 @@ function build_lib_win {
   install_path=$2
   base_name=$3
 
-  install_path_win=$(cygpath -w $install_path)
+  install_path_win=$(cygpath -w $2)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    cmd //C "win\\${base_name}.x64 ${source_dir} ${install_path_win}"
+    if [[ ! -f "./win/${base_name}.sh" ]]; then
+      ./posix/Build_${base_name}.sh ${source_dir} ${install_path_win}
+    else
+      ./win/${base_name}.sh ${source_dir} ${install_path_win}
+    fi
   fi
 }
 
@@ -116,8 +120,8 @@ function build_lib_posix {
 }
 
 function build_cmake_lib {
-  mkdir -p build
-  cd build
+  mkdir -p b
+  cd b
   cmake .. ${CMAKE_GENERATOR:+-G"${CMAKE_GENERATOR}"} -DCMAKE_INSTALL_PREFIX:PATH="$1" -DCMAKE_BUILD_TYPE:STRING=Release ${@:2} ${CMAKE_ADDITIONAL_ARGS}
 
   if [[ $MSVC_VER ]]; then
