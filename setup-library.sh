@@ -22,7 +22,7 @@ function download_curl {
 
   if [[ $OSTYPE == msys* ]]; then
     if [[ ${filename} == *.tar.[gx]z ]] || [[ ${filename} == *.tgz ]]; then
-      filebase=${filename%.t[ar\..z]*}
+      filebase=${filename%.t[argz\.]*}
       7z x ${filename}
       7z x ${filebase}.tar
       rm -f ${filebase}.tar
