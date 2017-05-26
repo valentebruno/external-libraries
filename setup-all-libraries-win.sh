@@ -32,7 +32,7 @@ if [[ ! -x $(which cmake 2> /dev/null) ]]; then
 fi
 
 #Fix up path to find VS tools first
-link_path=$(which -a link | grep MSVC -m1)
+link_path=$(which -a link | grep Microsoft -m1)
 link_dir=$(dirname "${link_path}")
 export PATH="${link_dir}":"${PATH}"
 
