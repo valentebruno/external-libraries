@@ -3,3 +3,5 @@ src/*
 build/*
 
 build64/*
+
+build.log

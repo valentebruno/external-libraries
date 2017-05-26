@@ -1,7 +1,9 @@
 #!/bin/bash
-export BUILD_TYPE=arm-linux
-export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm64"
 
+export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm64"
+source log-output.sh
+
+export BUILD_TYPE=arm-linux
 export BUILD_ARCH=x64
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-arm64.cmake

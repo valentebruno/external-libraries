@@ -1,7 +1,8 @@
 #!/bin/bash
-export BUILD_TYPE=linux
-
 export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-x86"
+source log-output.sh
+
+export BUILD_TYPE=linux
 export BUILD_ARCH=x86
 
 export CXXFLAGS="-m32"

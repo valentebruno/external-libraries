@@ -1,8 +1,10 @@
 #!/bin/bash
 # For a build environment, see linux-build-env/Dockerfile.xenial-android64
 
-export BUILD_TYPE=android
 export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-android64"
+source log-output.sh
+
+export BUILD_TYPE=android
 export HOST_LIB_ROOT="$(cd ..; pwd)/Libraries-x64"
 
 export BUILD_ARCH=x64
