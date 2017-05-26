@@ -17,7 +17,7 @@ setup-library https://github.com/google/flatbuffers.git 1.0.3 -g -b "@e97f38e" #
 setup-library https://github.com/google/protobuf.git 3.0.2 -g
 
 if [[ ${SKIP_QT_BUILD} != true ]]; then
-  if [[ $MSVC_VER == 2017 ]]; then
+  if [[ $VS_VER_YEAR == 2017 ]]; then
     setup-library http://download.qt.io/development_releases/qt/5.9/5.9.0-rc/single/qt-everywhere-opensource-src-5.9.0-rc.tar.xz 5.9.0 -s "qt-everywhere-opensource-src-5.9.0-rc" -n "qt5" -o "qt-5.9.0"
   else
     setup-library http://download.qt.io/official_releases/qt/5.8/5.8.0/single/qt-everywhere-opensource-src-5.8.0.tar.gz 5.8.0 -s "qt-everywhere-opensource-src-5.8.0" -n "qt5" -o "qt-5.8.0"

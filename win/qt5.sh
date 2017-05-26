@@ -11,7 +11,7 @@ cd build
 
 ../configure.bat -prefix "${ins_dir}" -opensource \
 -confirm-license -debug-and-release -opengl desktop -no-angle -no-incredibuild-xge \
--platform win32-msvc${MSVC_VER} -mp -openssl-linked -nomake examples -nomake tests -no-icu -no-dbus \
+-platform win32-msvc${VS_VER_YEAR} -mp -openssl-linked -nomake examples -nomake tests -no-icu -no-dbus \
 -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcanvas3d \
 -skip qtconnectivity -skip qtdeclarative -skip qtdoc -skip qtdocgallery \
 -skip qtenginio -skip qtfeedback -skip qtgamepad -skip qtgraphicaleffects -skip qtimageformats \

@@ -1,5 +1,28 @@
 #!/bin/bash
 
+if [[ -z ${VisualStudioVersion} ]]; then
+  echo "This script must be called from a shell that has run vcvarsall"
+  exit -1
+fi
+
+#Pull in our config settings from the vcvars environment
+export BUILD_ARCH=${Platform,,}
+export VS_VER_NUM=${VisualStudioVersion}
+export VS_VER_SHORT=${VS_VER_NUM%\.0}
+export EXT_LIB_INSTALL_ROOT="../Libraries-${BUILD_ARCH}_vc${VS_VER_SHORT}"
+source log-output.sh
+
+if [[ "${VisualStudioVersion}" == "15.0" ]]; then
+  export VS_VER_YEAR=2017
+elif [[ "${VisualStudioVersion}" == "14.0" ]]; then
+  export VS_VER_YEAR=2015
+elif [[ "${VisualStudioVersion}" == "12.0" ]]; then
+  export VS_VER_YEAR=2013
+else
+  echo "Invalid VS_VER_YEAR=$VS_VER_YEAR"
+  return
+fi
+
 if [[ ! -x $(which 7z 2> /dev/null) ]]; then
   export PATH=${PATH}:/c/Program\ Files/7-Zip
 fi
@@ -13,30 +36,7 @@ link_path=$(which -a link | grep MSVC -m1)
 link_dir=$(dirname "${link_path}")
 export PATH="${link_dir}":"${PATH}"
 
-if [[ $BUILD_ARCH == "x64" ]]; then
-  VS_ARCH_ARG=amd64
-else
-  VS_ARCH_ARG=x86
-fi
-
-if [[ $MSVC_VER == 2013 ]]; then
-  VS_VER_NUM=12.0
-elif [[ $MSVC_VER == 2015 ]]; then
-  VS_VER_NUM=14.0
-elif [[ $MSVC_VER == 2017 ]]; then
-  VS_VER_NUM=15.0
-else
-  echo "Invalid MSVC_VER=$MSVC_VER"
-  return
-fi
-
-if [[ $MSVC_VER == 2017 ]]; then
-  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio\\$MSVC_VER\\Community\\VC\\Auxiliary\\Build\\vcvarsall.bat\" $VS_ARCH_ARG"
-else
-  export VSSETUP_COMMAND="\"C:\\Program Files (x86)\\Microsoft Visual Studio $VS_VER_NUM\\VC\\vcvarsall.bat\" $VS_ARCH_ARG"
-fi
-export CMAKE_COMMAND='"C:\Program Files\CMake\bin\cmake.exe"'
-export CMAKE_GENERATOR="Visual Studio ${VS_VER_NUM%\.0} $MSVC_VER"
+export CMAKE_GENERATOR="Visual Studio ${VS_VER_SHORT} $VS_VER_YEAR"
 if [[ "${BUILD_ARCH}" == "x64" ]]; then
   export CMAKE_GENERATOR="${CMAKE_GENERATOR} Win64"
 fi
