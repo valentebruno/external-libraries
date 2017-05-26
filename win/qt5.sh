@@ -20,7 +20,7 @@ cd build
 -skip script -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtsvg \
 -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebkit \
 -skip qtwebkit-examples -skip qtx11extras -skip qtxmlpatterns \
--I "${OPENSSL_PATH}/include" -L "${OPENSSL_PATH}/lib" \
+-I "${OPENSSL_PATH}/include" -L "${OPENSSL_PATH}/lib" -I "${ZLIB_PATH}/include" \
 OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD"
 
 $root_dir/win/get-jom.sh $(pwd)
