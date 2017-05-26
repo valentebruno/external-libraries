@@ -7,6 +7,7 @@ fi
 
 export CFLAGS="${CFLAGS} -O3 -fPIC"
 export CXXFLAGS="${CXXFLAGS} -O3 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden"
+export CMAKE_BUILD_ARGS="-j4"
 source setup-library.sh
 
 #required for bullet

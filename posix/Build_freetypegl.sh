@@ -9,7 +9,9 @@ cd src/${src_dir}
 build_cmake_lib "${ins_dir}" -DFREETYPE_INCLUDE_DIRS="${FREETYPE2_PATH}/include/freetype2" \
 -DFREETYPE_LIBRARY="${FREETYPE2_PATH}/lib/libfreetype.a" \
 -Dfreetype-gl_BUILD_DEMOS=OFF -Dfreetype-gl_BUILD_APIDOC=OFF \
--Dfreetype-gl_BUILD_MAKEFONT=OFF -Dfreetype-gl_BUILD_TESTS:BOOL=OFF
+-Dfreetype-gl_BUILD_MAKEFONT=OFF -Dfreetype-gl_BUILD_TESTS:BOOL=OFF || true
+
+cmake --build .
 
 mkdir -p "${ins_dir}/include"
 mkdir -p "${ins_dir}/lib"

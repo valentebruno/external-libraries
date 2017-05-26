@@ -11,3 +11,10 @@ export CXX="g++"
 export CC="gcc"
 
 source setup-all-libraries-posix.sh
+
+#For now, we depend on the jdk being located exactly here
+if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/jdk ]]; then
+  echo "Copying JDK..."
+  cp -r /usr/lib/jvm/java-8-openjdk-arm64 ${EXT_LIB_INSTALL_ROOT}/jdk
+fi
+
