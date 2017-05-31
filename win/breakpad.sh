@@ -37,8 +37,8 @@ done
 msbuild.exe src/tools/windows/dump_syms/dump_syms.vcxproj //p:Configuration=Release;Platform=${BUILD_ARCH}
 mkdir -p ${ins_dir}/bin && cp src/tools/windows/dump_syms/Release/dump_syms.exe "$_"
 
-mkdir -p ${ins_dir}/include/client && cp src/client/*.h "$_"
-mkdir -p ${ins_dir}/include/client/windows && cp src/client/windows/*/*.h "$_"
-mkdir -p ${ins_dir}/include/common && cp src/common/*.h "$_"
-mkdir -p ${ins_dir}/include/google_breakpad && cp src/google_breakpad/*/*.h "$_"
-mkdir -p ${ins_dir}/include/processor && cp src/processor/*.h "$_"
+mkdir -p ${ins_dir}/include
+
+(cd src && find . -name '*.h' ! -path '*third_party*' ! -path '*tools*' \
+ ! -regex '\./common/[^w].*/.*' ! -regex '\./client/[^w].*/.*' -exec \
+ cp --parents {} ${ins_dir}/include \;)
