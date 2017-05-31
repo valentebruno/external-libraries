@@ -52,3 +52,11 @@ setup-library https://github.com/leapmotion/DShowBaseClasses.git 1.0.0 -g -o "ba
 
 SWIG_VERSION=3.0.3
 setup-library http://prdownloads.sourceforge.net/swig/swigwin-${SWIG_VERSION}.zip ${SWIG_VERSION} -s "swigwin-${SWIG_VERSION}" -o "swigwin-${SWIG_VERSION}" -n "swig"
+
+PYTHON_VERSION=2.7.12
+if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION} ]]; then
+  cd src
+  curl -OL https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}.amd64.msi
+  msiexec //a python-${PYTHON_VERSION}.amd64.msi TARGETDIR=$(cygpath -w ../${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION}) //qb
+fi
+
