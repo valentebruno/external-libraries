@@ -9,4 +9,4 @@ export MSYSTEM=MINGW32
 export MOZILLABUILD="/c/mozilla-build"
 export PATH="${MOZILLABUILD}/msys/bin:${MOZILLABUILD}/moztools${USE_64:+-x64}/bin:${PATH}"
 
-source posix/Build_$(basename $0)
+source posix/$(basename $0)

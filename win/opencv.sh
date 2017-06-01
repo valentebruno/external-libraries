@@ -3,4 +3,4 @@
 export CMAKE_ADDITIONAL_ARGS="-DWITH_WEBP:BOOL=OFF -DWITH_OPENCL:BOOL=OFF \
 -DENABLE_SSE41:BOOL=ON -DBUILD_WITH_STATIC_CRT:BOOL=OFF -DBUILD_opencv_python2:BOOL=OFF"
 
-source posix/Build_$(basename $0)
+source posix/$(basename $0)

@@ -4,4 +4,4 @@
 #-DFREETYPE_INCLUDE_DIR_ft2build="%FREETYPE2_PATH%/include" ^
 CMAKE_ADDITIONAL_ARGS="-DFREETYPE_LIBRARY=${FREETYPE2_PATH}/lib/libfreetype.lib"
 
-source posix/Build_$(basename $0)
+source posix/$(basename $0)

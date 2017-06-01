@@ -98,7 +98,7 @@ function build_lib_win {
   install_path_win=$(cygpath -w $2)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     if [[ ! -f "./win/${base_name}.sh" ]]; then
-      ./posix/Build_${base_name}.sh ${source_dir} ${install_path_win}
+      ./posix/${base_name}.sh ${source_dir} ${install_path_win}
     else
       ./win/${base_name}.sh ${source_dir} ${install_path_win}
     fi
@@ -111,10 +111,10 @@ function build_lib_posix {
   base_name=$3
 
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    if [[ ! -f "./${BUILD_TYPE}/Build_${base_name}.sh" ]]; then
-      ./posix/Build_${base_name}.sh ${source_dir} ${install_path}
+    if [[ ! -f "./${BUILD_TYPE}/${base_name}.sh" ]]; then
+      ./posix/${base_name}.sh ${source_dir} ${install_path}
     else
-      ./${BUILD_TYPE}/Build_${base_name}.sh ${source_dir} ${install_path}
+      ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path}
     fi
   fi
 }

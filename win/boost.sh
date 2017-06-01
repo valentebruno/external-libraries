@@ -26,4 +26,4 @@ else
 fi
 
 boost_additional_args="${boost_additional_args} variant=debug runtime-link=shared toolset=msvc-${VS_VER_NUM} -j4 --ignore-config"
-source posix/Build_$(basename $0)
+source posix/$(basename $0)
