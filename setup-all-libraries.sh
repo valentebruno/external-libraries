@@ -33,7 +33,6 @@ setup-library https://github.com/leapmotion/SDL2 2.0.1 -g -b static-library -n "
 setup-library https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.tgz 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
 setup-library https://github.com/leapmotion/FreeImage.git 3.17.0 -g -n "freeimage"
 setup-library https://github.com/leapmotion/anttweakbar.git 1.16 -g -b "develop"
-setup-library https://github.com/bulletphysics/bullet3.git 2.84 -g -b 2.84 -o "bullet-2.84"
 setup-library git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 -o "freetype-2.6.3"
 setup-library https://github.com/rougier/freetype-gl.git 0.0.1 -g -b @f2edab9 -n freetypegl
 setup-library https://github.com/assimp/assimp.git 3.2 -g

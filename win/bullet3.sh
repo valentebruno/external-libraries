@@ -1,4 +1,0 @@
-#!/bin/bash -e
-
-CMAKE_ADDITIONAL_ARGS="-DINSTALL_LIBS:BOOL=ON -DUSE_MSVC_RUNTIME_LIBRARY_DLL:BOOL=ON"
-source posix/Build_bullet3.sh
