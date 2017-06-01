@@ -6,6 +6,7 @@ if [[ -z ${VisualStudioVersion} ]]; then
 fi
 
 #Pull in our config settings from the vcvars environment
+export BUILD_TYPE=win
 export BUILD_ARCH=${Platform,,}
 export VS_VER_NUM=${VisualStudioVersion}
 export VS_VER_SHORT=${VS_VER_NUM%\.0}

@@ -90,27 +90,15 @@ function patch_lib {
 
 }
 
-function build_lib_win {
+function build_lib {
   source_dir=$1
   install_path=$2
   base_name=$3
-
-  install_path_win=$(cygpath -w $2)
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
-    if [[ ! -f "./win/${base_name}.sh" ]]; then
-      ./posix/${base_name}.sh ${source_dir} ${install_path_win}
-    else
-      ./win/${base_name}.sh ${source_dir} ${install_path_win}
+    if [[ ${BUILD_TYPE} == win ]]; then
+      install_path=$(cygpath -w $2)
     fi
-  fi
-}
 
-function build_lib_posix {
-  source_dir=$1
-  install_path=$2
-  base_name=$3
-
-  if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     if [[ ! -f "./${BUILD_TYPE}/${base_name}.sh" ]]; then
       ./posix/${base_name}.sh ${source_dir} ${install_path}
     else
@@ -131,13 +119,6 @@ function build_cmake_lib {
 }
 export -f build_cmake_lib
 
-function build_lib {
-  if [[ $OSTYPE == msys* ]]; then
-    build_lib_win $1 $2 $3
-  else
-    build_lib_posix $1 $2 $3
-  fi
-}
 
 function setup-library {
   local url=$1
