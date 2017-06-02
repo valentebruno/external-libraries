@@ -112,10 +112,14 @@ function build_cmake_lib {
   cd b
   cmake .. ${CMAKE_GENERATOR:+-G"${CMAKE_GENERATOR}"} -DCMAKE_INSTALL_PREFIX:PATH="$1" -DCMAKE_BUILD_TYPE:STRING=Release ${@:2} ${CMAKE_ADDITIONAL_ARGS}
 
-  if [[ $VS_VER_YEAR ]]; then
-    cmake --build . --target install --config Debug -- ${CMAKE_BUILD_ARGS}
+  if [[ -z ${cmake_build_target} ]]; then
+    cmake_build_target=install
   fi
-  cmake --build . --target install --config Release -- ${CMAKE_BUILD_ARGS}
+
+  if [[ $VS_VER_YEAR ]]; then
+    cmake --build . --target ${cmake_build_target} --config Debug -- ${CMAKE_BUILD_ARGS}
+  fi
+  cmake --build . --target ${cmake_build_target} --config Release -- ${CMAKE_BUILD_ARGS}
 }
 export -f build_cmake_lib
 
