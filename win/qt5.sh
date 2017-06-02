@@ -23,6 +23,5 @@ cd build
 -I "${OPENSSL_PATH}/include" -L "${OPENSSL_PATH}/lib" -I "${ZLIB_PATH}/include" \
 OPENSSL_LIBS="-lUser32 -lAdvapi32 -lGdi32 -lWs2_32 -lWinmm -lWldap32 -lssleay32MD -llibeay32MD"
 
-$root_dir/win/get-jom.sh $(pwd)
-./jom
-./jom install
+nmake
+nmake install
