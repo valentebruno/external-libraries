@@ -29,7 +29,7 @@ setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g -b "leap"
 setup-library https://github.com/zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 
 setup-library https://ftp.mozilla.org/pub/security/nss/releases/NSS_3_29_1_RTM/src/nss-3.29.1-with-nspr-4.13.1.tar.gz 3.29.1 -s "nss-3.29.1" -o "nss-3.29.1" -n "nss"
-setup-library https://github.com/leapmotion/SDL2 2.0.1 -g -b static-library -n "sdl2"
+setup-library https://www.libsdl.org/release/SDL2-2.0.1.tar.gz 2.0.1 -s SDL2-2.0.1 -n "sdl2" -o "SDL2-2.0.1"
 setup-library https://sourceforge.net/projects/glew/files/glew/1.13.0/glew-1.13.0.tgz 1.13.0 -s "glew-1.13.0" -o "glew-1.13.0" -n "glew"
 setup-library https://github.com/leapmotion/FreeImage.git 3.17.0 -g -n "freeimage"
 setup-library https://github.com/leapmotion/anttweakbar.git 1.16 -g -b "develop"
