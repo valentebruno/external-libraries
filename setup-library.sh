@@ -36,7 +36,7 @@ function download_curl {
       if [[ $OSTYPE != darwin* ]]; then
         tar_arg="--checkpoint=100"
       fi
-      tar xfz ${filename} ${tar_arg}
+      tar xf ${filename} ${tar_arg}
     fi
   fi
 
