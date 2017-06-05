@@ -12,13 +12,10 @@ build_cmake_lib "${ins_dir}" -DFREETYPE_INCLUDE_DIRS="${FREETYPE2_PATH}/include/
 -Dfreetype-gl_BUILD_DEMOS=OFF -Dfreetype-gl_BUILD_APIDOC=OFF \
 -Dfreetype-gl_BUILD_MAKEFONT=OFF -Dfreetype-gl_BUILD_TESTS:BOOL=OFF
 
+cd ..
+
 mkdir -p "${ins_dir}/include"
 mkdir -p "${ins_dir}/lib"
 
-if [[ -z ${freetype_lib_dir} ]]; then
-  freetype_lib_dir="libfreetype-gl"
-fi
-cp "${freetype_lib_dir}"/* "${ins_dir}/lib/"
-
-cd ..
+find . -regex '.*freetype-gl\(d?\)\.\(a\|lib\)' -exec cp {} ${ins_dir}/lib \;
 cp freetype-gl.h opengl.h texture-atlas.h texture-font.h vec234.h vector.h "${ins_dir}/include/"
