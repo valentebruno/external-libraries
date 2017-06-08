@@ -5,7 +5,7 @@ set(CMAKE_ANDROID_STANDALONE_TOOLCHAIN $ENV{NDK_TOOLCHAIN})
 string(APPEND CMAKE_CXX_STANDARD_LIBRARIES " -static-libstdc++ -latomic")
 
 #These should be autodetected in future versions of cmake (or may not be required at all)
-set(CMAKE_ANDROID_API 19)
+set(CMAKE_ANDROID_API 21)
 set(CMAKE_ANDROID_ARCH_ABI armeabi-v7a)
 set(CMAKE_ANDROID_ARM_MODE ON)
 set(CMAKE_ANDROID_ARM_NEON ON)

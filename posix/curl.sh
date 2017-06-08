@@ -13,7 +13,7 @@ PKG_CONFIG_PATH="${OPENSSL_PATH}/lib/pkgconfig" \
 --enable-https --disable-imap --disable-imaps --disable-ldap --disable-ldaps \
 --disable-pop3 --disable-pop3s --disable-rtsp --disable-smtp --disable-smtps \
 --disable-telnet --disable-tftp --disable-shared --enable-optimize \
---disable-debug --without-librtmp --enable-symbol-hiding
+--disable-debug --without-librtmp --enable-symbol-hiding ${cfg_args}
 
 make -j 4
 make install
