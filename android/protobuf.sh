@@ -1,6 +1,5 @@
 #!/bin/bash -e
-
-host_inst_dir=${HOST_LIB_ROOT}/$(basename ${ins_dir})
+host_inst_dir=${HOST_LIB_ROOT}/$(basename ${2})
 
 #required for gcc5?
 export PATH=${PATH}:.
