@@ -15,7 +15,8 @@ export CROSS_COMPILER_PREFIX=${HOST}-
 export CC=${NDK_TOOLCHAIN}/bin/clang
 export CXX=${NDK_TOOLCHAIN}/bin/clang++
 export SYSROOT=${NDK_TOOLCHAIN}/sysroot
-export CFLAGS="-isystem $NDK_TOOLCHAIN/sysroot/usr/include/$HOST -O3 -fvisibility=hidden -fvisibility-inlines-hidden"
+export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden -v"
+export CXXFLAGS="-v"
 export LDFLAGS="-static-libstdc++"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
