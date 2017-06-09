@@ -18,8 +18,12 @@ fi
 #use ActivePerl or things will get wierd
 export PATH="/c/Perl64/bin:${PATH}"
 
-./Configure debug-${OPENSSL_OS} --prefix="${install_dir}"
+perl Configure debug-${OPENSSL_OS} --prefix="${install_dir}"
 ${build_bat}.bat
+if [[ $BUILD_ARCH == x86 ]]; then
+  ms/do_nasm.bat
+fi
+
 sed -i 's/\/Zi \/Fd/\/Z7 \/Fd/g' ms/nt.mak
 nmake -f ms\\nt.mak
 nmake -f ms\\nt.mak install
@@ -29,5 +33,8 @@ mv ${install_dir}/lib/ssleay32MD.lib ${install_dir}/lib/ssleay32MDd.lib
 
 ./Configure ${OPENSSL_OS} --prefix="${install_dir}"
 ${build_bat}.bat
+if [[ $BUILD_ARCH == x86 ]]; then
+  ms/do_nasm.bat
+fi
 nmake -f ms\\nt.mak
 nmake -f ms\\nt.mak install
