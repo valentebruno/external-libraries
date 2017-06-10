@@ -42,10 +42,6 @@ if [[ "${BUILD_ARCH}" == "x64" ]]; then
   export CMAKE_GENERATOR="${CMAKE_GENERATOR} Win64"
 fi
 
-if [[ "${BUILD_ARCH}" == "x86" ]]; then
-  SKIP_QT_BUILD=true
-fi
-
 source ./setup-library.sh
 
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
