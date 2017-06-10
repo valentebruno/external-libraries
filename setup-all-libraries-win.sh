@@ -57,7 +57,11 @@ setup-library http://prdownloads.sourceforge.net/swig/swigwin-${SWIG_VERSION}.zi
 PYTHON_VERSION=2.7.12
 if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION} ]]; then
   cd src
-  curl -OL https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}.amd64.msi
-  msiexec //a python-${PYTHON_VERSION}.amd64.msi TARGETDIR=$(cygpath -w ../${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION}) //qb
+  if [[ $BUILD_ARCH == x64 ]]; then
+    python_arch_suffix=.amd64
+  fi
+  curl -OL https://www.python.org/ftp/python/${PYTHON_VERSION}/python-${PYTHON_VERSION}${python_arch_suffix}.msi
+  msiexec //a python-${PYTHON_VERSION}${python_arch_suffix}.msi TARGETDIR=$(cygpath -w ../${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION}) //qb
+  rm python-${PYTHON_VERSION}${python_arch_suffix}.msi
 fi
 
