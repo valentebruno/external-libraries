@@ -9,12 +9,18 @@ cd src/${src_dir}
 mkdir -p build
 cd build
 
+if [[ ${BUILD_ARCH} == x64 ]]; then
+  abi=arm64-v8a
+else
+  abi=armeabi-v7a
+fi
+
 cmake -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
   -DCMAKE_INSTALL_PREFIX=${ins_dir} \
   -DANDROID_STANDALONE_TOOLCHAIN=${NDK_TOOLCHAIN} \
   -DBUILD_WITH_STANDALONE_TOOLCHAIN=ON \
   -DANDROID=1 \
-  -DANDROID_ABI=arm64-v8a \
+  -DANDROID_ABI=${abi} \
   -DANDROID_STL=c++_static \
   -DANDROID_NATIVE_API_LEVEL=21 \
   -DANDROID_SDK_TARGET=21 \
@@ -43,7 +49,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
   -DWITH_CUFFT=OFF \
   -DBUILD_SHARED_LIBS=OFF \
   -DBUILD_ANDROID_EXAMPLES=OFF \
-  -DANDROID_NDK_ABI_NAME=arm64-v8a \
+  -DANDROID_NDK_ABI_NAME=${abi} \
   -DZLIB_ROOT=${ZLIB_PATH} \
   ..
 make && make install
