@@ -5,9 +5,9 @@ ins_dir=$2
 cd src/${src_dir}
 
 cd builds/msvc
-devenv //Upgrade msvc10.sln
-msbuild.exe libxs/libxs.vcxproj //p:Configuration=Debug;Platform=${BUILD_ARCH}
-msbuild.exe libxs/libxs.vcxproj //p:Configuration=Release;Platform=${BUILD_ARCH}
+devenv //Upgrade msvc12.sln
+msbuild.exe libxs/libxs-vc12.vcxproj //p:Configuration=Debug;Platform=${BUILD_ARCH}
+msbuild.exe libxs/libxs-vc12.vcxproj //p:Configuration=Release;Platform=${BUILD_ARCH}
 cd ../..
 
 mkdir -p ${ins_dir}
