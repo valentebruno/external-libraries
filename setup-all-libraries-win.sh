@@ -10,7 +10,12 @@ export BUILD_TYPE=win
 export BUILD_ARCH=${Platform,,}
 export VS_VER_NUM=${VisualStudioVersion}
 export VS_VER_SHORT=${VS_VER_NUM%\.0}
-export EXT_LIB_INSTALL_ROOT="../Libraries-${BUILD_ARCH}_vc${VS_VER_SHORT}"
+VC_VER=${VS_VER_SHORT}
+if [[ "${VC_VER}" == "15" ]; then
+  VC_VER=141
+fi
+export VC_VER
+export EXT_LIB_INSTALL_ROOT="../Libraries-${BUILD_ARCH}_vc${VC_VER}"
 source log-output.sh
 
 if [[ "${VisualStudioVersion}" == "15.0" ]]; then
