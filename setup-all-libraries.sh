@@ -8,7 +8,6 @@ fi
 
 source ./setup-library.sh
 
-setup-library brew://python3 3.6.2 -o "python-3.6.2"
 setup-library http://downloads.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.gz 1.64.0 -s "boost_1_64_0" -o "boost_1_64_0" -n "boost"
 setup-library https://github.com/madler/zlib.git 1.2.8 -g
 setup-library https://github.com/openssl/openssl.git 1.0.2k -g -b "OpenSSL_1_0_2k"
