@@ -4,7 +4,9 @@
 src_dir=$1
 ins_dir=$2
 
+BREW_PYTHON=$HOME/.linuxbrew/bin/python3
 export PYTHON=python3
+[[ -e "$BREW_PYTHON" ]] && export PYTHON=$BREW_PYTHON
 export PYTHON_VERSION=$($PYTHON -c "import sys; print('{}.{}'.format(*sys.version_info))")
 
 cd src/${src_dir}
