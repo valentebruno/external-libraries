@@ -12,8 +12,6 @@ source setup-library.sh
 
 #required for bullet
 setup-library http://prdownloads.sourceforge.net/freeglut/freeglut-3.0.0.tar.gz 3.0.0 -s "freeglut-3.0.0" -o "freeglut-3.0.0" -n "freeglut"
-setup-library brew://python3 3.6.2 -o "python-3.6.2"
-setup-library pip3://numpy 1.13.1
 
 source setup-all-libraries.sh
 

@@ -10,6 +10,10 @@ export CFLAGS="-m64"
 export CXX="g++"
 export CC="gcc"
 
+source setup-library.sh
+setup-library brew://python3 3.6.2 -o "python-3.6.2"
+setup-library pip3://numpy 1.13.1
+
 source setup-all-libraries-posix.sh
 
 #For now, we depend on the jdk being located exactly here
