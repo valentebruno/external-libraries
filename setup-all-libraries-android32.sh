@@ -21,6 +21,7 @@ export LDFLAGS="-static-libstdc++"
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
 export SKIP_QT_BUILD=true
 export SKIP_SWIG_BUILD=true
+export SKIP_PYTHON=true
 
 export CMAKE_ADDITIONAL_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
 
