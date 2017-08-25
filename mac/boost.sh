@@ -1,7 +1,6 @@
 #!/bin/bash -e
-#!/bin/sh
-# Boost 1.63
-# ===================
+# Boost
+# =====
 
 boost_toolset="--with-toolset=clang"
 source posix/$(basename $0)

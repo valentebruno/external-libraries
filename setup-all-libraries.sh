@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
   echo "EXT_LIB_INSTALL_ROOT must be defined."
@@ -7,7 +8,7 @@ fi
 
 source ./setup-library.sh
 
-setup-library http://downloads.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.gz 1.64.0 -s "boost_1_64_0" -o "boost_1_64_0" -n "boost"
+setup-library https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.bz2 1.64.0 -s "boost_1_64_0" -o "boost_1_64_0" -n "boost"
 setup-library https://github.com/madler/zlib.git 1.2.8 -g
 setup-library https://github.com/openssl/openssl.git 1.0.2k -g -b "OpenSSL_1_0_2k"
 export OPENSSL_ROOT_DIR=${OPENSSL_PATH}

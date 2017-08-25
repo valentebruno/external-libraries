@@ -21,5 +21,5 @@ setup-library http://www.bzip.org/${BZIP2_VERSION}/bzip2-${BZIP2_VERSION}.tar.gz
 setup-library https://github.com/leapmotion/libusb.git 1.0.0 -g -b leap-2.2.x
 setup-library http://sf-github.leap.corp/leapmotion/libuvc.git 1.0.0 -g -b "master"
 
-SWIG_VERSION=3.0.3
+SWIG_VERSION=3.0.12
 setup-library http://iweb.dl.sourceforge.net/project/swig/swig/swig-${SWIG_VERSION}/swig-${SWIG_VERSION}.tar.gz ${SWIG_VERSION} -s "swig-${SWIG_VERSION}" -o "swig-${SWIG_VERSION}" -n "swig"

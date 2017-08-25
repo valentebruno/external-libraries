@@ -11,9 +11,12 @@ export BUILD_ARCH=x86
 export ARCH_FLAGS=
 
 export HOST=arm-linux-androideabi
+export NDK_TOOLCHAIN=/opt/android-standalone-toolchain
+export CROSS_COMPILER_PATH=${NDK_TOOLCHAIN}/bin
+export PATH=$CROSS_COMPILER_PATH:$PATH
 export CROSS_COMPILER_PREFIX=${HOST}-
-export CC=${NDK_TOOLCHAIN}/bin/clang
-export CXX=${NDK_TOOLCHAIN}/bin/clang++
+export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}gcc
+export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}g++
 export SYSROOT=${NDK_TOOLCHAIN}/sysroot
 export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden"
 export LDFLAGS="-static-libstdc++"
@@ -21,6 +24,7 @@ export LDFLAGS="-static-libstdc++"
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
 export SKIP_QT_BUILD=true
 export SKIP_SWIG_BUILD=true
+export SKIP_PYTHON=true
 
 export CMAKE_ADDITIONAL_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
 

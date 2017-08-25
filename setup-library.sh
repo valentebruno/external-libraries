@@ -1,3 +1,5 @@
+BREW_PATH=$HOME/.linuxbrew
+
 #!/bin/bash
 function download_git {
   url=$1
@@ -11,6 +13,24 @@ function download_git {
   else
     git clone ${url} --depth 1 ${branch:+--branch ${branch}}
   fi
+}
+
+function brew_install {
+  formula=$1
+  version=$2
+  output_dir=$3
+  # Install/Update Linuxbrew
+  [[ -d $BREW_PATH ]] || git clone https://github.com/Linuxbrew/brew $BREW_PATH
+  [[ -d $output_dir ]] && echo "$formula already installed." && return
+
+  $BREW_PATH/bin/brew install $formula && cp -r $BREW_PATH/Cellar/$formula/$version/ $output_dir
+}
+
+function pip3_install {
+  formula=$1
+  version=$2
+
+  $BREW_PATH/bin/pip3 install $formula==$version
 }
 
 function download_curl {
@@ -183,9 +203,19 @@ function setup-library {
     echo force=${force}
   fi
   echo "Building ${base_name}"
-  download_lib ${url} ${branch} ${source_dir} ${force_git}
 
-  build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
+  if [[ "${url}" =~ ^brew://.* ]]; then
+    brew_install ${base_name} ${version} "${install_root}/${output_dir}"
+
+  elif [[ "${url}" =~ ^pip3://.* ]]; then
+    pip3_install ${base_name} ${version}
+
+  else
+    download_lib ${url} ${branch} ${source_dir} ${force_git}
+
+    build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
+
+  fi
 
   if [[ $OSTYPE == msys* ]]; then
     export ${base_name^^}_PATH="$(cygpath -w ${install_root}/${output_dir})"
