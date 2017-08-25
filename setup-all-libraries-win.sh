@@ -11,7 +11,7 @@ export BUILD_ARCH=${Platform,,}
 export VS_VER_NUM=${VisualStudioVersion}
 export VS_VER_SHORT=${VS_VER_NUM%\.0}
 VC_VER=${VS_VER_SHORT}
-if [[ "${VC_VER}" == "15" ]; then
+if [[ "${VC_VER}" == "15" ]]; then
   VC_VER=141
 fi
 export VC_VER
