@@ -1,6 +1,7 @@
+#!/bin/bash
+
 BREW_PATH=$HOME/.linuxbrew
 
-#!/bin/bash
 function download_git {
   url=$1
   branch=$2
@@ -205,7 +206,7 @@ function setup-library {
   echo "Building ${base_name}"
 
   if [[ "${url}" =~ ^brew://.* ]]; then
-    brew_install ${base_name} ${version} "${install_root}/${output_dir}"
+    brew_install ${url##*//} ${version} "${install_root}/${output_dir}"
 
   elif [[ "${url}" =~ ^pip3://.* ]]; then
     pip3_install ${base_name} ${version}
