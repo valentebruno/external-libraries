@@ -24,7 +24,7 @@ function brew_install {
   [[ -d $BREW_PATH ]] || git clone https://github.com/Linuxbrew/brew $BREW_PATH
   [[ -d $output_dir ]] && echo "$formula already installed." && return
 
-  $BREW_PATH/bin/brew install $formula && cp -r $BREW_PATH/Cellar/$formula/$version/ $output_dir
+  $BREW_PATH/bin/brew install $formula && cp -rL $BREW_PATH/Cellar/$formula/$version/ $output_dir
 }
 
 function pip3_install {
