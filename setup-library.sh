@@ -97,15 +97,16 @@ function build_lib {
   source_dir=$1
   install_path=$2
   base_name=$3
+  version=$4
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     if [[ ${BUILD_TYPE} == win ]]; then
       install_path=$(cygpath -w $2)
     fi
 
     if [[ ! -f "./${BUILD_TYPE}/${base_name}.sh" ]]; then
-      ./posix/${base_name}.sh ${source_dir} ${install_path}
+      ./posix/${base_name}.sh ${source_dir} ${install_path} ${version}
     else
-      ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path}
+      ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path} ${version}
     fi
   fi
 }
@@ -200,7 +201,7 @@ function setup-library {
 
   download_lib ${url} ${branch} ${source_dir} ${force_git}
 
-  build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
+  build_lib "${source_dir}" "${install_root}/${output_dir}" "${base_name}" "${version}"
 
 
   if [[ $OSTYPE == msys* ]]; then
