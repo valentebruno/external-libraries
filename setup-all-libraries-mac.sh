@@ -13,7 +13,4 @@ export CFLAGS="-mmacosx-version-min=10.10 -arch i386 -arch x86_64"
 export CXXFLAGS="-stdlib=libc++"
 
 source setup-library.sh
-setup-library brew://sashkab/python/python36 3.6.2 -o "python-3.6.2"
-setup-library pip3://numpy 1.13.1
-
 source setup-all-libraries-posix.sh
