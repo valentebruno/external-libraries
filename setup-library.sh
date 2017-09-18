@@ -1,7 +1,5 @@
 #!/bin/bash
 
-BREW_PATH=$HOME/.linuxbrew
-
 function download_git {
   url=$1
   branch=$2
