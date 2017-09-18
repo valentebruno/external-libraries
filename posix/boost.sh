@@ -9,8 +9,8 @@ cd src/${src_dir}
 
 if [[ -z "$SKIP_PYTHON" ]]; then
   # Detect Python 3
-  BREW_PYTHON=$HOME/.linuxbrew/bin/python3
-  if   [[ -e "$BREW_PYTHON" ]];   then PYTHON_EXECUTABLE=$BREW_PYTHON
+  PYTHON_EXE=$EXT_LIB_INSTALL_ROOT/python-3.5.2/bin/python3
+  if   [[ -e "$PYTHON_EXE" ]];   then PYTHON_EXECUTABLE=$PYTHON_EXE
   elif [[ -e $(which python3) ]]; then PYTHON_EXECUTABLE=$(which python3)
   fi
 
