@@ -11,8 +11,8 @@ export CXX="g++"
 export CC="gcc"
 
 source setup-library.sh
-setup-library brew://python3 3.6.2 -o "python-3.6.2"
-setup-library pip3://numpy 1.13.1
+
+setup-library https://github.com/pyenv/pyenv.git 3.5.2 -g -b master -o python-3.5.2
 
 source setup-all-libraries-posix.sh
 

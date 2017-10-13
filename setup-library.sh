@@ -1,6 +1,5 @@
-BREW_PATH=$HOME/.linuxbrew
-
 #!/bin/bash
+
 function download_git {
   url=$1
   branch=$2
@@ -13,24 +12,6 @@ function download_git {
   else
     git clone ${url} --depth 1 ${branch:+--branch ${branch}}
   fi
-}
-
-function brew_install {
-  formula=$1
-  version=$2
-  output_dir=$3
-  # Install/Update Linuxbrew
-  [[ -d $BREW_PATH ]] || git clone https://github.com/Linuxbrew/brew $BREW_PATH
-  [[ -d $output_dir ]] && echo "$formula already installed." && return
-
-  $BREW_PATH/bin/brew install $formula && cp -r $BREW_PATH/Cellar/$formula/$version/ $output_dir
-}
-
-function pip3_install {
-  formula=$1
-  version=$2
-
-  $BREW_PATH/bin/pip3 install $formula==$version
 }
 
 function download_curl {
@@ -114,15 +95,16 @@ function build_lib {
   source_dir=$1
   install_path=$2
   base_name=$3
+  version=$4
   if [[ ! -d "${install_path}" ]] || [[ ${force} == true ]]; then
     if [[ ${BUILD_TYPE} == win ]]; then
       install_path=$(cygpath -w $2)
     fi
 
     if [[ ! -f "./${BUILD_TYPE}/${base_name}.sh" ]]; then
-      ./posix/${base_name}.sh ${source_dir} ${install_path}
+      ./posix/${base_name}.sh ${source_dir} ${install_path} ${version}
     else
-      ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path}
+      ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path} ${version}
     fi
   fi
 }
@@ -215,18 +197,10 @@ function setup-library {
   fi
   echo "Building ${base_name}"
 
-  if [[ "${url}" =~ ^brew://.* ]]; then
-    brew_install ${base_name} ${version} "${install_root}/${output_dir}"
+  download_lib ${url} ${branch} ${source_dir} ${force_git}
 
-  elif [[ "${url}" =~ ^pip3://.* ]]; then
-    pip3_install ${base_name} ${version}
+  build_lib "${source_dir}" "${install_root}/${output_dir}" "${base_name}" "${version}"
 
-  else
-    download_lib ${url} ${branch} ${source_dir} ${force_git}
-
-    build_lib ${source_dir} "${install_root}/${output_dir}" ${base_name}
-
-  fi
 
   if [[ $OSTYPE == msys* ]]; then
     export ${base_name^^}_PATH="$(cygpath -w ${install_root}/${output_dir})"
