@@ -143,6 +143,13 @@ function build_cmake_lib {
 }
 export -f build_cmake_lib
 
+function is_lib_target {
+  local libname=$1
+  if [ -z "$LIBRARY_TARGETS" ]; then
+    return 0
+  fi
+  [[ $LIBRARY_TARGETS =~ (^|[[:space:]])$libname($|[[:space:]]) ]] && return 0 || return 1
+}
 
 function setup-library {
   local url=$1
@@ -187,6 +194,10 @@ function setup-library {
         ;;
       esac
   done
+
+  if ! is_lib_target "$base_name"; then
+    return 0
+  fi
 
   if [[ ${extract_dir} ]]; then
     extract_dir=${source_dir}
