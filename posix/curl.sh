@@ -7,6 +7,7 @@ ins_dir=$2
 cd src/${src_dir}
 
 PKG_CONFIG_PATH="${OPENSSL_PATH}/lib/pkgconfig" \
+LIBS="-ldl" \
 ./configure --prefix="${ins_dir}" --with-zlib="${ZLIB_PATH}" --with-ssl="${OPENSSL_PATH}" \
 --without-ca-path --without-ca-bundle --without-libidn --disable-dict \
 --disable-file --disable-ftp --disable-ftps --disable-gopher --enable-http \
