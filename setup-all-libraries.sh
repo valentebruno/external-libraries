@@ -21,11 +21,11 @@ if [[ ${SKIP_QT_BUILD} != true ]]; then
   setup-library http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz 5.9.0 -s "qt-everywhere-opensource-src-5.9.0" -n "qt5" -o "qt-5.9.0"
 fi
 
-setup-library https://github.com/leapmotion/autowiring.git 1.0.4 -g
-setup-library https://github.com/leapmotion/leapserial.git 0.5.0 -g
-setup-library https://github.com/leapmotion/leaphttp.git 0.1.2 -g
-setup-library https://github.com/leapmotion/leapipc.git 0.1.6 -g
-setup-library https://github.com/leapmotion/leapresource.git 0.1.2 -g
+setup-library https://github.com/leapmotion/autowiring.git 1.0.5 -g
+setup-library https://github.com/leapmotion/leapserial.git 0.5.1 -g
+setup-library https://github.com/leapmotion/leaphttp.git 0.1.3 -g
+setup-library https://github.com/leapmotion/leapipc.git 0.1.7 -g
+setup-library https://github.com/leapmotion/leapresource.git 0.1.3 -g
 setup-library https://github.com/leapmotion/libxs.git 1.2.0 -g -b "leap"
 setup-library https://github.com/zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 
