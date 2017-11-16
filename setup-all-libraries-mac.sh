@@ -10,7 +10,7 @@ export CMAKE_ADDITIONAL_ARGS="-DCMAKE_OSX_ARCHITECTURES:STRING=x86_64 -DCMAKE_OS
 export CC=clang
 export CXX=clang++
 export CFLAGS="-mmacosx-version-min=10.10 -arch i386 -arch x86_64"
-export CXXFLAGS="-stdlib=libc++"
+export CXXFLAGS="${CFLAGS} -stdlib=libc++"
 
 source setup-library.sh
 
