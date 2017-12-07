@@ -12,6 +12,6 @@ else
   QT_DBUS=
 fi
 
-export qt_additional_args="-platform ${QT_PLATFORM} -openssl-linked -I${OPENSSL_PATH}/include -verbose"
+export qt_additional_args="-platform ${QT_PLATFORM} -openssl-linked -I${OPENSSL_PATH}/include -verbose -qt-freetype"
 export OPENSSL_LIBS="-L${OPENSSL_PATH}/lib -lssl -lcrypto -ldl"
 source posix/$(basename $0)
