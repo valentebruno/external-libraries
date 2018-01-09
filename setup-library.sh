@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 function download_git {
   url=$1
@@ -120,8 +120,18 @@ function build_cmake_lib {
 
   if [[ $VS_VER_YEAR ]]; then
     cmake --build . --target ${cmake_build_target} --config Debug -- ${CMAKE_BUILD_ARGS}
+    for f in bin/Debug/*Test{,.exe}; do
+      if [ -x $f ]; then
+        (cd $(dirname $f) && ./$(basename $f))
+      fi
+    done
   fi
   cmake --build . --target ${cmake_build_target} --config Release -- ${CMAKE_BUILD_ARGS}
+  for f in bin/*Test{,.exe} bin/Release/*Test{,.exe}; do
+    if [ -x $f ]; then
+      (cd $(dirname $f) && ./$(basename $f))
+    fi
+  done
 }
 export -f build_cmake_lib
 
