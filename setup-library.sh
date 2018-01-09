@@ -114,24 +114,31 @@ function build_cmake_lib {
   cd b
   cmake .. ${CMAKE_GENERATOR:+-G"${CMAKE_GENERATOR}"} -DCMAKE_INSTALL_PREFIX:PATH="$1" -DCMAKE_BUILD_TYPE:STRING=Release ${@:2} ${CMAKE_ADDITIONAL_ARGS}
 
-  if [[ -z ${cmake_build_target} ]]; then
-    cmake_build_target=install
+  target_args=""
+  if [[ -n ${cmake_build_target} ]]; then
+    target_args="--target ${cmake_build_target}"
   fi
 
   if [[ $VS_VER_YEAR ]]; then
-    cmake --build . --target ${cmake_build_target} --config Debug -- ${CMAKE_BUILD_ARGS}
+    cmake --build . ${target_args} --config Debug -- ${CMAKE_BUILD_ARGS}
     for f in bin/Debug/*Test{,.exe}; do
       if [ -x $f ]; then
         (cd $(dirname $f) && ./$(basename $f))
       fi
     done
+    if [ -z "${target_args}" ]; then
+      cmake --build . --target install --config Debug -- ${CMAKE_BUILD_ARGS}
+    fi
   fi
-  cmake --build . --target ${cmake_build_target} --config Release -- ${CMAKE_BUILD_ARGS}
+  cmake --build . ${target_args} --config Release -- ${CMAKE_BUILD_ARGS}
   for f in bin/*Test{,.exe} bin/Release/*Test{,.exe}; do
     if [ -x $f ]; then
       (cd $(dirname $f) && ./$(basename $f))
     fi
   done
+  if [ -z "${target_args}" ]; then
+    cmake --build . --target install --config Release -- ${CMAKE_BUILD_ARGS}
+  fi
 }
 export -f build_cmake_lib
 
