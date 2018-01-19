@@ -61,7 +61,7 @@ setup-library http://prdownloads.sourceforge.net/swig/swigwin-${SWIG_VERSION}.zi
 
 PYTHON_VERSION=2.7.12
 if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/python-${PYTHON_VERSION} ]]; then
-  cd src
+  cd ${BUILD_DIR}
   if [[ $BUILD_ARCH == x64 ]]; then
     python_arch_suffix=.amd64
   fi

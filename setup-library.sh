@@ -1,9 +1,11 @@
 #!/bin/bash -e
+if [[ -z "${BUILD_DIR}" ]]; then
+  export BUILD_DIR=$(realpath ./src)
+fi
 
 function download_git {
   url=$1
   branch=$2
-  src_dir=$3
   if [[ $branch == @* ]]; then
     git clone ${url}
     pushd ./${foldername} > /dev/null
@@ -19,7 +21,6 @@ function download_curl {
   filename=$(basename ${url})
 
   curl -OL ${url}
-
 
   if [[ $OSTYPE == msys* ]]; then
     if [[ ${filename} == *.tar.[gx]z ]] || [[ ${filename} == *.tgz ]]; then
@@ -51,10 +52,10 @@ function download_lib {
   force_git=$4
 
   if [[ ${force} == true ]]; then
-    rm -rf src/${foldername}
+    rm -rf ${BUILD_DIR}/${foldername}
   fi
 
-  if [[ -e src/${foldername} ]];  then
+  if [[ -e ${BUILD_DIR}/${foldername} ]];  then
     return
   fi
 
@@ -62,11 +63,11 @@ function download_lib {
     echo "Downloading Library ${foldername}"
   fi
 
-  if [[ ! -d src ]]; then
-    mkdir src
+  if [[ ! -d ${BUILD_DIR} ]]; then
+    mkdir ${BUILD_DIR}
   fi
 
-  pushd src > /dev/null
+  pushd ${BUILD_DIR} > /dev/null
 
   if [[ ${force_git} == true ]] || [[ ${url} =~ ^git* ]]; then
     download_git ${url} ${branch} ${foldername}
@@ -86,7 +87,7 @@ function patch_lib {
 
   patchpath="$(pwd)/patch/${name}.patch"
   if [[ -e  ${patchpath} ]]; then
-    patch -i "${patchpath}" -p0 -fsN -d "$(pwd)/src/${name}"
+    patch -i "${patchpath}" -p0 -fsN -d "${BUILD_DIR}/${name}"
   fi
 
 }

@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 PCRE_VERSION=8.38
 if [ ! -f pcre-${PCRE_VERSION}.tar.bz2 ]; then

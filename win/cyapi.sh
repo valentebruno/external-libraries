@@ -1,9 +1,9 @@
 #!/bin/bash -e
 
-source_dir=$1
+source_dir=${BUILD_DIR}/$1
 install_dir=$2
 
-cd src/${source_dir}
+cd ${source_dir}
 
 platform=${BUILD_ARCH}
 if [[ ${BUILD_ARCH} == x86 ]]; then

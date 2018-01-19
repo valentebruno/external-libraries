@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 if [[ $BUILD_ARCH == x64 ]]; then
   OPTS="USE_64=1"

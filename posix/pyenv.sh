@@ -4,7 +4,7 @@ src_dir=$1
 ins_dir=$2
 version=$3
 
-cd src/${src_dir}/plugins/python-build
+cd ${BUILD_DIR}/${src_dir}/plugins/python-build
 
 # Install python builder
 PREFIX=$ins_dir ./install.sh

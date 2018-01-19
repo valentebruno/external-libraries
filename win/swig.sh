@@ -2,6 +2,6 @@
 
 src_dir=$1
 ins_dir=$2
-cd src
+cd ${BUILD_DIR}
 
 cp -r ${src_dir} ${ins_dir}

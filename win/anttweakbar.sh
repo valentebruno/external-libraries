@@ -1,8 +1,8 @@
 #!/bin/bash -e
-source_dir=$1
+src_dir=$1
 install_dir=$2
 
-cd src/${source_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 cd src
 devenv //Upgrade AntTweakBar_VS2012.sln

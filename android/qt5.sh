@@ -2,9 +2,9 @@
 # Qt5 [libc++]
 # ============
 
-export QT_SRC_DIR=$(pwd)/src/$1
+export QT_SRC_DIR=${BUILD_DIR}/$1
 
-cp -vr arm-linux/mkspecs/* src/$1/qtbase/mkspecs/
+cp -vr arm-linux/mkspecs/* ${BUILD_DIR}/$1/qtbase/mkspecs/
 
 export QMAKE_CC=${CC}
 export QMAKE_CXX=${CXX}

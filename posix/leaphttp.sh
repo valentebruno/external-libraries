@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 build_cmake_lib "${ins_dir}" -Dautowiring_DIR:PATH="${AUTOWIRING_PATH}" -DZLIB_ROOT_DIR:PATH="${ZLIB_PATH}" \
  -DCMAKE_PREFIX_PATH:STRING="${CURL_PATH}" \

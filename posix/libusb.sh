@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 ./bootstrap.sh
 ./configure --disable-udev ${cfg_flags}

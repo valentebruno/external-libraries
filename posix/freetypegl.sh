@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 cmake_build_target=freetype-gl
 build_cmake_lib "${ins_dir}" -DFREETYPE_INCLUDE_DIRS="${FREETYPE2_PATH}/include/freetype2" \

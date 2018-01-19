@@ -5,16 +5,17 @@ if [[ "${BUILD_ARCH}" == "x64" ]]; then
 else
   boost_additional_args="architecture=x86"
 fi
+src_dir=$1
 
-if [[ ! -x src/$1/b2.exe ]]; then
-  cd src/$1 && cmd //C "bootstrap.bat" && cd ../..
+if [[ ! -x ${BUILD_DIR}/$src_dir/b2.exe ]]; then
+  cd ${BUILD_DIR/$src_dir && cmd //C "bootstrap.bat" && cd ../..
 fi
 
 if [[ ${VS_VER_NUM} == 15.0 ]]; then
   VS_VER_NUM=14.1
 
   #workaround for boost 1.63 & VS2017. Remove in 1.64
-  cat > src/$1/project-config.jam<<CONFIGFILE
+  cat > BUILD_DIR/$src_dir/project-config.jam<<CONFIGFILE
 import option ;
 
 using msvc : ${VS_VER_NUM} : "$(cygpath -w "$(which cl)")" ;

@@ -2,11 +2,11 @@
 # Qt5
 # ============
 
-export QT_SRC_DIR=$(pwd)/src/$1
+export QT_SRC_DIR=${BUILD_DIR}/$1
 QT_DEVICE=linux-leap-lmvp-g++
 QT_QPA_PLATFORM=xcb
 
-cp -vr arm-linux/mkspecs/* src/$1/qtbase/mkspecs/
+cp -vr arm-linux/mkspecs/* ${QT_SRC_DIR}/qtbase/mkspecs/
 
 #-no-feature-pdf added because the module is broken in GCC 4.8.
 export QMAKE_CC=${CC}

@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
-cd src/$1/winbuild
+src_dir=${BUILD_DIR}/$1
+cd $src_dir/winbuild
 
 nmake //f Makefile.vc mode=static VC=${VS_VER_NUM%\.0} MACHINE=${BUILD_ARCH} DEBUG=yes
 nmake //f Makefile.vc mode=static VC=${VS_VER_NUM%\.0} MACHINE=${BUILD_ARCH} DEBUG=no

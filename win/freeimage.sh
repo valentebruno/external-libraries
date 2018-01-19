@@ -1,7 +1,7 @@
 #!/bin/bash -e
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 devenv //Upgrade FreeImage.2013.sln
 msbuild.exe Source/FreeImageLib/FreeImageLib.2013.vcxproj //p:Configuration=Debug;Platform=${BUILD_ARCH}

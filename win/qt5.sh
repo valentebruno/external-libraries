@@ -3,7 +3,8 @@
 export ins_dir=$2
 root_dir=$(pwd)
 
-cd src/$1
+src_dir=${BUILD_DIR}/$1
+cd ${src_dir}
 
 export PATH="$(pwd)/qtbase/bin:$(pwd)/gnuwin32/bin:${PATH}"
 mkdir -p build

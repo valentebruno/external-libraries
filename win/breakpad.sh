@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 if [[ ! -d gyp ]]; then
   git clone --depth 1 https://chromium.googlesource.com/external/gyp

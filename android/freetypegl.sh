@@ -2,7 +2,7 @@
 # Freetype-gl
 # ===========
 
-cat <<EOF > src/$1/opengl.h
+cat <<EOF > ${BUILD_DIR}/$1/opengl.h
 /* Freetype GL - A C OpenGL Freetype engine
  *
  * Distributed under the OSI-approved BSD 2-Clause License.  See accompanying

@@ -4,7 +4,7 @@
 
 src_dir=$1
 ins_dir=$2
-cd src/${src_dir}
+cd ${BUILD_DIR}/${src_dir}
 
 build_cmake_lib "${ins_dir}" -DBUILD_DOCS:BOOL=OFF \
 -DBUILD_PERF_TESTS:BOOL=OFF \
@@ -14,3 +14,4 @@ build_cmake_lib "${ins_dir}" -DBUILD_DOCS:BOOL=OFF \
 -DWITH_MATLAB:BOOL=OFF \
 -DBUILD_SHARED_LIBS:BOOL=OFF \
 -DWITH_QT:BOOL=OFF
+ 
