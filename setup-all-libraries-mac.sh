@@ -14,6 +14,6 @@ export CXXFLAGS="${CFLAGS} -stdlib=libc++"
 
 source setup-library.sh
 
-setup-library https://github.com/pyenv/pyenv.git 3.5.2 -g -b master -o python-3.5.2
+setup-library git@github.com:pyenv/pyenv.git 3.5.2 -g -b master -o python-3.5.2
 
 source setup-all-libraries-posix.sh
