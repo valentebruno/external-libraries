@@ -36,7 +36,7 @@ setup-library git://git.sv.nongnu.org/freetype/freetype2.git 2.6.3 -b VER-2-6-3 
 setup-library git@github.com:rougier/freetype-gl.git 0.0.1 -g -b @f2edab9 -n freetypegl
 setup-library git@github.com:assimp/assimp.git 3.2 -g
 
-setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "chrome_53"
+setup-library https://chromium.googlesource.com/breakpad/breakpad 0.1 -g -b "chrome_64"
 
 EIGEN_VERSION=3.3.1
 setup-library http://bitbucket.org/eigen/eigen/get/${EIGEN_VERSION}.tar.gz ${EIGEN_VERSION} -o "eigen-${EIGEN_VERSION}" -s "eigen-eigen-f562a193118d" -n eigen
