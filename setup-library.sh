@@ -116,7 +116,7 @@ function build_lib {
 }
 
 function make_check_err {
-  make_check_err $@
+  make $@
   _err=$?
   if [[ "$_err" != "0" ]]; then
     exit $_err
