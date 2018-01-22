@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # SDL2
 # ====
 
@@ -9,5 +9,5 @@ cd ${BUILD_DIR}/${src_dir}
 chmod +x ./configure
 ./configure --prefix="${ins_dir}" --disable-shared --enable-static \
 --disable-audio --disable-joystick --disable-haptic ${cfg_args}
-make -j 4
-make install
+make_check_err -j 4
+make_check_err install

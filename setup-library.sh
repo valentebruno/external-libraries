@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 if [[ -z "${BUILD_DIR}" ]]; then
   export BUILD_DIR=$(realpath ./src)
 fi
@@ -101,14 +101,28 @@ function build_lib {
     if [[ ${BUILD_TYPE} == win ]]; then
       install_path=$(cygpath -w $2)
     fi
-
+    
     if [[ ! -f "./${BUILD_TYPE}/${base_name}.sh" ]]; then
       ./posix/${base_name}.sh ${source_dir} ${install_path} ${version}
     else
       ./${BUILD_TYPE}/${base_name}.sh ${source_dir} ${install_path} ${version}
     fi
+
+    if [[ "$?" != "0" ]]; then
+      echo "error building ${base_name}, cleaning ${install_path}"
+      rm -rf ${install_path}
+    fi
   fi
 }
+
+function make_check_err {
+  make_check_err $@
+  _err=$?
+  if [[ "$_err" != "0" ]]; then
+    exit $_err
+  fi
+}
+export -f make_check_err
 
 function build_cmake_lib {
   mkdir -p b
@@ -221,7 +235,6 @@ function setup-library {
   download_lib ${url} ${branch} ${source_dir} ${force_git}
 
   build_lib "${source_dir}" "${install_root}/${output_dir}" "${base_name}" "${version}"
-
 
   if [[ $OSTYPE == msys* ]]; then
     export ${base_name^^}_PATH="$(cygpath -w ${install_root}/${output_dir})"

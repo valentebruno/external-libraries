@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 src_dir=$1
 install_dir=$2
 

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # cURL
 # ====
 
@@ -16,5 +16,5 @@ LIBS="-ldl" \
 --disable-telnet --disable-tftp --disable-shared --enable-optimize \
 --disable-debug --without-librtmp --enable-symbol-hiding ${cfg_args}
 
-make -j 4
-make install
+make_check_err -j 4
+make_check_err install

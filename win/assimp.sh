@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 export CMAKE_ADDITIONAL_ARGS="-DASSIMP_INSTALL_PDB:BOOL=OFF -DCMAKE_DEBUG_POSTFIX:STRING=d"
 source posix/$(basename $0)

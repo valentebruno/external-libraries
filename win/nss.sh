@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 export OS_TARGET=WIN95
 export BUILD_OPT=1

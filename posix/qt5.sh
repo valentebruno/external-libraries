@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Qt5
 # ============
 
@@ -17,8 +17,8 @@ cd ${BUILD_DIR}/${src_dir}
  -skip qtsvg -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebkit \
  -skip qtwebkit-examples -skip qtx11extras -skip qtxmlpatterns \
  ${qt_additional_args} \
- && make -j 9 VERBOSE=1 &&
-make -j1 install
+ && make_check_err -j 9 VERBOSE=1 &&
+make_check_err -j1 install
 
 rm -fr ${ins_dir}/doc
 rm -fr ${ins_dir}/examples

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # FreeImage
 # =========
 
@@ -11,4 +11,4 @@ export INCDIR=${ins_dir}/include
 export INSTALLDIR=${ins_dir}/lib
 export INSTALLGROUP=$(id -g)
 
-make -f Makefile.gnu -j 4 && make -f Makefile.gnu install
+make_check_err -f Makefile.gnu -j 4 && make_check_err -f Makefile.gnu install

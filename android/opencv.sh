@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # OpenCV
 # ======n
 
@@ -52,4 +52,4 @@ cmake -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
   -DANDROID_NDK_ABI_NAME=${abi} \
   -DZLIB_ROOT=${ZLIB_PATH} \
   ..
-make && make install
+make_check_err -j4 && make_check_err install

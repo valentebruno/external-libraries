@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # SWIG
 # ====
 
@@ -14,8 +14,8 @@ fi
 tar xfj "pcre-${PCRE_VERSION}.tar.bz2"
 cd pcre-${PCRE_VERSION}
 ./configure --enable-shared=no --prefix="`pwd`/../pcre"
-make -j 4 && make install
+make_check_err -j 4 && make_check_err install
 cd ..
 ./configure --with-pcre --with-pcre-prefix="`pwd`/pcre" --prefix="${ins_dir}" --with-boost="${BOOST_PATH}"
-make -j 4 && make install
+make_check_err -j 4 && make_check_err install
 

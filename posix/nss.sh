@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # nss
 # ===
 
@@ -13,7 +13,7 @@ fi
 cd nss
 export C_INCLUDE_PATH=${ZLIB_PATH}/include
 export LIBRARY_PATH=${ZLIB_PATH}/lib
-make nss_build_all BUILD_OPT=1 VERBOSE=1 NSS_ENABLE_WERROR=0 ${OPTS}
+make_check_err nss_build_all BUILD_OPT=1 VERBOSE=1 NSS_ENABLE_WERROR=0 ${OPTS}
 cd ../dist
 
 NSS_OBJDIR=$(basename $(find . -name "*OPT\.OBJ"))

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # zlib
 # ====
 src_dir=$1
@@ -7,5 +7,5 @@ cd ${BUILD_DIR}/${src_dir}
 
 ./configure --static --prefix="${ins_dir}" ${cfg_args}
 
-make -j8 && make install
+make_check_err -j8 && make_check_err install
 

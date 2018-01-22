@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # http://zxstudio.org/blog/2014/10/28/integrating-google-breakpad/
 

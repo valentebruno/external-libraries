@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # bzip2
 # =====
 
@@ -6,7 +6,6 @@ src_dir=$1
 ins_dir=$2
 cd ${BUILD_DIR}/${src_dir}
 
-set +e
 patch -N  <<'MAKEFILE_OPTIONS'
 *** Makefile    Fri May 19 04:03:43 2017
 --- Makefile    Fri May 19 04:04:14 2017
@@ -36,6 +35,4 @@ patch -N  <<'MAKEFILE_OPTIONS'
   # Where you want it installed when you do 'make install'
   PREFIX=/usr/local
 MAKEFILE_OPTIONS
-set -e
-make -j 4 ${make_target} && make install PREFIX="${ins_dir}"
-
+make_check_err -j 4 ${make_target} && make_check_err install PREFIX="${ins_dir}"

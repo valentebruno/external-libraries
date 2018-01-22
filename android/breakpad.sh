@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Breakpad
 # =================
 
@@ -12,10 +12,10 @@ fi
 _src_root="${BUILD_DIR}/$1/src"
 #remove patch for older NDK version
 if [[ ${BUILD_ARCH} == x64 ]]; then
-  rm "${_src_root}/common/android/include/sys/user.h"
+  rm -f "${_src_root}/common/android/include/sys/user.h"
 else
-  rm "${_src_root}/common/android/testing/include/wchar.h"
-  rm "${_src_root}/common/android/include/link.h"
+  rm -f "${_src_root}/common/android/testing/include/wchar.h"
+  rm -f "${_src_root}/common/android/include/link.h"
   sed -i 's/sys_mmap2/sys_mmap/g' "${_src_root}/common/memory.h"
   sed -i 's/sys_mmap2/sys_mmap/g' "${_src_root}/common/linux/memory_mapped_file.cc"
 fi

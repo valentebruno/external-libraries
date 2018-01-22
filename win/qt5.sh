@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 export ins_dir=$2
 root_dir=$(pwd)

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # OpenSSL
 # =======
 
@@ -8,6 +8,6 @@ cd ${BUILD_DIR}/${src_dir}
 
 ./Configure --prefix="${ins_dir}" ${OPENSSL_OS} ${CFLAGS} ${cfg_args}
 
-make -j 8
-make install
+make_check_err -j 8
+make_check_err install
 cd ..

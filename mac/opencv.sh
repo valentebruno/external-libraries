@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # OpenCV
 # ======n
 CMAKE_ADDITIONAL_ARGS="-DWITH_QT:BOOL=OFF -DWITH_WEBP:BOOL=OFF -DWITH_OPENCL:BOOL=OFF \

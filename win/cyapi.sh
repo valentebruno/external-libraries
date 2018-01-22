@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 source_dir=${BUILD_DIR}/$1
 install_dir=$2

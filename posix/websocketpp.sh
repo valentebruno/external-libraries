@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # websocketpp
 # ====================
 src_dir=$1

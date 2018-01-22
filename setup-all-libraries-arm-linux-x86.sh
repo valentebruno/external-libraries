@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm32"
 source log-output.sh

@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # FreeImage
 # =========
 
@@ -7,4 +7,4 @@ ins_dir=$2
 cd ${BUILD_DIR}/${src_dir}
 
 export PREFIX=${ins_dir}
-make -f Makefile.osx -j 4 && make -f Makefile.osx install
+make_check_err -f Makefile.osx -j 4 && make_check_err -f Makefile.osx install

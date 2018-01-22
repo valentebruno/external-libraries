@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Breakpad
 # =================
 
@@ -12,7 +12,7 @@ BREAKPAD_BIN="${BREAKPAD_DIR}/bin"
 BREAKPAD_LIB="${BREAKPAD_DIR}/lib"
 
 CC=clang CXX=clang++ CFLAGS="-O3 -arch x86_64"  CXXFLAGS="-O3 -arch x86_64 -stdlib=libc++" ./configure --prefix="${BREAKPAD_DIR}"
-make -j 4 && make install
+make_check_err -j 4 && make_check_err install
 
 cd src
 for f in $(find client common google_breakpad processor testing -name \*.h); do

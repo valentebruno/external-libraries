@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Breakpad
 # =================
 
@@ -17,7 +17,8 @@ if [ "${BUILD_ARCH}" = "x86" ]; then
 fi
 
 ./configure --prefix="${ins_dir}" ${BREAKPAD_FLAGS}
-make -j4 && make install
+make_check_err -j4 && make_check_err install
+
 BREAKPAD_INCLUDE="${ins_dir}/include"
 cd src
 for f in $(find client common google_breakpad processor testing third_party -name \*.h); do

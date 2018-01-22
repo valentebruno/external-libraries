@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 #required for gcc5?
 export PATH=${PATH}:.

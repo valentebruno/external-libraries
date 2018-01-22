@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 if [[ "${BUILD_ARCH}" == "x64" ]]; then
   boost_additional_args="address-model=64 architecture=ia64"

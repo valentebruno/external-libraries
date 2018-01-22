@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 src_dir=${BUILD_DIR}/$1
 cd $src_dir/winbuild

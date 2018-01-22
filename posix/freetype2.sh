@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 # Freetype
 # ========
 
@@ -10,5 +10,5 @@ cd ${BUILD_DIR}/${src_dir}
 ./configure --prefix="${ins_dir}" --without-zlib --without-bzip2 \
  --without-png ${cfg_args}
 
-make -j 9 && make install
+make_check_err -j 9 && make_check_err install
 cp docs/FTL.TXT "${ins_dir}"/

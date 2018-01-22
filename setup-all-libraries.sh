@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
   echo "EXT_LIB_INSTALL_ROOT must be defined."

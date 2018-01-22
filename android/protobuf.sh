@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 host_inst_dir=${HOST_LIB_ROOT}/$(basename ${2})
 
 #required for gcc5?
