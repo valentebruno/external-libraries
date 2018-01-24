@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# realpath is not available on macOS
+which realpath || realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 if [[ -z "${BUILD_DIR}" ]]; then
   export BUILD_DIR=$(realpath ./src)
 fi
