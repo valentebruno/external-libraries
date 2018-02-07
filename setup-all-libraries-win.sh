@@ -50,6 +50,7 @@ fi
 source ./setup-library.sh
 
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
+setup-library git@github.com:leapmotion/libusb.git 1.0.22 -g -b leap-2.2.x
 
 source ./setup-all-libraries.sh
 
