@@ -4,6 +4,11 @@ cd ssh-agent
 ./run.sh -q
 cd ..
 
+if [[ -z "$1" ]]; then
+  echo "Usage: ./run-docker.sh [android32|android64|x86_64|arm64] <output_dir> <host library dir>"
+  exit
+fi
+
 platform=$1
 out_dir=$2
 host_libs=$3
