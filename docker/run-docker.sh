@@ -5,7 +5,7 @@ cd ssh-agent
 cd ..
 
 if [[ -z "$1" ]]; then
-  echo "Usage: ./run-docker.sh [android32|android64|x86_64|arm64] <output_dir> <host library dir>"
+  echo "Usage: ./run-docker.sh [android32|android64|x86_64|arm64|rk1108] <output_dir> <host library dir>"
   exit
 fi
 
@@ -29,6 +29,7 @@ MSYS_NO_PATHCONV=1 docker run --rm -it --volumes-from=ssh-agent \
 -v $platform-build:/opt/local/$platform-build \
 -v $out_dir:/opt/local/$(basename ${out_dir}) \
 -v $host_libs:/opt/local/Libraries-x64 \
+-v /c/dev/platform:/opt/local/platform \
 -e SSH_AUTH_SOCK=/.ssh-agent/socket \
--e BUILD_DIR=/opt/local/build-ext \
+-e BUILD_DIR=/opt/local/$platform-build \
 --name ${platform} xenial:$platform /bin/bash 
