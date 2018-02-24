@@ -26,7 +26,7 @@ set -x
 
 MSYS_NO_PATHCONV=1 docker run --rm -it --volumes-from=ssh-agent \
 -v $(realpath $(dirname $0)/..):/opt/local/external-libraries:ro \
--v $platform-build:/opt/local/$platform-build \
+-v $platform-lib-build:/opt/local/$platform-build \
 -v $out_dir:/opt/local/$(basename ${out_dir}) \
 -v $host_libs:/opt/local/Libraries-x64 \
 -v /c/dev/platform:/opt/local/platform \
