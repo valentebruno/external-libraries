@@ -12,7 +12,7 @@ setup-library git@github.com:openssl/openssl.git 1.0.2k -g -b "OpenSSL_1_0_2k"
 export OPENSSL_ROOT_DIR=${OPENSSL_PATH}
 
 setup-library https://curl.haxx.se/download/curl-7.53.1.tar.gz 7.53.1 -n curl -o "curl-7.53.1" -s "curl-7.53.1"
-setup-library git@github.com:google/flatbuffers.git 1.0.3 -g -b "@e97f38e" #Not actually 1.0.3
+setup-library git@github.com:google/flatbuffers.git 1.8.0 -g
 setup-library git@github.com:google/protobuf.git 3.0.2 -g
 
 if [[ ${SKIP_QT_BUILD} != true ]]; then
