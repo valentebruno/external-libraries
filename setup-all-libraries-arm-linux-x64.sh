@@ -1,6 +1,7 @@
 #!/bin/bash
 
-export EXT_LIB_INSTALL_ROOT="/opt/local/Libraries-arm64"
+export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm64"
+
 source log-output.sh
 
 export BUILD_TYPE=arm-linux
