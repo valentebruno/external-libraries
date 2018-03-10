@@ -15,7 +15,7 @@ if [[ "${VC_VER}" == "15" ]]; then
   VC_VER=141
 fi
 export VC_VER
-export EXT_LIB_INSTALL_ROOT="../Libraries-${BUILD_ARCH}_vc${VC_VER}"
+export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-../Libraries-${BUILD_ARCH}_vc${VC_VER}}"
 source log-output.sh
 
 if [[ "${VisualStudioVersion}" == "15.0" ]]; then

@@ -1,5 +1,5 @@
 #!/bin/bash
-export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries"
+export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries}"
 source log-output.sh
 
 export BUILD_TYPE=mac
