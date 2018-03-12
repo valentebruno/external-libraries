@@ -1,5 +1,5 @@
 #!/bin/bash
-export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-x64"
+export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries-x64}"
 source log-output.sh
 
 export BUILD_TYPE=linux

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm64"
+export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries-arm64}"
 
 source log-output.sh
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export EXT_LIB_INSTALL_ROOT="$(cd ..; pwd)/Libraries-arm32"
+export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries-rk1108}"
 source log-output.sh
 
 export BUILD_TYPE=arm-linux
