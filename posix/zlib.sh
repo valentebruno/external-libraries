@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # zlib
 # ====
 src_dir=$1

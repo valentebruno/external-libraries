@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # For a build environment, see linux-build-env/Dockerfile.xenial-android64
 
 if [[ -z BUILD_TYPE ]]; then
