@@ -155,7 +155,7 @@ function build_cmake_lib {
   
   if [[ "${BUILD_TYPE}" != "android" ]]; then #Don't run tests on android, our build environment isn't setup to run android apps.
     for f in bin/*Test{,.exe} bin/Release/*Test{,.exe}; do
-      if [ "$f" -ne "bin/LeapHTTPTest" ] && [ -x $f ]; then
+      if [ -x $f ]; then
         (cd $(dirname $f) && ./$(basename $f))
       fi
     done
