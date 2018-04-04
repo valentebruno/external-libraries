@@ -29,4 +29,3 @@ if [[ ! -d ${EXT_LIB_INSTALL_ROOT}/jdk ]]; then
   echo "Copying JDK..."
   cp -r /usr/lib/jvm/java-8-openjdk-armhf ${EXT_LIB_INSTALL_ROOT}/jdk
 fi
-
