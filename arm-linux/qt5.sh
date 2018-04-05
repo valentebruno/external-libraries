@@ -3,13 +3,13 @@
 # ============
 
 # TODO: Support 64-bit ARM Linux e.g. Tegra TX2
-# FIXME: When posix/qt5.sh adds openssl support, fix here as well
 
 src_dir=$1
 ins_dir=$2
 cd ${BUILD_DIR}/${src_dir}
 
 export QT_QPA_PLATFORM=xcb
+export OPENSSL_LIBS="-lssl -lcrypto -ldl"
 ./configure \
  -platform linux-g++-64 \
  -device linux-rasp-pi3-g++ \
@@ -25,6 +25,7 @@ export QT_QPA_PLATFORM=xcb
  -skip qtrepotools -skip script -skip qtsensors -skip qtserialbus -skip qtserialport \
  -skip qtsvg -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebkit \
  -skip qtwebkit-examples -skip qtx11extras -skip qtxmlpatterns \
+ -openssl-linked -I "${OPENSSL_PATH}/include" -L "${OPENSSL_PATH}/lib" \
  ${qt_additional_args} --verbose \
  && make_check_err -j 9 VERBOSE=1 && make_check_err -j1 install
 
