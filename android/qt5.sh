@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # Qt5 [libc++]
 # ============
 

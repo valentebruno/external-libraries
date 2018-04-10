@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 src_dir=$1
 ins_dir=$2

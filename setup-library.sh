@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # realpath is not available on macOS
 which realpath || realpath() {

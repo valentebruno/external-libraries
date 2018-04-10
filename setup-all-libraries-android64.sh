@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # For a build environment, see linux-build-env/Dockerfile.xenial-android64
 
 export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries-android64}"

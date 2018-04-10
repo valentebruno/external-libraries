@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 export EXT_LIB_INSTALL_ROOT="${EXT_LIB_INSTALL_ROOT:-$(cd ..; pwd)/Libraries-arm64}"
 
