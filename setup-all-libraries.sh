@@ -19,6 +19,7 @@ if [[ ${SKIP_QT_BUILD} != true ]]; then
   setup-library http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz 5.9.0 -s "qt-everywhere-opensource-src-5.9.0" -n "qt5" -o "qt-5.9.0"
 fi
 
+setup-library git@github.com:leapmotion/upgrade_tool.git 0.0.2 -g
 setup-library git@github.com:leapmotion/autowiring.git 1.1.0 -g
 setup-library git@github.com:leapmotion/leapserial.git 0.5.1 -g
 setup-library git@github.com:leapmotion/leaphttp.git 0.1.3 -g
