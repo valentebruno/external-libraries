@@ -6,7 +6,7 @@ src_dir=$1
 ins_dir=$2
 cd ${BUILD_DIR}/${src_dir}
 
-cd ${BUILD_DIR}
+cd src
 CXXCFG="-O3"
 if [ ${BUILD_TYPE} != "mac" ]; then
   CXXCFG="${CXXCFG} -fpermissive"
