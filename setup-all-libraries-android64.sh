@@ -16,7 +16,7 @@ export CC=${NDK_TOOLCHAIN}/bin/clang
 export CXX=${NDK_TOOLCHAIN}/bin/clang++
 export SYSROOT=${NDK_TOOLCHAIN}/sysroot
 export CFLAGS="-O3 -fvisibility=hidden -fvisibility-inlines-hidden"
-export LDFLAGS="-static-libstdc++"
+export LDFLAGS="-latomic"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android64.cmake
 export SKIP_QT_BUILD=true

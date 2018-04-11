@@ -19,7 +19,7 @@ export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}gcc
 export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}g++
 export SYSROOT=${NDK_TOOLCHAIN}/sysroot
 export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden"
-export LDFLAGS="-static-libstdc++"
+export LDFLAGS="-latomic"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
 export SKIP_QT_BUILD=true
