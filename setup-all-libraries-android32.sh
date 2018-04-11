@@ -8,7 +8,7 @@ export BUILD_TYPE=android
 export HOST_LIB_ROOT="$(cd ..; pwd)/Libraries-x64"
 
 export BUILD_ARCH=x86
-export ARCH_FLAGS=
+export ARCH_FLAGS="-march=armv7-a -mfpu=neon"
 
 export HOST=arm-linux-androideabi
 export NDK_TOOLCHAIN=/opt/android-standalone-toolchain
@@ -18,7 +18,7 @@ export CROSS_COMPILER_PREFIX=${HOST}-
 export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}gcc
 export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}g++
 export SYSROOT=${NDK_TOOLCHAIN}/sysroot
-export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden"
+export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden ${ARCH_FLAGS}"
 export LDFLAGS="-latomic"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
