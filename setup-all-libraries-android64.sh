@@ -11,6 +11,9 @@ export BUILD_ARCH=x64
 export ARCH_FLAGS=
 
 export HOST=aarch64-linux-android
+if [[ -z "${NDK_TOOLCHAIN}" ]]; then
+	export NDK_TOOLCHAIN=/opt/local/android-standalone-toolchain
+fi
 export CROSS_COMPILER_PREFIX=${HOST}-
 export CC=${NDK_TOOLCHAIN}/bin/clang
 export CXX=${NDK_TOOLCHAIN}/bin/clang++

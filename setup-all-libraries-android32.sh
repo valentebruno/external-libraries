@@ -11,7 +11,9 @@ export BUILD_ARCH=x86
 export ARCH_FLAGS="-march=armv7-a -mfpu=neon"
 
 export HOST=arm-linux-androideabi
-export NDK_TOOLCHAIN=/opt/android-standalone-toolchain
+if [[ -z "${NDK_TOOLCHAIN}" ]]; then
+	export NDK_TOOLCHAIN=/opt/local/android-standalone-toolchain
+fi
 export CROSS_COMPILER_PATH=${NDK_TOOLCHAIN}/bin
 export PATH=$CROSS_COMPILER_PATH:$PATH
 export CROSS_COMPILER_PREFIX=${HOST}-
