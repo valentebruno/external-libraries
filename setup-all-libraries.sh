@@ -22,10 +22,10 @@ fi
 
 setup-library git@github.com:leapmotion/upgrade_tool.git 0.0.2 -g
 setup-library git@github.com:leapmotion/autowiring.git 1.1.0 -g
-setup-library git@github.com:leapmotion/leapserial.git 0.5.1 -g
-setup-library git@github.com:leapmotion/leaphttp.git 0.1.3 -g
-setup-library git@github.com:leapmotion/leapipc.git 0.1.7 -g
-setup-library git@github.com:leapmotion/leapresource.git 0.1.3 -g
+setup-library git@github.com:leapmotion/leapserial.git 0.5.2 -g
+setup-library git@github.com:leapmotion/leaphttp.git 0.1.4 -g
+setup-library git@github.com:leapmotion/leapipc.git 0.1.8 -g
+setup-library git@github.com:leapmotion/leapresource.git 0.1.4 -g
 setup-library git@github.com:leapmotion/libxs.git 1.2.0 -g -b "leap"
 setup-library git@github.com:zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 
