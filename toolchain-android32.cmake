@@ -9,6 +9,7 @@ set(CMAKE_ANDROID_API 21)
 set(CMAKE_ANDROID_ARCH_ABI armeabi-v7a)
 set(CMAKE_ANDROID_ARM_MODE ON)
 set(CMAKE_ANDROID_ARM_NEON ON)
+set(CMAKE_ANDROID_STL_TYPE c++_shared)
 
 add_definitions(-DANDROID) #expected to be set by the toolchain in many cases
 set(CMAKE_FIND_ROOT_PATH "$ENV{EXT_LIB_INSTALL_ROOT}")
