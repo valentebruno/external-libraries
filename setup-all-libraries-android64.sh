@@ -11,15 +11,15 @@ export BUILD_ARCH=x64
 export ARCH_FLAGS=
 
 export HOST=aarch64-linux-android
-if [[ -z "${NDK_TOOLCHAIN}" ]]; then
-	export NDK_TOOLCHAIN=/opt/local/android-standalone-toolchain
+if [[ -z "${ANDROID_STANDALONE_TOOLCHAIN}" ]]; then
+	export ANDROID_STANDALONE_TOOLCHAIN=/opt/local/android-standalone-toolchain
 fi
-export CROSS_COMPILER_PATH=${NDK_TOOLCHAIN}/bin
+export CROSS_COMPILER_PATH=${ANDROID_STANDALONE_TOOLCHAIN}/bin
 export PATH=$CROSS_COMPILER_PATH:$PATH
 export CROSS_COMPILER_PREFIX=${HOST}-
 export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang
 export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang++
-export SYSROOT=${NDK_TOOLCHAIN}/sysroot
+export SYSROOT=${ANDROID_STANDALONE_TOOLCHAIN}/sysroot
 export CFLAGS="-O3 -fvisibility=hidden -fvisibility-inlines-hidden"
 export LDFLAGS="-latomic"
 
