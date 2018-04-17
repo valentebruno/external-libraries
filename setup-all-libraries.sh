@@ -6,7 +6,7 @@ if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
 fi
 
 source ./setup-library.sh
-setup-library git@github.com:leapmotion/libusb.git 1.0.0 -g -b leap-1.0.1
+setup-library git@github.com:leapmotion/libusb.git 1.0.0 -g -b fix-soname-0
 setup-library https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.bz2 1.64.0 -s "boost_1_64_0" -o "boost_1_64_0" -n "boost"
 setup-library git@github.com:madler/zlib.git 1.2.8 -g
 setup-library git@github.com:openssl/openssl.git 1.0.2k -g -b "OpenSSL_1_0_2k"
