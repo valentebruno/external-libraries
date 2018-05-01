@@ -1,0 +1,13 @@
+diff --git a/3rdparty/libwebp/cpu-features/cpu-features.c b/3rdparty/libwebp/cpu-features/cpu-features.c
+index 119c2ac..36b715e 100644
+--- a/3rdparty/libwebp/cpu-features/cpu-features.c
++++ b/3rdparty/libwebp/cpu-features/cpu-features.c
+@@ -57,7 +57,7 @@
+  * NDK r4: Initial release
+  */
+ #include <sys/system_properties.h>
+-#ifdef __arm__
++#if defined(__arm__) && !defined(__ANDROID__)
+ #include <machine/cpu-features.h>
+ #endif
+ #include <pthread.h>

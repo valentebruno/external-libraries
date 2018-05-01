@@ -6,6 +6,7 @@ if [[ ! $EXT_LIB_INSTALL_ROOT ]]; then
 fi
 
 source ./setup-library.sh
+setup-library git@github.com:leapmotion/libusb.git 1.0.0 -g -b fix-soname-0
 setup-library https://dl.bintray.com/boostorg/release/1.64.0/source/boost_1_64_0.tar.bz2 1.64.0 -s "boost_1_64_0" -o "boost_1_64_0" -n "boost"
 setup-library git@github.com:madler/zlib.git 1.2.8 -g
 setup-library git@github.com:openssl/openssl.git 1.0.2k -g -b "OpenSSL_1_0_2k"
@@ -19,11 +20,12 @@ if [[ ${SKIP_QT_BUILD} != true ]]; then
   setup-library http://download.qt.io/official_releases/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz 5.9.0 -s "qt-everywhere-opensource-src-5.9.0" -n "qt5" -o "qt-5.9.0"
 fi
 
+setup-library git@github.com:leapmotion/upgrade_tool.git 0.0.2 -g -o "upgradetool-0.0.2"
 setup-library git@github.com:leapmotion/autowiring.git 1.1.0 -g
-setup-library git@github.com:leapmotion/leapserial.git 0.5.1 -g
-setup-library git@github.com:leapmotion/leaphttp.git 0.1.3 -g
-setup-library git@github.com:leapmotion/leapipc.git 0.1.7 -g
-setup-library git@github.com:leapmotion/leapresource.git 0.1.3 -g
+setup-library git@github.com:leapmotion/leapserial.git 0.5.2 -g
+setup-library git@github.com:leapmotion/leaphttp.git 0.1.4 -g
+setup-library git@github.com:leapmotion/leapipc.git 0.1.8 -g
+setup-library git@github.com:leapmotion/leapresource.git 0.1.4 -g
 setup-library git@github.com:leapmotion/libxs.git 1.2.0 -g -b "leap"
 setup-library git@github.com:zaphoyd/websocketpp.git 0.8.0 -g -b "develop" #technically 0.8.0-dev
 

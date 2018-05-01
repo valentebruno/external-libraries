@@ -48,7 +48,7 @@ if [[ "${BUILD_ARCH}" == "x64" ]]; then
 fi
 
 source ./setup-library.sh
-
+setup-library git@github.com:leapmotion/libusb.git 1.0.0 -g -b v1.0.22
 setup-library https://chromium.googlesource.com/external/gyp 0.1 -g -b "master"
 
 source ./setup-all-libraries.sh

@@ -11,12 +11,17 @@ export BUILD_ARCH=x64
 export ARCH_FLAGS=
 
 export HOST=aarch64-linux-android
+if [[ -z "${ANDROID_STANDALONE_TOOLCHAIN}" ]]; then
+	export ANDROID_STANDALONE_TOOLCHAIN=/opt/local/android-standalone-toolchain
+fi
+export CROSS_COMPILER_PATH=${ANDROID_STANDALONE_TOOLCHAIN}/bin
+export PATH=$CROSS_COMPILER_PATH:$PATH
 export CROSS_COMPILER_PREFIX=${HOST}-
-export CC=${NDK_TOOLCHAIN}/bin/clang
-export CXX=${NDK_TOOLCHAIN}/bin/clang++
-export SYSROOT=${NDK_TOOLCHAIN}/sysroot
-export CFLAGS="-O3 -fvisibility=hidden -fvisibility-inlines-hidden"
-export LDFLAGS="-static-libstdc++"
+export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang
+export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang++
+export SYSROOT=${ANDROID_STANDALONE_TOOLCHAIN}/sysroot
+export CFLAGS="-pie -O3 -fvisibility=hidden -fvisibility-inlines-hidden"
+export LDFLAGS="-latomic"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android64.cmake
 export SKIP_QT_BUILD=true
@@ -24,9 +29,5 @@ export SKIP_SWIG_BUILD=true
 export SKIP_PYTHON=true
 
 export CMAKE_ADDITIONAL_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}"
-
-#override the libusb branch
-source setup-library.sh
-setup-library git@github.com:leapmotion/libusb.git 1.0.1 -g -b leap-2.3.x-arm
 
 source setup-all-libraries-posix.sh

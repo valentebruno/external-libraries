@@ -4,7 +4,13 @@
 
 src_dir=$1
 ins_dir=$2
-cd ${BUILD_DIR}/${src_dir}
+src_dir_absolute=${BUILD_DIR}/${src_dir}
+curdir=$(pwd)
+pushd $(realpath ${src_dir_absolute})
+git apply ${curdir}/android/opencv.patch
+popd
+
+cd ${src_dir_absolute}
 
 mkdir -p build
 cd build
@@ -17,11 +23,11 @@ fi
 
 cmake -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
   -DCMAKE_INSTALL_PREFIX=${ins_dir} \
-  -DANDROID_STANDALONE_TOOLCHAIN=${NDK_TOOLCHAIN} \
+  -DANDROID_STANDALONE_TOOLCHAIN=${ANDROID_STANDALONE_TOOLCHAIN} \
   -DBUILD_WITH_STANDALONE_TOOLCHAIN=ON \
   -DANDROID=1 \
   -DANDROID_ABI=${abi} \
-  -DANDROID_STL=c++_static \
+  -DANDROID_STL=c++ \
   -DANDROID_NATIVE_API_LEVEL=21 \
   -DANDROID_SDK_TARGET=21 \
   -DANDROID_SDK_TARGETS=21 \
@@ -41,7 +47,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE} \
   -DBUILD_opencv_stitching=OFF \
   -DBUILD_opencv_superres=OFF \
   -DBUILD_opencv_ts=OFF \
-  -DBUILD_opencv_video=OFF \
+  -DBUILD_opencv_video=ON \
   -DBUILD_opencv_videoio=OFF \
   -DBUILD_opencv_videostab=OFF \
   -DBUILD_opencv_world=OFF \
