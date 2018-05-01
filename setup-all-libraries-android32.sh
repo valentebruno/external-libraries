@@ -20,7 +20,7 @@ export CROSS_COMPILER_PREFIX=${HOST}-
 export CC=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang
 export CXX=${CROSS_COMPILER_PATH}/${CROSS_COMPILER_PREFIX}clang++
 export SYSROOT=${ANDROID_STANDALONE_TOOLCHAIN}/sysroot
-export CFLAGS="-fvisibility=hidden -fvisibility-inlines-hidden ${ARCH_FLAGS}"
+export CFLAGS="-pie -fvisibility=hidden -fvisibility-inlines-hidden ${ARCH_FLAGS}"
 export LDFLAGS="-latomic"
 
 export TOOLCHAIN_FILE=$(pwd)/toolchain-android32.cmake
